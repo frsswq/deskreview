@@ -7,40 +7,44 @@ const pageTitle = "Contact";
 <Layout pageTitle={pageTitle}>
   <Title title="Get in touch" />
   <div class="grid grid-cols-1 md:grid-cols-2">
-    <div class="my-8 text-2xl md:text-3xl lg:text-4xl font-AreaInktrap font-semibold">
+    <div class="my-8 font-AreaInktrap font-semibold text-2xl md:text-3xl lg:text-4xl">
       <div class="mx-4 my-4 md:my-8">
-        <p class="leading-tight">Work with us</p>
+        <p class="leading-none">Work with us</p>
         <a
           href="mailto:zaidandzaki@gmail.com"
           target="_blank"
-          class="text-desk-gray-700/60 underline"
+          class="underline text-desk-gray-700/60 text-xl md:text-2xl lg:text-3xl"
         >
           zaidandzaki@gmail.com
         </a>
       </div>
       <div class="mx-4 my-4 md:my-8">
-        <p class="leading-tight">Contact us</p>
+        <p class="leading-none">Contact us</p>
         <a
           href="https://wa.me/085159177206"
           target="_blank"
-          class="text-desk-gray-700/60 underline"
+          class="underline text-desk-gray-700/60 text-xl md:text-2xl lg:text-3xl"
         >
           +62 851 5917 7206
         </a>
       </div>
       <div class="mx-4 my-4 md:my-8">
-        <p class="leading-tight">Social</p>
-        <p class="text-desk-gray-700/60">
+        <p class="leading-none">Social</p>
+        <p class="text-desk-gray-700/60 text-xl md:text-2xl lg:text-3xl">
           Instagram: <a
             href="https://www.instagram.com/deskreview/"
             target="_blank"
-            class="text-desk-gray-700/60 underline">@deskreview</a
+            class="underline"
+            >@deskreview</a
           >
         </p>
       </div>
     </div>
-    <div class="hidden lg:flex justify-end">
-      <img src="/gif/logo_animated.gif" class="w-auto h-[450px]"/>
+    <div class="hidden md:flex justify-end">
+      <img
+        src="/gif/logo_animated.gif"
+        class="w-auto object-contain max-h-[400px] lg:max-h-[450px]"
+      />
     </div>
   </div>
 </Layout>

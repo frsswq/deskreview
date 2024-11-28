@@ -1,11 +1,12 @@
 ---
 import Header from "../components/Header.astro";
 import ImportFont from "../components/ImportFont.astro";
+import Footer from "../components/Footer.astro";
 const { pageTitle } = Astro.props;
 ---
 
 <!-- classic layout -->
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth overflow-x-hidden">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/ico/favicon.ico" />
@@ -14,9 +15,10 @@ const { pageTitle } = Astro.props;
     <title>{pageTitle}</title>
     <ImportFont />
   </head>
-  <body>
+  <body class="overflow-x-hidden">
     <Header />
-    <div class="h-[52px]"/>
+    <div class="h-[52px]"></div>
     <slot />
+    <Footer />
   </body>
 </html>
