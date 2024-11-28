@@ -24,7 +24,7 @@ const currentPath = Astro.url.pathname;
     <!-- Logo -->
     <div class="py-[6px] logo-container">
       <a href="/deskreview/" class="focus:outline-none focus:opacity-80">
-        <img src="/svg/logo_full_navbar.svg" alt="Logo" class="h-6 w-auto" />
+        <img src="/deskreview/svg/logo_full_navbar.svg" alt="Logo" class="h-6 w-auto" />
       </a>
     </div>
 
@@ -32,29 +32,29 @@ const currentPath = Astro.url.pathname;
     <nav class="hidden md:flex tracking-tight">
       <a
         href="/deskreview/work"
-        class={`pt-[10px] pb-[6px] px-2 flex items-center text-sm 
-          ${currentPath.startsWith('/deskreview/work') ? 'text-desk-black' : 'text-desk-gray-700/80'}
+        class={`pt-[10px] pb-[6px] px-2 flex items-center text-sm
+          ${currentPath.startsWith("/deskreview/work") ? "text-desk-black" : "text-desk-gray-700/80"}
           hover:text-desk-black focus:outline-none focus:text-desk-black`}
         >Work</a
       >
       <a
         href="/deskreview/"
-        class={`pt-[10px] pb-[6px] px-2 flex items-center text-sm 
-          ${currentPath === '/deskreview/' ? 'text-desk-black' : 'text-desk-gray-700/80'}
+        class={`pt-[10px] pb-[6px] px-2 flex items-center text-sm
+          ${currentPath === "/deskreview/" ? "text-desk-black" : "text-desk-gray-700/80"}
           hover:text-desk-black focus:outline-none focus:text-desk-black`}
         >About</a
       >
       <a
         href="/deskreview/thoughts"
-        class={`pt-[10px] pb-[6px] px-2 flex items-center text-sm 
-          ${currentPath.startsWith('/deskreview/thoughts') ? 'text-desk-black' : 'text-desk-gray-700/80'}
+        class={`pt-[10px] pb-[6px] px-2 flex items-center text-sm
+          ${currentPath.startsWith("/deskreview/thoughts") ? "text-desk-black" : "text-desk-gray-700/80"}
           hover:text-desk-black focus:outline-none focus:text-desk-black`}
         >Thoughts
       </a>
       <a
         href="/deskreview/contact"
-        class={`pt-[10px] pb-[6px] pl-2 pr-0 flex items-center text-sm 
-          ${currentPath.startsWith('/deskreview/contact') ? 'text-desk-black' : 'text-desk-gray-700/80'}
+        class={`pt-[10px] pb-[6px] pl-2 pr-0 flex items-center text-sm
+          ${currentPath.startsWith("/deskreview/contact") ? "text-desk-black" : "text-desk-gray-700/80"}
           hover:text-desk-black focus:outline-none focus:text-desk-black`}
         >Contact</a
       >
