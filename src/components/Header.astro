@@ -23,7 +23,7 @@ const currentPath = Astro.url.pathname;
   >
     <!-- Logo -->
     <div class="py-[6px] logo-container">
-      <a href="/" class="focus:outline-none focus:opacity-80">
+      <a href="/deskreview/" class="focus:outline-none focus:opacity-80">
         <img src="/svg/logo_full_navbar.svg" alt="Logo" class="h-6 w-auto" />
       </a>
     </div>
@@ -31,30 +31,30 @@ const currentPath = Astro.url.pathname;
     <!-- Desktop Navigation -->
     <nav class="hidden md:flex tracking-tight">
       <a
-        href="/work"
+        href="/deskreview/work"
         class={`pt-[10px] pb-[6px] px-2 flex items-center text-sm 
-          ${currentPath.startsWith('/work') ? 'text-desk-black' : 'text-desk-gray-700/80'}
+          ${currentPath.startsWith('/deskreview/work') ? 'text-desk-black' : 'text-desk-gray-700/80'}
           hover:text-desk-black focus:outline-none focus:text-desk-black`}
         >Work</a
       >
       <a
-        href="/"
+        href="/deskreview/"
         class={`pt-[10px] pb-[6px] px-2 flex items-center text-sm 
-          ${currentPath === '/' ? 'text-desk-black' : 'text-desk-gray-700/80'}
+          ${currentPath === '/deskreview/' ? 'text-desk-black' : 'text-desk-gray-700/80'}
           hover:text-desk-black focus:outline-none focus:text-desk-black`}
         >About</a
       >
       <a
-        href="/thoughts"
+        href="/deskreview/thoughts"
         class={`pt-[10px] pb-[6px] px-2 flex items-center text-sm 
-          ${currentPath.startsWith('/thoughts') ? 'text-desk-black' : 'text-desk-gray-700/80'}
+          ${currentPath.startsWith('/deskreview/thoughts') ? 'text-desk-black' : 'text-desk-gray-700/80'}
           hover:text-desk-black focus:outline-none focus:text-desk-black`}
         >Thoughts
       </a>
       <a
-        href="/contact"
+        href="/deskreview/contact"
         class={`pt-[10px] pb-[6px] pl-2 pr-0 flex items-center text-sm 
-          ${currentPath.startsWith('/contact') ? 'text-desk-black' : 'text-desk-gray-700/80'}
+          ${currentPath.startsWith('/deskreview/contact') ? 'text-desk-black' : 'text-desk-gray-700/80'}
           hover:text-desk-black focus:outline-none focus:text-desk-black`}
         >Contact</a
       >
@@ -71,22 +71,22 @@ const currentPath = Astro.url.pathname;
     class="space-y-2 text-5xl font-bold font-AreaInktrap tracking-tight mt-32"
   >
     <a
-      href="/work"
+      href="/deskreview/work"
       class="block text-white hover:text-zinc-400 focus:outline-none focus:text-zinc-400"
       >Work</a
     >
     <a
-      href="/"
+      href="/deskreview/"
       class="block text-white hover:text-zinc-400 focus:outline-none focus:text-zinc-400"
       >About</a
     >
     <a
-      href="/thoughts"
+      href="/deskreview/thoughts"
       class="block text-white hover:text-zinc-400 focus:outline-none focus:text-zinc-400"
       >Thoughts</a
     >
     <a
-      href="/contact"
+      href="/deskreview/contact"
       class="block text-white hover:text-zinc-400 focus:outline-none focus:text-zinc-400"
       >Contact</a
     >
