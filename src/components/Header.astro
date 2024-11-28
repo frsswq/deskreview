@@ -1,5 +1,5 @@
 ---
-
+const currentPath = Astro.url.pathname;
 ---
 
 <input type="checkbox" id="nav-toggle" class="hidden" />
@@ -31,27 +31,31 @@
     <!-- Desktop Navigation -->
     <nav class="hidden md:flex tracking-tight">
       <a
-        href="/"
-        class="pt-[10px] pb-[6px] px-2 flex items-center text-sm text-gray-800 hover:text-gray-500 focus:outline-none
-          focus:text-gray-500"
-        >About</a
-      >
-      <a
         href="/work"
-        class="pt-[10px] pb-[6px] px-2 flex items-center text-sm text-gray-800 hover:text-gray-500 focus:outline-none
-          focus:text-gray-500"
+        class={`pt-[10px] pb-[6px] px-2 flex items-center text-sm 
+          ${currentPath.startsWith('/work') ? 'text-desk-black' : 'text-desk-gray-700/80'}
+          hover:text-desk-black focus:outline-none focus:text-desk-black`}
         >Work</a
       >
       <a
-        href="/blog"
-        class="pt-[10px] pb-[6px] px-2 flex items-center text-sm text-gray-800 hover:text-gray-500 focus:outline-none
-          focus:text-gray-500"
-        >Blog</a
+        href="/"
+        class={`pt-[10px] pb-[6px] px-2 flex items-center text-sm 
+          ${currentPath === '/' ? 'text-desk-black' : 'text-desk-gray-700/80'}
+          hover:text-desk-black focus:outline-none focus:text-desk-black`}
+        >About</a
       >
       <a
+        href="/thoughts"
+        class={`pt-[10px] pb-[6px] px-2 flex items-center text-sm 
+          ${currentPath.startsWith('/thoughts') ? 'text-desk-black' : 'text-desk-gray-700/80'}
+          hover:text-desk-black focus:outline-none focus:text-desk-black`}
+        >Thoughts
+      </a>
+      <a
         href="/contact"
-        class="pt-[10px] pb-[6px] px-2 flex items-center text-sm text-gray-800 hover:text-gray-500 focus:outline-none
-          focus:text-gray-500"
+        class={`pt-[10px] pb-[6px] pl-2 pr-0 flex items-center text-sm 
+          ${currentPath.startsWith('/contact') ? 'text-desk-black' : 'text-desk-gray-700/80'}
+          hover:text-desk-black focus:outline-none focus:text-desk-black`}
         >Contact</a
       >
     </nav>
@@ -63,21 +67,23 @@
   class="fixed top-0 left-0 w-full h-full bg-black hidden z-[50] md:hidden pl-4"
   id="mobile-menu"
 >
-  <nav class="space-y-2 text-5xl font-bold font-AreaInktrap tracking-tight mt-32">
-    <a
-      href="/"
-      class="block text-white hover:text-zinc-400 focus:outline-none focus:text-zinc-400"
-      >About</a
-    >
+  <nav
+    class="space-y-2 text-5xl font-bold font-AreaInktrap tracking-tight mt-32"
+  >
     <a
       href="/work"
       class="block text-white hover:text-zinc-400 focus:outline-none focus:text-zinc-400"
       >Work</a
     >
     <a
-      href="/blog"
+      href="/"
       class="block text-white hover:text-zinc-400 focus:outline-none focus:text-zinc-400"
-      >Blog</a
+      >About</a
+    >
+    <a
+      href="/thoughts"
+      class="block text-white hover:text-zinc-400 focus:outline-none focus:text-zinc-400"
+      >Thoughts</a
     >
     <a
       href="/contact"

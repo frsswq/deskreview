@@ -1,8 +1,46 @@
 ---
+import Title from "../components/Title.astro";
 import Layout from "../layouts/Layout.astro";
 const pageTitle = "Contact";
 ---
 
 <Layout pageTitle={pageTitle}>
-
+  <Title title="Get in touch" />
+  <div class="grid grid-cols-1 md:grid-cols-2">
+    <div class="my-8 text-2xl md:text-3xl lg:text-4xl font-AreaInktrap font-semibold">
+      <div class="mx-4 my-4 md:my-8">
+        <p class="leading-tight">Work with us</p>
+        <a
+          href="mailto:zaidandzaki@gmail.com"
+          target="_blank"
+          class="text-desk-gray-700/60 underline"
+        >
+          zaidandzaki@gmail.com
+        </a>
+      </div>
+      <div class="mx-4 my-4 md:my-8">
+        <p class="leading-tight">Contact us</p>
+        <a
+          href="https://wa.me/085159177206"
+          target="_blank"
+          class="text-desk-gray-700/60 underline"
+        >
+          +62 851 5917 7206
+        </a>
+      </div>
+      <div class="mx-4 my-4 md:my-8">
+        <p class="leading-tight">Social</p>
+        <p class="text-desk-gray-700/60">
+          Instagram: <a
+            href="https://www.instagram.com/deskreview/"
+            target="_blank"
+            class="text-desk-gray-700/60 underline">@deskreview</a
+          >
+        </p>
+      </div>
+    </div>
+    <div class="hidden lg:flex justify-end">
+      <img src="/gif/logo_animated.gif" class="w-auto h-[450px]"/>
+    </div>
+  </div>
 </Layout>

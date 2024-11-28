@@ -1,9 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import CardLayout from "../layouts/CardLayout.astro";
+import Title from "../components/Title.astro";
 const pageTitle = "Work";
 ---
 
 <Layout pageTitle={pageTitle}>
+  <Title title={pageTitle} />
   <CardLayout />
 </Layout>
