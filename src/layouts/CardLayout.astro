@@ -1,0 +1,57 @@
+---
+import Card from "../components/Card.astro";
+
+
+// import salam_ganesha_academy from "../assets/salam_ganesha_academy.jpg";
+import astra_honda from "../assets/astra_honda_red.png";
+// import telkomsel from "../assets/telkomsell.png";
+import rococo from "../assets/rococo.png";
+import hayati_karya from "../assets/hayati_logo.png";
+---
+
+<div class="w-full flex flex-col">
+  <section
+    class="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-8 px-4 md:py-8 pt-8 pb-8 w-full"
+  >
+    <Card
+      title="Salam Ganesha Academy"
+      description="Education Tech"
+      image="/"
+      year="2024"
+      href="/work/salam-ganesha-academy"
+    />
+
+    <Card
+      title="Telkomsel"
+      description="Telecommunication"
+      image="/"
+      year="2023"
+      href="/work/telkomsel"
+    />
+  </section>
+  <section
+    class="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-8 px-4 md:py-8 pb-8 w-full"
+  >
+    <Card
+      title="Astra Honda"
+      description="Vehicle Manufacture"
+      image={astra_honda}
+      year="2023"
+      href="/work/astra-honda"
+    />
+    <Card
+      title="Rococo Group Indonesia"
+      description="Luxury Fashion"
+      image={rococo}
+      year="2023"
+      href="/work/rococo-group-indonesia"
+    />
+    <Card
+      title="Hayati Karya Lestari"
+      description="NGO"
+      image={hayati_karya}
+      year="2023"
+      href="/work/hayati-karya-lestari"
+    />
+  </section>
+</div>

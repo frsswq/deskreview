@@ -1,0 +1,143 @@
+---
+
+---
+
+<input type="checkbox" id="nav-toggle" class="hidden" />
+
+<!-- Hamburger Button -->
+<label
+  for="nav-toggle"
+  class="fixed top-[24px] right-4 z-[60] cursor-pointer md:hidden"
+>
+  <div class="hamburger-icon">
+    <span class="block w-8 h-[0.5px] bg-black"></span>
+    <span class="block w-8 h-[0.5px] bg-transparent my-0.5"></span>
+    <span class="block w-8 h-[0.5px] bg-black"></span>
+  </div>
+</label>
+
+<!-- Main Navigation -->
+<div class="fixed top-0 left-0 w-full bg-white z-[55] shadow-sm" id="main-nav">
+  <div
+    class="max-w-[85rem] mx-auto px-4 md:px-6 py-2 flex justify-between items-center"
+  >
+    <!-- Logo -->
+    <div class="py-[6px] logo-container">
+      <a href="/" class="focus:outline-none focus:opacity-80">
+        <img src="/svg/logo_full_navbar.svg" alt="Logo" class="h-6 w-auto" />
+      </a>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <nav class="hidden md:flex tracking-tight">
+      <a
+        href="/"
+        class="pt-[10px] pb-[6px] px-2 flex items-center text-sm text-gray-800 hover:text-gray-500 focus:outline-none
+          focus:text-gray-500"
+        >About</a
+      >
+      <a
+        href="/work"
+        class="pt-[10px] pb-[6px] px-2 flex items-center text-sm text-gray-800 hover:text-gray-500 focus:outline-none
+          focus:text-gray-500"
+        >Work</a
+      >
+      <a
+        href="/blog"
+        class="pt-[10px] pb-[6px] px-2 flex items-center text-sm text-gray-800 hover:text-gray-500 focus:outline-none
+          focus:text-gray-500"
+        >Blog</a
+      >
+      <a
+        href="/contact"
+        class="pt-[10px] pb-[6px] px-2 flex items-center text-sm text-gray-800 hover:text-gray-500 focus:outline-none
+          focus:text-gray-500"
+        >Contact</a
+      >
+    </nav>
+  </div>
+</div>
+
+<!-- Mobile Menu -->
+<div
+  class="fixed top-0 left-0 w-full h-full bg-black hidden z-[50] md:hidden pl-4"
+  id="mobile-menu"
+>
+  <nav class="space-y-2 text-5xl font-bold font-AreaInktrap tracking-tight mt-32">
+    <a
+      href="/"
+      class="block text-white hover:text-zinc-400 focus:outline-none focus:text-zinc-400"
+      >About</a
+    >
+    <a
+      href="/work"
+      class="block text-white hover:text-zinc-400 focus:outline-none focus:text-zinc-400"
+      >Work</a
+    >
+    <a
+      href="/blog"
+      class="block text-white hover:text-zinc-400 focus:outline-none focus:text-zinc-400"
+      >Blog</a
+    >
+    <a
+      href="/contact"
+      class="block text-white hover:text-zinc-400 focus:outline-none focus:text-zinc-400"
+      >Contact</a
+    >
+  </nav>
+</div>
+
+<style>
+  #nav-toggle:checked ~ label .hamburger-line {
+    background-color: white;
+  }
+
+  #nav-toggle:checked ~ label .hamburger-icon span:nth-child(1) {
+    position: absolute;
+    transform: rotate(45deg);
+    top: 2px;
+    background-color: white;
+  }
+
+  #nav-toggle:checked ~ label .hamburger-icon span:nth-child(3) {
+    position: absolute;
+    transform: rotate(-45deg);
+    top: 2px;
+    background-color: white;
+  }
+
+  /* Mobile menu display */
+  #nav-toggle:checked ~ #mobile-menu {
+    display: flex;
+  }
+
+  /* Navigation background change */
+  #nav-toggle:checked ~ #main-nav {
+    background-color: black;
+  }
+
+  /* Logo inversion */
+  #nav-toggle:checked ~ #main-nav .logo-container img {
+    filter: invert(1);
+  }
+</style>
+
+<script>
+  const mediaQuery = window.matchMedia("(min-width: 768px)");
+  const navToggle = document.getElementById("nav-toggle") as HTMLInputElement;
+
+  // Define the handler function
+  const handleResize = (e: MediaQueryListEvent) => {
+    if (e.matches) {
+      navToggle.checked = false;
+    }
+  };
+
+  // Use the named function
+  mediaQuery.addEventListener("change", handleResize);
+
+  // Cleanup
+  document.addEventListener("astro:unmount", () => {
+    mediaQuery.removeEventListener("change", handleResize);
+  });
+</script>
