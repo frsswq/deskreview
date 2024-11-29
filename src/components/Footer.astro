@@ -1,13 +1,22 @@
 ---
-
+import Divider from "./Divider.astro";
 ---
 
 <footer class="mx-4">
-  <div class="bg-desk-gray-500 h-px"></div>
+  <Divider />
   <div
     class="mb-10 mt-2 w-full text-desk-gray-700/70 font-bold text-sm font-AreaInktrap
       tracking-tight grid grid-cols-2 items-center"
   >
-    <p>&copy; 2024 Deskreview</p>
+    <div class="flex justify-start">
+      <a href="https://www.instagram.com/deskreview/" target="_blank"
+        >Instagram</a
+      >
+      <div class="mx-2">○</div>
+      <a href="mailto:zaidandzaki@gmail.com" target="_blank">Email</a>
+      <div class="mx-2">○</div>
+      <a href="https://wa.me/085159177206" target="_blank">WhatsApp</a>
+    </div>
+    <p class="text-right">&copy; 2024 Deskreview</p>
   </div>
 </footer>

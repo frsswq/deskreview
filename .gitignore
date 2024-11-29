@@ -24,4 +24,5 @@ pnpm-debug.log*
 .idea/
 
 # unused files
-src/components/Unused/*
+src/components/unused/*
+src/pages/unused/*

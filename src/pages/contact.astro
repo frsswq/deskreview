@@ -1,50 +1,130 @@
 ---
-import Title from "../components/Title.astro";
-import Layout from "../layouts/LayoutClean.astro";
-const pageTitle = "Contact";
+import LayoutClean from "../layouts/LayoutClean.astro";
 ---
 
-<Layout pageTitle={pageTitle}>
-  <Title title="Get in touch" />
-  <div class="grid grid-cols-1 md:grid-cols-2">
-    <div class="my-8 font-AreaInktrap font-semibold text-2xl md:text-3xl lg:text-4xl">
-      <div class="mx-4 my-4 md:my-8">
-        <p class="leading-none">Work with us</p>
-        <a
-          href="mailto:zaidandzaki@gmail.com"
-          target="_blank"
-          class="underline text-desk-gray-700/60 text-xl md:text-2xl lg:text-3xl"
+<LayoutClean>
+  <div class="flex flex-col h-[calc(100vh-52px)]">
+    <div class="flex-grow flex items-center justify-center">
+      <div class="mx-auto">
+        <div class="text-center">
+          <h1 class="text-4xl font-bold text-gray-800 tracking-tight">
+            Get in touch
+          </h1>
+
+        </div>
+
+        <div
+          class="mt-8 mb-4 grid items-center justify-center mx-auto md:grid-cols-2 md:gap-9"
         >
-          zaidandzaki@gmail.com
-        </a>
+          <!-- Card -->
+          <div class="hidden md:flex">
+            <img
+              src="/deskreview/gif/logo_animated.gif"
+              class="w-auto h-auto mx-auto max-w-96"
+              alt="Deskreview Logo Animation"
+              width="350"
+              height="350"
+              loading="eager"
+            />
+          </div>
+          <!-- End Card -->
+          <div class="divide-y divide-gray-200">
+            <!-- Icon Block -->
+            <div class="flex gap-x-7 py-6">
+              <svg
+                class="shrink-0 size-6 mt-1.5 text-gray-800"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect width="16" height="13" x="6" y="4" rx="2"></rect>
+                <path d="m22 7-7.1 3.78c-.57.3-1.23.3-1.8 0L6 7"></path>
+                <path d="M2 8v11c0 1.1.9 2 2 2h14"></path>
+              </svg>
+              <div class="grow">
+                <h3 class="font-semibold text-gray-800">Email us</h3>
+                <a
+                  class="mt-2 inline-flex items-center gap-x-2 text-sm font-medium text-gray-600
+                    hover:text-gray-800 focus:outline-none focus:text-gray-800"
+                  href="mailto:zaidandzaki@gmail.com"
+                  target="_blank"
+                >
+                  zaidandzaki@gmail.com
+                  <svg
+                    class="shrink-0 size-2.5 transition ease-in-out group-hover:translate-x-1
+                      group-focus:translate-x-1"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M0.975821 6.92249C0.43689 6.92249 -3.50468e-07 7.34222 -3.27835e-07 7.85999C-3.05203e-07 8.37775 0.43689 8.79749 0.975821 8.79749L12.7694 8.79748L7.60447 13.7596C7.22339 14.1257 7.22339 14.7193 7.60447 15.0854C7.98555 15.4515 8.60341 15.4515 8.98449 15.0854L15.6427 8.68862C16.1191 8.23098 16.1191 7.48899 15.6427 7.03134L8.98449 0.634573C8.60341 0.268455 7.98555 0.268456 7.60447 0.634573C7.22339 1.00069 7.22339 1.59428 7.60447 1.9604L12.7694 6.92248L0.975821 6.92249Z"
+                      fill="currentColor"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <!-- End Icon Block -->
+
+            <!-- Icon Block -->
+            <div class="flex gap-x-7 py-6">
+              <svg
+                class="shrink-0 size-6 mt-1.5 text-gray-800"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+              >
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                ></path>
+              </svg>
+              <div class="grow">
+                <h3 class="font-semibold text-gray-800">Call us</h3>
+                <a
+                  class="mt-2 inline-flex items-center gap-x-2 text-sm font-medium text-gray-600
+                    hover:text-gray-800 focus:outline-none focus:text-gray-800"
+                  href="https://wa.me/085159177206"
+                  target="_blank"
+                >
+                  +62 851-5917-7206
+                  <svg
+                    class="shrink-0 size-2.5 transition ease-in-out group-hover:translate-x-1
+                      group-focus:translate-x-1"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M0.975821 6.92249C0.43689 6.92249 -3.50468e-07 7.34222 -3.27835e-07 7.85999C-3.05203e-07 8.37775 0.43689 8.79749 0.975821 8.79749L12.7694 8.79748L7.60447 13.7596C7.22339 14.1257 7.22339 14.7193 7.60447 15.0854C7.98555 15.4515 8.60341 15.4515 8.98449 15.0854L15.6427 8.68862C16.1191 8.23098 16.1191 7.48899 15.6427 7.03134L8.98449 0.634573C8.60341 0.268455 7.98555 0.268456 7.60447 0.634573C7.22339 1.00069 7.22339 1.59428 7.60447 1.9604L12.7694 6.92248L0.975821 6.92249Z"
+                      fill="currentColor"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <!-- End Icon Block -->
+          </div>
+        </div>
       </div>
-      <div class="mx-4 my-4 md:my-8">
-        <p class="leading-none">Contact us</p>
-        <a
-          href="https://wa.me/085159177206"
-          target="_blank"
-          class="underline text-desk-gray-700/60 text-xl md:text-2xl lg:text-3xl"
-        >
-          +62 851 5917 7206
-        </a>
-      </div>
-      <div class="mx-4 my-4 md:my-8">
-        <p class="leading-none">Social</p>
-        <p class="text-desk-gray-700/60 text-xl md:text-2xl lg:text-3xl">
-          Instagram: <a
-            href="https://www.instagram.com/deskreview/"
-            target="_blank"
-            class="underline"
-            >@deskreview</a
-          >
-        </p>
-      </div>
-    </div>
-    <div class="hidden md:flex justify-end">
-      <img
-        src="/deskreview/gif/logo_animated.gif"
-        class="w-auto object-contain max-h-[400px] lg:max-h-[450px]"
-      />
     </div>
   </div>
-</Layout>
+</LayoutClean>
