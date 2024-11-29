@@ -1,36 +1,47 @@
 ---
-const { image, title, description, year, href } = Astro.props;
+const { image, title, description, year, modalDescription, modalServices } =
+  Astro.props;
 import { Image } from "astro:assets";
+import Dialog from "./Dialog.astro";
 ---
 
-<a
-  href={href}
-  class="block transition-transform duration-200 hover:-translate-y-1
-    focus:-translate-y-1 focus:outline-none rounded-lg"
->
-  <div>
-    <figure class="bg-desk-gray-300 w-full relative aspect-square rounded-lg">
-      <Image
-        src={image}
-        alt={title}
-        class="object-cover w-full h-full rounded-lg"
-        width={800}
-        height={800}
-        loading="lazy"
-      />
-    </figure>
-    <div
-      class="flex flex-row items-start tracking-tight text-sm md:text-base lg:text-lg"
-    >
-      <div>
-        <h3 class="text-desk-black/70 font-bold mt-3 leading-none">{title}</h3>
-        <p class="text-desk-gray-500 capitalize">
-          {description}
-        </p>
-      </div>
-      <div class="ml-auto">
-        <p class="text-desk-black/70 font-bold mt-3 leading-none">{year}</p>
+<div>
+  <label
+    for={title}
+    class="block transition-transform duration-150 rounded-lg cursor-pointer"
+  >
+    <div>
+      <figure class="bg-desk-gray-300 w-full relative aspect-square rounded-lg">
+        <Image
+          src={image}
+          alt={title}
+          class="object-cover w-full h-full rounded-lg"
+          width={800}
+          height={800}
+          loading="lazy"
+        />
+      </figure>
+      <div
+        class="flex flex-row items-start tracking-tight text-sm md:text-base lg:text-lg"
+      >
+        <div>
+          <h3 class="text-desk-black/70 font-bold mt-3 leading-none">
+            {title}
+          </h3>
+          <p class="text-desk-gray-500 capitalize">
+            {description}
+          </p>
+        </div>
+        <div class="ml-auto">
+          <p class="text-desk-black/70 font-bold mt-3 leading-none">{year}</p>
+        </div>
       </div>
     </div>
-  </div>
-</a>
+  </label>
+
+  <Dialog
+    modalTitle={title}
+    modalDescription={modalDescription}
+    modalServices={modalServices}
+  />
+</div>
