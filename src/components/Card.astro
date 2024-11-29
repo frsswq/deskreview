@@ -6,12 +6,9 @@ import Dialog from "./Dialog.astro";
 ---
 
 <div>
-  <label
-    for={title}
-    class="block transition-transform duration-150 rounded-lg cursor-pointer"
-  >
-    <div>
-      <figure class="bg-desk-gray-300 w-full relative aspect-square rounded-lg">
+  <label for={title} class="cursor-pointer">
+    <article class="space-y-3">
+      <figure class="bg-desk-gray-300 aspect-square rounded-lg">
         <Image
           src={image}
           alt={title}
@@ -21,22 +18,17 @@ import Dialog from "./Dialog.astro";
           loading="lazy"
         />
       </figure>
+
       <div
-        class="flex flex-row items-start tracking-tight text-sm md:text-base lg:text-lg"
+        class="flex justify-between tracking-tight text-sm md:text-base lg:text-lg"
       >
         <div>
-          <h3 class="text-desk-black/70 font-bold mt-3 leading-none">
-            {title}
-          </h3>
-          <p class="text-desk-gray-500 capitalize">
-            {description}
-          </p>
+          <h3 class="text-desk-black/70 font-bold leading-none">{title}</h3>
+          <p class="text-desk-gray-500 capitalize">{description}</p>
         </div>
-        <div class="ml-auto">
-          <p class="text-desk-black/70 font-bold mt-3 leading-none">{year}</p>
-        </div>
+        <p class="text-desk-black/70 font-bold leading-none">{year}</p>
       </div>
-    </div>
+    </article>
   </label>
 
   <Dialog

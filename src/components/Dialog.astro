@@ -14,13 +14,13 @@ const { modalTitle, modalDescription, modalServices } = Astro.props;
   for={modalTitle}
   class="pointer-events-none invisible fixed inset-0 flex cursor-pointer items-center
     justify-center overflow-hidden overscroll-contain bg-desk-gray-300/80 opacity-0
-    transition-all ease-in-out duration-150 peer-checked:opacity-100
-    peer-checked:pointer-events-auto peer-checked:visible
+    transition-all ease-[cubic-bezier(0.16, 1, 0.3, 1)] duration-150
+    peer-checked:opacity-100 peer-checked:pointer-events-auto peer-checked:visible
     peer-checked:[&>*]:translate-y-0 peer-checked:[&>*]:scale-100 z-[100]"
 >
   <!-- modal box -->
   <label
-    class="max-h-[75vh] h-fit md:max-w-[30vw] max-w-[calc(100vw-2rem)] scale-90
+    class="max-h-[75vh] h-fit md:max-w-[30vw] max-w-[calc(100vw-2rem)] scale-96
       overflow-y-auto overscroll-contain rounded-lg bg-desk-white p-8 text-desk-black
       shadow-sm transtion tracking-tight"
     for=""
@@ -31,6 +31,8 @@ const { modalTitle, modalDescription, modalServices } = Astro.props;
     <ul class="pt-2 text-desk-gray-700/80 text-sm font-AreaNormal capitalize">
       {modalServices.split(",").map((service) => <li>{service}</li>)}
     </ul>
-    <p class="pt-4 text-sm font-AreaNormal text-pretty">{modalDescription}</p>
+    <p class="pt-4 text-sm font-AreaNormal text-balance tracking-normal">
+      {modalDescription}
+    </p>
   </label>
 </label>

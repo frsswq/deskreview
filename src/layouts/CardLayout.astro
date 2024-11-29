@@ -1,82 +1,21 @@
 ---
 import Card from "../components/Card.astro";
+import { cardData } from "../data/cardData.astro";
 
-// import salam_ganesha_academy from "../assets/salam_ganesha_academy.jpg";
-import astra_honda from "../assets/astra_honda_red.png";
-// import telkomsel from "../assets/telkomsel.png";
-import rococo from "../assets/rococo.png";
-import hayati_karya from "../assets/hayati_logo.png";
-
-const salam_ganesha_description =
-  "As an education startup, Salam Ganesha Academy transitioned to targeting a more mature senior executive market. Several digital strategies were executed to ensure a smooth transition.";
-const salam_ganesha_services =
-  "campaign strategy & development, social media development, kol management";
-const telkomsel_description =
-  "After their merger with IndiHome, Telkomsel aimed to create a nationwide corporate messaging campaign under #BersatuLebihMaju, resulting in +1 million impression, 20% increase of Engagement Rate, and more than 3000 followers.";
-const telkomsel_services =
-  "campaign strategy & development, social media strategy, online activation development";
-const astra_honda_description =
-  "As their effort to gain trust with local wisdom and the spirit of #OneHeart, Honda aims to reach more trust and connection withing Indonesia market.";
-const astra_honda_services =
-  "Content research & analytic, digital trend analytic";
-const rococo_description =
-  "Rococo Group Indonesia is a luxury fashion retailer established in 2000, focusing on high-end fashion brands with partners from Italy, UK, and Hongkong.";
-const rococo_services =
-  "campaign strategy & development, social media development, kol management";
-const hayati_karya_description =
-  "Hayati Karya Lestari is a global carbon trading corporation with various business line, launching in Indonesia with the vision to create sustainable future for Indonesia.";
-const hayati_karya_services =
-  "Branding strategy, social media & website, brand architecture";
+// Split the data for different grid layouts
+const topCards = cardData.slice(0, 2);
+const bottomCards = cardData.slice(2);
 ---
 
 <div class="w-full flex flex-col">
   <div
     class="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-8 px-4 pt-4 pb-8 w-full"
   >
-    <Card
-      title="Salam Ganesha Academy"
-      description="Education Tech"
-      image="/"
-      year="2024"
-      modalDescription={salam_ganesha_description}
-      modalServices={salam_ganesha_services}
-    />
-
-    <Card
-      title="Telkomsel"
-      description="Telecommunication"
-      image="/"
-      year="2023"
-      modalDescription={telkomsel_description}
-      modalServices={telkomsel_services}
-    />
+    {topCards.map((card) => <Card {...card} />)}
   </div>
   <div
     class="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-8 px-4 md:py-8 pb-8 w-full"
   >
-    <Card
-      title="Astra Honda"
-      description="Vehicle Manufacture"
-      image={astra_honda}
-      year="2023"
-      modalDescription={astra_honda_description}
-      modalServices={astra_honda_services}
-    />
-    <Card
-      title="Rococo Group Indonesia"
-      description="Luxury Fashion"
-      image={rococo}
-      year="2023"
-      modalDescription={rococo_description}
-      modalServices={rococo_services}
-    />
-    <Card
-      title="Hayati Karya Lestari"
-      description="NGO"
-      image={hayati_karya}
-      year="2023"
-      modalDescription={hayati_karya_description}
-      modalServices={hayati_karya_services}
-    />
+    {bottomCards.map((card) => <Card {...card} />)}
   </div>
 </div>
