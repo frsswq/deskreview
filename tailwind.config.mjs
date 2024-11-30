@@ -24,6 +24,21 @@ export default {
         "desk-white": "#ffffff",
         "desk-black": "#050505",
       },
+      keyframes: {
+        slidein: {
+          from: {
+            opacity: "0",
+            transform: "translateY(15px)",
+          },
+          to: {
+            opacity: "1",
+            transform: "translateY(0)",
+          },
+        },
+      },
+      animation: {
+        slidein: "slidein 1.5s cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0) forwards",
+      },
     },
   },
 };
