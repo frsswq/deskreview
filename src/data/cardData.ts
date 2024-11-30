@@ -2,6 +2,8 @@ import placeholderImg from "../assets/placeholder.png";
 import astraHondaImg from "../assets/astra_honda_red.png";
 import rococoImg from "../assets/rococo.png";
 import hayatiImg from "../assets/hayati_logo.png";
+import ganeshaImg from "../assets/salam_ganesha.png";
+import telkomselImg from "../assets/telkomsel.png";
 
 type CardData = {
   title: string;
@@ -16,7 +18,7 @@ export const cardData: CardData[] = [
   {
     title: "Salam Ganesha Academy",
     description: "Education Tech",
-    image: placeholderImg,
+    image: ganeshaImg,
     year: "2024",
     modalDescription: "As an education startup, Salam Ganesha Academy transitioned to targeting a more mature senior executive market. Several digital strategies were executed to ensure a smooth transition.",
     modalServices: "campaign strategy & development, social media development, kol management",
@@ -24,7 +26,7 @@ export const cardData: CardData[] = [
   {
     title: "Telkomsel",
     description: "Telecommunication",
-    image: placeholderImg,
+    image: telkomselImg,
     year: "2023",
     modalDescription: "After their merger with IndiHome, Telkomsel aimed to create a nationwide corporate messaging campaign under #BersatuLebihMaju, resulting in +1 million impression, 20% increase of Engagement Rate, and more than 3000 followers.",
     modalServices: "campaign strategy & development, social media strategy, online activation development",
