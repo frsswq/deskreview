@@ -33,7 +33,7 @@ const currentPath = Astro.url.pathname;
     </div>
 
     <!-- Desktop Navigation -->
-    <nav class="hidden md:flex tracking-tight">
+    <nav class="hidden md:flex tracking-tight ">
       <a
         href="/deskreview/work"
         class={`pt-[10px] pb-[6px] px-2 flex items-center text-sm
@@ -49,11 +49,11 @@ const currentPath = Astro.url.pathname;
         >About</a
       >
       <a
-        href="/deskreview/thoughts"
+        href="/deskreview/studies"
         class={`pt-[10px] pb-[6px] px-2 flex items-center text-sm
-          ${currentPath.startsWith("/deskreview/thoughts") ? "text-desk-black" : "text-desk-gray-700/80"}
+          ${currentPath.startsWith("/deskreview/studies") ? "text-desk-black" : "text-desk-gray-700/80"}
           hover:text-desk-black focus:outline-none focus:text-desk-black`}
-        >Thoughts
+        >Studies
       </a>
       <a
         href="/deskreview/contact"
@@ -72,7 +72,7 @@ const currentPath = Astro.url.pathname;
   id="mobile-menu"
 >
   <nav
-    class="space-y-2 text-5xl font-bold font-AreaInktrap tracking-tight mt-32"
+    class="space-y-6 text-5xl font-bold font-AreaInktrap tracking-tight mt-32 opacity-0 animate-slidein [--delay:0ms]"
   >
     <a
       href="/deskreview/work"
@@ -85,9 +85,9 @@ const currentPath = Astro.url.pathname;
       >About</a
     >
     <a
-      href="/deskreview/thoughts"
+      href="/deskreview/studies"
       class="block text-white hover:text-zinc-400 focus:outline-none focus:text-zinc-400"
-      >Thoughts</a
+      >Studies</a
     >
     <a
       href="/deskreview/contact"

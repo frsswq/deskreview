@@ -1,4 +1,3 @@
-import placeholderImg from "../assets/placeholder.png";
 import astraHondaImg from "../assets/astra.png";
 import rococoImg from "../assets/rococo.png";
 import hayatiImg from "../assets/hayati.png";
