@@ -5,17 +5,37 @@ const pageTitle = "Work";
 ---
 
 <Layout pageTitle={pageTitle}>
-  <div>
-    <div
-      class="text-desk-black pt-10 md:pt-24 mx-4 text-3xl md:text-6xl tracking-tight
+  <div
+    class="hidden md:flex flex-col justify-center items-center mx-4 py-24 font-AreaInktrap
+      text-center tracking-tight"
+  >
+    <p
+      class="text-desk-gray-700 text-xl md:text-6xl leading-none font-bold animate-slidein
+        [--delay:300ms] opacity-0"
+    >
+      Our Work
+    </p>
+    <p
+      class="text-desk-gray-700/80 pt-2 text-md md:text-2xl animate-slidein [--delay:400ms]
+        opacity-0"
+    >
+      Market-ready branding strategies,
+    </p>
+    <p
+      class="text-desk-gray-700/80 text-md md:text-2xl animate-slidein [--delay:400ms]
+        opacity-0"
+    >
+      competition-winning digital campaigns.
+    </p>
+  </div>
+  <div class="md:hidden">
+    <p
+      class="text-desk-gray-700 pt-8 mx-4 text-5xl tracking-tight
         leading-none font-AreaInktrap font-bold animate-slidein [--delay:300ms]
         opacity-0"
     >
-      <p>Market-Ready</p>
-      <p class="text-desk-gray-700/70">Brand Strategies.</p>
-      <p>Competition-Winning</p>
-      <p class="text-desk-gray-700/70">Digital Campaigns.</p>
-    </div>
+      Our Work
+  </p>
     <div
       class="h-px bg-desk-gray-500 border-0 mx-4 animate-slidein [--delay:300ms] opacity-0"
     >
@@ -23,5 +43,5 @@ const pageTitle = "Work";
   </div>
 
   <CardLayout />
-  <div class="mt-8"></div>
+  <div class="md:mt-8"></div>
 </Layout>
