@@ -1,6 +1,6 @@
 import placeholderImg from "../assets/placeholder.png";
 import astraHondaImg from "../assets/astra.png";
-
+import rococoImg from "../assets/rococo.png";
 import hayatiImg from "../assets/hayati.png";
 
 import telkomselImg from "../assets/telkomsel.png";
@@ -42,7 +42,7 @@ export const cardData: CardData[] = [
   {
     title: "Rococo Group",
     description: "Luxury Fashion Retail",
-    image: placeholderImg,
+    image: rococoImg,
     year: "2023",
     modalDescription: "Rococo Group Indonesia is a luxury fashion retailer established in 2000, focusing on high-end fashion brands with partners from Italy, UK, and Hongkong.",
     modalServices: "campaign strategy & development, social media development, kol management",
