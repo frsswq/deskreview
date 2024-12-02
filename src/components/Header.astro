@@ -135,14 +135,19 @@ const currentPathClean = currentPath.replace(/\/$/, "");
 </style>
 
 <script>
-  // Add event listener after DOM content is loaded
   document.addEventListener('DOMContentLoaded', () => {
-    const contactLink = document.querySelector('a[href="/deskreview/contact"]');
-    contactLink?.addEventListener('click', () => {
+    const reloadGif = () => {
       const logoGif = document.getElementById('logo-gif') as HTMLImageElement;
       if (logoGif) {
         logoGif.src = logoGif.src;
       }
-    });
+    };
+
+    const contactLink = document.querySelector('a[href="/deskreview/contact"]');
+    contactLink?.addEventListener('click', reloadGif);
+
+    if (window.location.pathname.includes('/deskreview/contact')) {
+      reloadGif();
+    }
   });
 </script>
