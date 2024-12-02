@@ -7,4 +7,5 @@ export default defineConfig({
   site: 'https://frsswq.github.io',
   base: 'deskreview',
   integrations: [tailwind()],
+  trailingSlash: 'never',
 });
