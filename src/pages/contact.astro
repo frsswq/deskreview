@@ -27,7 +27,7 @@ import LayoutClean from "../layouts/LayoutClean.astro";
             alt="Deskreview Logo Animation"
             width="350"
             height="350"
-            loading="lazy"
+            loading="eager"
           />
         </div>
         <!-- End Card -->
@@ -132,3 +132,15 @@ import LayoutClean from "../layouts/LayoutClean.astro";
     </div>
   </div>
 </LayoutClean>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const img = document.querySelector('img[src="/deskreview/gif/logo_animated.gif"]') as HTMLImageElement;
+    if (img) {
+      const src = img.src;
+      img.src = '';
+      img.src = src;
+    }
+  });
+</script>
+
