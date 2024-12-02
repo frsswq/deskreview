@@ -33,7 +33,7 @@ const currentPathClean = currentPath.replace(/\/$/, "");
     </div>
 
     <!-- Desktop Navigation -->
-    <nav class="hidden md:flex tracking-tight" >
+    <nav class="hidden md:flex tracking-tight">
       <a
         href="/deskreview/work"
         class={`pt-[10px] pb-[6px] px-2 flex items-center text-sm
@@ -133,3 +133,16 @@ const currentPathClean = currentPath.replace(/\/$/, "");
     filter: invert(1);
   }
 </style>
+
+<script>
+  // Add event listener after DOM content is loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    const contactLink = document.querySelector('a[href="/deskreview/contact"]');
+    contactLink?.addEventListener('click', () => {
+      const logoGif = document.getElementById('logo-gif') as HTMLImageElement;
+      if (logoGif) {
+        logoGif.src = logoGif.src;
+      }
+    });
+  });
+</script>
