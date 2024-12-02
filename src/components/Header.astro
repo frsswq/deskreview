@@ -45,7 +45,7 @@ const currentPath = Astro.url.pathname;
       <a
         href="/deskreview"
         class={`pt-[10px] pb-[6px] px-2 flex items-center text-sm
-          ${currentPath.endsWith("/deskreview/") ? "text-desk-black" : "text-desk-gray-700/80"}
+          ${currentPath.replace(/\/$/, "") === "/deskreview" ? "text-desk-black" : "text-desk-gray-700/80"}
           hover:text-desk-black focus:outline-none focus:text-desk-black`}
         >About</a
       >
