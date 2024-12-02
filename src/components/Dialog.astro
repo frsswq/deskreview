@@ -13,7 +13,7 @@ const { modalTitle, modalDescription, modalServices } = Astro.props;
 <label
   for={modalTitle}
   class="pointer-events-none invisible fixed inset-0 flex cursor-pointer items-center
-    justify-center  bg-desk-gray-300/80 opacity-0
+    justify-center overflow-hidden overscroll-contain bg-desk-gray-300/80 opacity-0
     transition-all ease-[cubic-bezier(0.16, 1, 0.3, 1)] duration-150
     peer-checked:opacity-100 peer-checked:pointer-events-auto peer-checked:visible
     peer-checked:[&>*]:translate-y-0 peer-checked:[&>*]:scale-100 z-[100]"
@@ -21,7 +21,7 @@ const { modalTitle, modalDescription, modalServices } = Astro.props;
   <!-- modal box -->
   <label
     class="max-h-[300px] h-fit md:max-w-[400px] max-w-[350px] scale-96
-       rounded-lg bg-desk-white p-8 text-desk-black
+      overflow-y-auto overscroll-contain rounded-lg bg-desk-white p-8 text-desk-black
       shadow-sm transtion tracking-tight"
     for=""
   >

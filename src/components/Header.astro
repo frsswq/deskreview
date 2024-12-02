@@ -34,7 +34,7 @@ const currentPath = Astro.url.pathname;
     </div>
 
     <!-- Desktop Navigation -->
-    <nav class="hidden md:flex tracking-tight ">
+    <nav class="hidden md:flex tracking-tight">
       <a
         href="/deskreview/work"
         class={`pt-[10px] pb-[6px] px-2 flex items-center text-sm
@@ -45,7 +45,7 @@ const currentPath = Astro.url.pathname;
       <a
         href="/deskreview/"
         class={`pt-[10px] pb-[6px] px-2 flex items-center text-sm
-          ${currentPath === "/deskreview/" ? "text-desk-black" : "text-desk-gray-700/80"}
+          ${currentPath.startsWith("/deskreview/") && currentPath === "/deskreview/" ? "text-desk-black" : "text-desk-gray-700/80"}
           hover:text-desk-black focus:outline-none focus:text-desk-black`}
         >About</a
       >
@@ -73,7 +73,8 @@ const currentPath = Astro.url.pathname;
   id="mobile-menu"
 >
   <nav
-    class="space-y-6 text-5xl font-bold font-AreaInktrap tracking-tight mt-32 opacity-0 animate-slideinFast [--delay:0ms]"
+    class="space-y-6 text-5xl font-bold font-AreaInktrap tracking-tight mt-32 opacity-0
+      animate-slideinFast [--delay:0ms]"
   >
     <a
       href="/deskreview/work"
