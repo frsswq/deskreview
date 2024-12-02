@@ -2,20 +2,24 @@
 import Header from "../components/Header.astro";
 import ImportFont from "../components/ImportFont.astro";
 import Footer from "../components/Footer.astro";
+import HideScrollBar from "../components/HideScrollBar.astro";
+import { ViewTransitions } from "astro:transitions";
 const { pageTitle } = Astro.props;
 ---
 
 <!-- classic layout -->
-<html lang="en" class="scroll-smooth overflow-x-hidden">
+<html lang="en" class="scroll-smooth scrollbar-hidden">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/deskreview/ico/favicon.ico" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>{pageTitle}</title>
+    <ViewTransitions />
     <ImportFont />
+    <HideScrollBar />
+    <title>{pageTitle}</title>
   </head>
-  <body class="overflow-x-hidden">
+  <body>
     <Header />
     <div class="h-[52px]"></div>
     <slot />
