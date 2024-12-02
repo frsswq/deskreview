@@ -22,7 +22,7 @@ import LayoutClean from "../layouts/LayoutClean.astro";
         <!-- Card -->
         <div class="hidden md:flex">
           <img
-            src="/deskreview/gif/logo_animated.gif"
+            src={`/deskreview/gif/logo_animated.gif?${new Date().getTime()}`}
             class="w-auto h-auto max-w-96"
             alt="Deskreview Logo Animation"
             width="350"
@@ -132,15 +132,3 @@ import LayoutClean from "../layouts/LayoutClean.astro";
     </div>
   </div>
 </LayoutClean>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const img = document.querySelector('img[src="/deskreview/gif/logo_animated.gif"]') as HTMLImageElement;
-    if (img) {
-      const src = img.src;
-      img.src = '';
-      img.src = src;
-    }
-  });
-</script>
-
