@@ -23,7 +23,7 @@ const currentPath = Astro.url.pathname;
   >
     <!-- Logo -->
     <div class="py-[6px] logo-container" transition:persist>
-      <a href="/deskreview/" class="focus:outline-none focus:opacity-80">
+      <a href="/deskreview" class="focus:outline-none focus:opacity-80">
         <img
           src="/deskreview/svg/logo_full_navbar.svg"
           alt="Logo"
@@ -43,9 +43,9 @@ const currentPath = Astro.url.pathname;
         >Work</a
       >
       <a
-        href="/deskreview/"
+        href="/deskreview"
         class={`pt-[10px] pb-[6px] px-2 flex items-center text-sm
-          ${currentPath.endsWith("/deskreview/") ? "text-desk-black" : "text-desk-gray-700/80"}
+          ${currentPath === "/deskreview/" ? "text-desk-black" : "text-desk-gray-700/80"}
           hover:text-desk-black focus:outline-none focus:text-desk-black`}
         >About</a
       >
@@ -82,7 +82,7 @@ const currentPath = Astro.url.pathname;
       >Work</a
     >
     <a
-      href="/deskreview/"
+      href="/deskreview"
       class="block text-white hover:text-zinc-400 focus:outline-none focus:text-zinc-400"
       >About</a
     >

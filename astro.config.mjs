@@ -6,5 +6,5 @@ import tailwind from '@astrojs/tailwind';
 export default defineConfig({
   site: 'https://frsswq.github.io',
   base: 'deskreview',
-  integrations: [tailwind()]
+  integrations: [tailwind()],
 });
