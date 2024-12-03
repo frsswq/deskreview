@@ -1,10 +1,8 @@
-import defaultTheme from 'tailwindcss/defaultTheme'
+import defaultTheme from "tailwindcss/defaultTheme";
 
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}",
-  ],
+  content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
     extend: {
       fontFamily: {
@@ -37,8 +35,10 @@ export default {
         },
       },
       animation: {
-        slidein: "slidein 1.5s cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0) forwards",
-        slideinFast: "slidein 0.5s cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0) forwards",
+        slidein:
+          "slidein 1.5s cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0) forwards",
+        slideinFast:
+          "slidein 0.5s cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0) forwards",
       },
     },
   },
