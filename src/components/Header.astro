@@ -60,7 +60,6 @@ const currentPathClean = currentPath.replace(/\/$/, "");
         class={`pt-[10px] pb-[6px] pl-2 pr-0 flex items-center text-sm
           ${currentPathClean.startsWith("/deskreview/contact") ? "text-desk-black" : "text-desk-gray-700/80"}
           hover:text-desk-black focus:outline-none focus:text-desk-black`}
-        data-astro-reload
         >Contact</a
       >
     </nav>
@@ -135,19 +134,37 @@ const currentPathClean = currentPath.replace(/\/$/, "");
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const reloadGif = () => {
-      const logoGif = document.getElementById('logo-gif') as HTMLImageElement;
-      if (logoGif) {
-        logoGif.src = logoGif.src;
-      }
-    };
+  // Close mobile menu on desktop
+  const mediaQuery = window.matchMedia("(min-width: 768px)");
+  const navToggle = document.getElementById("nav-toggle") as HTMLInputElement;
 
-    const contactLink = document.querySelector('a[href="/deskreview/contact"]');
-    contactLink?.addEventListener('click', reloadGif);
+  const handleResize = (e: MediaQueryListEvent) => {
+    if (e.matches) {
+      navToggle.checked = false;
+    }
+  };
 
-    if (window.location.pathname.includes('/deskreview/contact')) {
+  mediaQuery.addEventListener("change", handleResize);
+
+  document.addEventListener("astro:unmount", () => {
+    mediaQuery.removeEventListener("change", handleResize);
+  });
+
+  // Reload logo on contact page
+  const reloadGif = () => {
+    const logoGif = document.getElementById("logo-gif") as HTMLImageElement;
+    if (logoGif) {
+      logoGif.src = logoGif.src;
+    }
+  };
+
+  document.addEventListener('astro:page-load', () => {
+    if (window.location.pathname.includes("/deskreview/contact")) {
       reloadGif();
     }
+  });
+
+  document.addEventListener("astro:unmount", () => {
+    mediaQuery.removeEventListener("change", handleResize);
   });
 </script>
