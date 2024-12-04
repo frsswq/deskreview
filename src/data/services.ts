@@ -10,7 +10,7 @@ export const services: Services[] = [
       "Social media handling",
       "Digital campaign set-up",
       "Digital ads handling",
-      "Digital trend analysis and research",
+      "Digital trend analysis & research",
     ],
   },
   {

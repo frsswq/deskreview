@@ -1,36 +1,66 @@
 ---
 import { services } from "../data/services";
+import { manifesto } from "../data/manifesto";
+import Divider from "./Divider.astro";
 ---
 
-<!-- <div class="py-24">
+<Divider />
+<div>
   <div
-    class="flex flex-col justify-center items-center mx-4 font-AreaInktrap text-center
-      tracking-tight"
+    class="mx-4 my-4 grid grid-cols-1 md:grid-cols-2 antialiased font-AreaInktrap"
   >
-    <p
-      class="text-desk-gray-700 text-xl md:text-6xl leading-none font-bold animate-slidein
-        [--delay:300ms] opacity-0"
-    >
-      Services
-    </p>
-  </div>
-  <div
-    class="pt-8 flex flex-wrap gap-4 opacity-0 animate-slidein [--delay:500ms]
-      justify-center [&>*:nth-child(odd)]:bg-desk-blue [&>*:nth-child(even)]:bg-desk-orange"
-  >
-    {
-      services.map((service) => (
-        <div class="p-8 bg-desk-gray-300/25 rounded-lg text-desk-white">
-          <h2 class="text-4xl text-center font-bold tracking-tight leading-tight font-AreaInktrap">
-            {service.title}
-          </h2>
-            <ul class="inline-block space-y-1 text-xl">
-              {service.types.map((type) => (
-              <li>{type}</li>
-              ))}
+    <div></div>
+    <div class="space-y-8">
+      <div
+        class="space-y-4 text-pretty tracking-wide font-bold font-AreaInktrap"
+      >
+        <p
+          class="text-2xl tracking-wide after:content-[''] after:block after:h-px after:w-full
+            after:bg-desk-black"
+        >
+          Manifesto
+        </p>
+        <p class="text-md">
+          <i>{manifesto.p1.slice(0, 19)}</i>{manifesto.p1.slice(19)}
+        </p>
+        <p class="text-md">{manifesto.p2}</p>
+        <p class="text-md">{manifesto.p3}</p>
+        <p class="text-md">{manifesto.p4}</p>
+      </div>
+      <div class="space-y-4">
+        <p
+          class="font-bold text-2xl tracking-wide after:content-[''] after:block after:h-[0.5px]
+            after:w-full after:bg-desk-black"
+        >
+          Services
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <p class="text-sm">{services[0].title}</p>
+            <ul
+              class="text-md divide-y divide-desk-black font-bold leading-none tracking-wider"
+            >
+              {
+                services[0].types.map((type) => (
+                  <li class="py-3 capitalize">{type}</li>
+                ))
+              }
             </ul>
+          </div>
+          <div>
+            <p class="text-sm">{services[1].title}</p>
+            <ul
+              class="text-md divide-y divide-desk-black font-bold leading-none tracking-wider"
+            >
+              {
+                services[1].types.map((type) => (
+                  <li class="py-3 capitalize">{type}</li>
+                ))
+              }
+            </ul>
+          </div>
         </div>
-      ))
-    }
+      </div>
+    </div>
   </div>
-</div> -->
+</div>
