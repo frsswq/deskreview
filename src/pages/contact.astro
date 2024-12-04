@@ -2,9 +2,10 @@
 import LayoutClean from "../layouts/LayoutClean.astro";
 import { Image } from "astro:assets";
 import logoGif from "../assets/logo_animated.gif";
+const pageTitle = "Contact"
 ---
 
-<LayoutClean>
+<LayoutClean pageTitle={pageTitle}>
   <div
     class="flex-grow h-[calc(100vh-52px)] flex items-center w-full justify-center"
   >
@@ -56,7 +57,7 @@ import logoGif from "../assets/logo_animated.gif";
               <path d="M2 8v11c0 1.1.9 2 2 2h14"></path>
             </svg>
             <div class="grow">
-              <h3 class="font-semibold text-desk-black">Email us</h3>
+              <p class="font-semibold text-desk-black">Email us</p>
               <a
                 class="mt-2 inline-flex items-center gap-x-2 text-sm font-medium text-desk-gray-700/80
                   hover:text-desk-black focus:outline-none focus:text-desk-black"
@@ -104,7 +105,7 @@ import logoGif from "../assets/logo_animated.gif";
               ></path>
             </svg>
             <div class="grow">
-              <h3 class="font-semibold text-desk-black">Call us</h3>
+              <p class="font-semibold text-desk-black">Call us</p>
               <a
                 class="mt-2 inline-flex items-center gap-x-2 text-sm font-medium text-desk-gray-700/80
                   hover:text-desk-black focus:outline-none focus:text-desk-black"
