@@ -3,6 +3,7 @@ import Header from "../components/Header.astro";
 import ImportFont from "../components/ImportFont.astro";
 import Footer from "../components/Footer.astro";
 import ScrollbarGutter from "../components/ScrollbarGutter.astro";
+import PreloadFonts from "../components/PreloadFonts.astro";
 import { ViewTransitions } from "astro:transitions";
 const { pageTitle } = Astro.props;
 ---
@@ -17,6 +18,7 @@ const { pageTitle } = Astro.props;
     <ViewTransitions />
     <ImportFont />
     <ScrollbarGutter />
+    <PreloadFonts />
     <title>{pageTitle}</title>
   </head>
   <body>

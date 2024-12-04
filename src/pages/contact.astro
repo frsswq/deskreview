@@ -1,5 +1,7 @@
 ---
 import LayoutClean from "../layouts/LayoutClean.astro";
+import { Image } from "astro:assets";
+import logoGif from "../assets/logo_animated.gif";
 ---
 
 <LayoutClean>
@@ -21,13 +23,13 @@ import LayoutClean from "../layouts/LayoutClean.astro";
       >
         <!-- Card -->
         <div class="hidden md:flex">
-          <img
-            src="/deskreview/gif/logo_animated.gif"
+          <Image
+            src={logoGif}
             class="w-auto h-auto max-w-96"
             alt="Deskreview Logo Animation"
             width="350"
             height="350"
-            loading="lazy"
+            loading="eager"
             id="logo-gif"
           />
         </div>

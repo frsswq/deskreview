@@ -1,0 +1,61 @@
+---
+import { services } from "../data/services";
+---
+
+<div class="py-24">
+  <div class="grid grid-cols-1 md:grid-cols-2 mx-4 font-AreaInktrap tracking-tight ">
+    <p class="md:pt-2 text-5xl font-bold text-desk-gray-700 uppercase">Digital Campaign</p>
+    <p class="text-lg">
+        ⌘ Social Media Handling <br/>
+        ⌘ Digital Campaign Set-up <br/>
+        ⌘ Digital Ads Handling <br/>
+        ⌘ Digital Trend Analysis and Research
+    </p>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 md:pt-12 mx-4 font-AreaInktrap tracking-tight ">
+    <p class="md:pt-2 text-5xl font-bold text-desk-gray-700 uppercase">Brand Strategy</p>
+    <p class="text-lg">
+        ⌘ Visual Identity Development <br/>
+        ⌘ Branding Communication Set-up <br/>
+        ⌘ Branding Implementation Set-up
+    </p>
+
+  </div>
+    
+</div>
+
+<!-- <div
+  class="flex flex-col justify-center items-center mx-4 font-AreaInktrap text-center
+    tracking-tight"
+>
+  <p
+    class="text-desk-gray-700 text-xl md:text-6xl leading-none font-bold animate-slidein
+      [--delay:300ms] opacity-0"
+  >
+    Services
+  </p>
+</div>
+<div
+  class="pt-8 flex flex-wrap gap-4 opacity-0 animate-slidein [--delay:500ms]
+    justify-center"
+>
+  {
+    services.map((service) => (
+      <div class="py-6 px-8 bg-desk-gray-300/25 rounded-lg min-w-[325px] min-h-[300px]">
+        <h2 class="text-3xl font-bold tracking-tight leading-tight font-AreaInktrap">
+          {service.title.split(" ").map((word, i, arr) => (
+            <>
+              {word}
+              {i !== arr.length - 1 && <br />}
+            </>
+          ))}
+        </h2>
+        <ul class="space-y-1">
+          {service.types.map((type) => (
+            <li>{type}</li>
+          ))}
+        </ul>
+      </div>
+    ))
+  }
+</div> -->
