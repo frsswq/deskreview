@@ -4,7 +4,7 @@ import ImportFont from "../components/ImportFont.astro";
 import Footer from "../components/Footer.astro";
 import ScrollbarGutter from "../components/ScrollbarGutter.astro";
 import PreloadFonts from "../components/PreloadFonts.astro";
-import { ViewTransitions } from "astro:transitions";
+import { ClientRouter } from "astro:transitions";
 const { pageTitle } = Astro.props;
 ---
 
@@ -15,7 +15,7 @@ const { pageTitle } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/deskreview/ico/favicon.ico" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <ViewTransitions />
+    <ClientRouter />
     <ImportFont />
     <ScrollbarGutter />
     <PreloadFonts />
