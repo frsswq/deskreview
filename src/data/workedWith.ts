@@ -1,11 +1,7 @@
 type Client = {
-  name: string;
+  name: string[];
 };
 
 export const workedWith: Client[] = [
-  { name: "Astra Honda" },
-  { name: "Rococo" },
-  { name: "Hayati" },
-  { name: "Salam Ganesha" },
-  { name: "Telkomsel" },
+  { name: ["Astra Honda", "Rococo", "Hayati", "Salam Ganesha", "Telkomsel"] },
 ];
