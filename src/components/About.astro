@@ -71,28 +71,29 @@ import logoAnim from "../assets/logo_anim_1x.gif";
           </div>
         </div>
       </div>
-      <div
-        class="grid grid-cols-1 md:grid-cols-2 space-y-4 text-pretty tracking-wide font-bold
-          font-AreaInktrap"
-      >
-        <div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="space-y-4">
           <p
-            class="text-2xl tracking-wide after:content-[''] after:block after:h-[0.5px]
+            class="font-bold text-2xl tracking-wide after:content-[''] after:block after:h-[0.5px]
               after:w-full after:bg-desk-black"
           >
             Worked With
           </p>
-          <ul
-            class="text-md divide-y divide-desk-black font-bold leading-none tracking-wider"
-          >
-            {
-              workedWith.map((company) => (
-                <li class="capitalize py-3">{company.name}</li>
-              ))
-            }
-          </ul>
+            <div>
+              <p class="text-sm">Includes:</p>
+              <ul
+                class="text-md divide-y divide-desk-black font-bold leading-none tracking-wider"
+              >
+                {
+                  workedWith.map((company) => (
+                    <li class="capitalize py-3">{company.name}</li>
+                  ))
+                }
+            </ul>
+          </div>
+          <div></div>
         </div>
-        <div></div>
+        </div>
       </div>
     </div>
   </div>
