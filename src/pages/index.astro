@@ -1,13 +1,9 @@
 ---
-import Layout from "../layouts/Layout.astro"
-import Services from "../components/Services.astro"
-import AboutHero from "../components/AboutHero.astro"
-import AboutCTA from "../components/AboutCTA.astro"
+import LayoutClean from "../layouts/LayoutClean.astro"
+import About from "../components/About.astro"
 const pageTitle = "About"
 ---
 
-<Layout pageTitle={pageTitle}>
-    <AboutHero />
-    <Services />
-    <AboutCTA />
-</Layout>
+<LayoutClean pageTitle={pageTitle}>
+  <About />
+</LayoutClean>

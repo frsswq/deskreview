@@ -8,20 +8,27 @@ import logoAnim from "../assets/logo_anim_1x.gif";
 
 <div class="mt-8">
   <div
-    class="mx-4 my-4 grid grid-cols-1 md:grid-cols-2 antialiased font-AreaInktrap"
+    class="mx-4 my-4 grid grid-cols-1 md:grid-cols-2 h-screen antialiased font-AreaInktrap"
   >
-    <div
-      class="hidden md:flex justify-center items-center"
-    >
-      <Image src={logoAnim} alt="logo-anim" width={540} height={540} />
+    <!-- Logo Animation -->
+    <div class="hidden md:flex justify-center -z-10">
+      <Image
+        src={logoAnim}
+        class="fixed bottom-1"
+        alt="logo-anim"
+        width={540}
+        height={540}
+      />
     </div>
-    <div class="space-y-8">
+
+    <!-- About Content -->
+    <div class="space-y-8 mb-8">
       <div
         class="space-y-4 text-pretty tracking-wide font-bold font-AreaInktrap"
       >
         <p
-          class="text-2xl tracking-wide after:content-[''] after:block after:h-px after:w-full
-            after:bg-desk-black"
+          class="text-2xl tracking-wide after:content-[''] after:block after:h-[0.5px]
+            after:w-full after:bg-desk-black"
         >
           Manifesto
         </p>
@@ -65,23 +72,27 @@ import logoAnim from "../assets/logo_anim_1x.gif";
         </div>
       </div>
       <div
-        class="space-y-4 text-pretty tracking-wide font-bold font-AreaInktrap"
+        class="grid grid-cols-1 md:grid-cols-2 space-y-4 text-pretty tracking-wide font-bold
+          font-AreaInktrap"
       >
-        <p
-          class="text-2xl tracking-wide after:content-[''] after:block after:h-px after:w-full
-            after:bg-desk-black"
-        >
-          Worked With
-        </p>
-        <ul
-          class="text-md divide-y divide-desk-black font-bold leading-none tracking-wider"
-        >
-          {
-            workedWith.map((company) => (
-              <li class="capitalize py-3">{company.name}</li>
-            ))
-          }
-        </ul>
+        <div>
+          <p
+            class="text-2xl tracking-wide after:content-[''] after:block after:h-[0.5px]
+              after:w-full after:bg-desk-black"
+          >
+            Worked With
+          </p>
+          <ul
+            class="text-md divide-y divide-desk-black font-bold leading-none tracking-wider"
+          >
+            {
+              workedWith.map((company) => (
+                <li class="capitalize py-3">{company.name}</li>
+              ))
+            }
+          </ul>
+        </div>
+        <div></div>
       </div>
     </div>
   </div>
