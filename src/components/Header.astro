@@ -144,61 +144,6 @@ const currentPathClean = currentPath.replace(/\/$/, "");
 </style>
 
 <script>
-  // Close mobile menu when resized to desktop size
-  (() => {
-    const mediaQuery = window.matchMedia("(min-width: 768px)");
-    const navToggle = document.getElementById("nav-toggle") as HTMLInputElement;
-
-    let debounceTimeout: number | undefined;
-
-    const handleResize = () => {
-      if (mediaQuery.matches && navToggle) {
-        navToggle.checked = false;
-      }
-    };
-
-    const debounce = (callback: () => void, delay: number) => {
-      return () => {
-        clearTimeout(debounceTimeout);
-        debounceTimeout = window.setTimeout(callback, delay);
-      };
-    };
-
-    const debouncedHandleResize = debounce(handleResize, 200);
-
-    mediaQuery.addEventListener("change", debouncedHandleResize);
-
-    document.addEventListener("astro:unmount", () => {
-      mediaQuery.removeEventListener("change", debouncedHandleResize);
-    });
-  })();
-
-  // Reload logo on contact page
-  (() => {
-    const reloadGif = () => {
-      const logoGif = document.getElementById("logo-gif") as HTMLImageElement;
-      if (logoGif) {
-        const src = logoGif.src;
-        logoGif.src = ""; // Force reload
-        logoGif.src = src;
-      }
-    };
-
-    const handlePageLoad = () => {
-      if (window.location.pathname.includes("/deskreview/contact")) {
-        reloadGif();
-      }
-    };
-
-    document.addEventListener("astro:page-load", handlePageLoad);
-
-    document.addEventListener("astro:unmount", () => {
-      document.removeEventListener("astro:page-load", handlePageLoad);
-    });
-  })();
-</script>
-
-<!-- <script>
   // Close mobile menu on desktop
   const mediaQuery = window.matchMedia("(min-width: 768px)");
   const navToggle = document.getElementById("nav-toggle") as HTMLInputElement;
@@ -232,4 +177,4 @@ const currentPathClean = currentPath.replace(/\/$/, "");
   document.addEventListener("astro:unmount", () => {
     mediaQuery.removeEventListener("change", handleResize);
   });
-</script> -->
+</script>
