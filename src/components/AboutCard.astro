@@ -1,0 +1,26 @@
+---
+const { bgColor, cardTitle, buttonText, cardHref, buttonColor, hoverColor } =
+  Astro.props;
+---
+
+<a
+  class={`md:pt-0 mt-4 max-h-[400px] min-h-[400px] w-full max-w-[750px] rounded-lg
+    ${bgColor} group relative`}
+  href={cardHref}
+>
+  <div class="m-8 text-left absolute md:top-0 md:left-0">
+    <p class="font-AreaInktrap text-xl font-bold text-desk-white md:text-3xl">
+      {cardTitle}
+    </p>
+    <p class="text-md text-desk-white">
+      We're here to scale the new ideas <br />
+      that will unfuck the world.
+    </p>
+  </div>
+  <div 
+    class={`absolute bottom-0 md:left-0 inset-x-0 md:text-left text-center m-8 p-3 text-xs text-desk-white border-[1px] border-desk-gray-300/50 rounded-lg
+      md:w-fit ${hoverColor} ${buttonColor} ease-in duration-100 leading-none`}
+  >
+    {buttonText}
+  </div>
+</a>

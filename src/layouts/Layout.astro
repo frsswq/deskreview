@@ -5,7 +5,7 @@ import Footer from "../components/Footer.astro";
 import ScrollbarGutter from "../components/ScrollbarGutter.astro";
 import PreloadFonts from "../components/PreloadFonts.astro";
 import { ClientRouter } from "astro:transitions";
-const { pageTitle } = Astro.props;
+const { pageTitle, withFooter } = Astro.props;
 ---
 
 <!-- classic layout -->
@@ -25,6 +25,8 @@ const { pageTitle } = Astro.props;
     <Header />
     <div class="h-[52px]"></div>
     <slot />
-    <Footer />
+    <div class={withFooter ? "block" : "hidden"}>
+      <Footer />
+    </div>
   </body>
 </html>

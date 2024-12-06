@@ -1,9 +1,10 @@
 ---
-import LayoutClean from "../layouts/LayoutClean.astro"
-import About from "../components/About.astro"
-const pageTitle = "About"
+import Layout from "../layouts/Layout.astro";
+import AboutV3 from "../components/AboutV3.astro";
+const pageTitle = "About";
+const withFooter = true;
 ---
 
-<LayoutClean pageTitle={pageTitle}>
-  <About />
-</LayoutClean>
+<Layout pageTitle={pageTitle} withFooter={withFooter}>
+  <AboutV3 />
+</Layout>

@@ -1,11 +1,12 @@
 ---
-import LayoutClean from "../layouts/LayoutClean.astro";
+import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import logoGif from "../assets/logo_animated.gif";
-const pageTitle = "Contact"
+const pageTitle = "Contact";
+const withFooter = false;
 ---
 
-<LayoutClean pageTitle={pageTitle}>
+<Layout pageTitle={pageTitle} withFooter={withFooter}>
   <div
     class="flex-grow h-[calc(100vh-52px)] flex items-center w-full justify-center"
   >

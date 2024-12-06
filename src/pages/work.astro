@@ -2,9 +2,10 @@
 import Layout from "../layouts/Layout.astro";
 import CardLayout from "../layouts/CardLayout.astro";
 const pageTitle = "Work";
+const withFooter = true;
 ---
 
-<Layout pageTitle={pageTitle}>
+<Layout pageTitle={pageTitle} withFooter={withFooter}>
   <div
     class="hidden md:flex flex-col justify-center items-center mx-4 py-24 font-AreaInktrap
       text-center tracking-tight"
@@ -30,7 +31,7 @@ const pageTitle = "Work";
   </div>
   <div class="md:hidden">
     <p
-      class="text-desk-gray-700 pt-8 mx-4 text-5xl tracking-tight
+      class="text-desk-gray-700 pt-6 mx-4 text-5xl tracking-tight
         leading-none font-AreaInktrap font-bold animate-slidein [--delay:300ms]
         opacity-0"
     >

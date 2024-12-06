@@ -144,20 +144,32 @@ const currentPathClean = currentPath.replace(/\/$/, "");
 </style>
 
 <script>
-  // Close mobile menu on desktop
-  const mediaQuery = window.matchMedia("(min-width: 768px)");
-  const navToggle = document.getElementById("nav-toggle") as HTMLInputElement;
+  function setupMobileMenuHandlers() {
+    const mediaQuery = window.matchMedia("(min-width: 768px)");
+    const navToggle = document.getElementById("nav-toggle") as HTMLInputElement;
 
-  const handleResize = (e: MediaQueryListEvent) => {
-    if (e.matches) {
-      navToggle.checked = false;
-    }
-  };
+    const handleResize = (e: MediaQueryListEvent | MediaQueryList) => {
+      if (e.matches) {
+        navToggle.checked = false;
+      }
+    };
 
-  mediaQuery.addEventListener("change", handleResize);
+    // Check initial state
+    handleResize(mediaQuery);
+    
+    // Add listener
+    mediaQuery.addEventListener("change", handleResize);
 
-  document.addEventListener("astro:unmount", () => {
-    mediaQuery.removeEventListener("change", handleResize);
+    // Clean up on unmount
+    return () => mediaQuery.removeEventListener("change", handleResize);
+  }
+
+  // Set up handlers on each page load
+  document.addEventListener("astro:page-load", () => {
+    const cleanup = setupMobileMenuHandlers();
+    
+    // Clean up on page unmount
+    document.addEventListener("astro:unmount", cleanup);
   });
 
   // Reload logo on contact page
@@ -172,9 +184,5 @@ const currentPathClean = currentPath.replace(/\/$/, "");
     if (window.location.pathname.includes("/deskreview/contact")) {
       reloadGif();
     }
-  });
-
-  document.addEventListener("astro:unmount", () => {
-    mediaQuery.removeEventListener("change", handleResize);
   });
 </script>

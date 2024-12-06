@@ -1,8 +1,10 @@
 ---
-import LayoutClean from "../layouts/LayoutClean.astro";
+import Layout from "../layouts/Layout.astro";
+const pageTitle = "404";
+const withFooter = false;
 ---
 
-<LayoutClean>
+<Layout pageTitle={pageTitle} withFooter={withFooter}>
   <div
     class="flex flex-col md:flex-row items-center justify-center h-[calc(100vh-52px)]
       tracking-tighter font-AreaInktrap"
@@ -11,4 +13,4 @@ import LayoutClean from "../layouts/LayoutClean.astro";
     <div class="mx-4 text-5xl hidden md:block">∏</div>
     <p class="text-2xl md:text-4xl">Page not found</p>
   </div>
-</LayoutClean>
+</Layout>
