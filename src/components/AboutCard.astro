@@ -1,4 +1,7 @@
 ---
+import { Image } from "astro:assets";
+import asset_logo from "../assets/logo_clean.svg";
+
 const { bgColor, cardTitle, cardText, cardText2, buttonText, cardHref, buttonColor, hoverColor } =
   Astro.props;
 ---
@@ -29,5 +32,16 @@ const { bgColor, cardTitle, cardText, cardText2, buttonText, cardHref, buttonCol
       ${hoverColor} ${buttonColor} ease-in duration-100 leading-none`}
   >
     &nbsp; ⌘ &nbsp;
+  </div>
+  <div
+    class={`hidden md:block absolute top-0 right-0 m-8`}
+  >
+    <Image
+      src={asset_logo}
+      alt="logo_decorative"
+      class="fill-desk-white aspect-auto"
+      width={80}
+      height={80}
+    />
   </div>
 </a>
