@@ -9,27 +9,25 @@ const currentPathClean = currentPath.replace(/\/$/, "");
   <!-- Hamburger Button -->
   <label
     for="nav-toggle"
-    class="fixed top-[24px] right-4 z-[60] cursor-pointer md:hidden"
+    class="hamburger-icon fixed right-4 top-[24px] z-[60] cursor-pointer md:hidden"
   >
-    <div class="hamburger-icon">
-      <span class="block w-8 h-[0.5px] bg-black"></span>
-      <span class="block w-8 h-[0.5px] bg-transparent my-0.5"></span>
-      <span class="block w-8 h-[0.5px] bg-black"></span>
-    </div>
+    <span class="block h-[0.5px] w-8 bg-black"></span>
+    <span class="my-0.5 block h-[0.5px] w-8 bg-transparent"></span>
+    <span class="block h-[0.5px] w-8 bg-black"></span>
   </label>
 
   <!-- Main Navigation -->
   <div
-    class="fixed top-0 left-0 w-full bg-white z-[55] shadow-sm"
+    class="fixed left-0 top-0 z-[55] w-full bg-white shadow-sm"
     id="main-nav"
   >
     <div
       id="web-nav"
-      class="mx-auto px-4 py-2 flex justify-between items-center"
+      class="mx-auto flex items-center justify-between px-4 py-2"
     >
       <!-- Logo -->
-      <div class="py-[6px] logo-container" transition:persist>
-        <a href="/deskreview" class="focus:outline-none focus:opacity-80">
+      <div class="logo-container py-[6px]" transition:persist>
+        <a href="/deskreview" class="focus:opacity-80 focus:outline-none">
           <img
             src="/deskreview/svg/logo_full_navbar.svg"
             alt="Logo"
@@ -42,7 +40,7 @@ const currentPathClean = currentPath.replace(/\/$/, "");
       </div>
 
       <!-- Desktop Navigation -->
-      <nav class="hidden md:flex tracking-tight">
+      <nav class="hidden tracking-tight md:flex">
         <a
           href="/deskreview/work"
           class={`pt-[10px] pb-[6px] px-2 flex items-center text-sm
@@ -77,31 +75,31 @@ const currentPathClean = currentPath.replace(/\/$/, "");
 
   <!-- Mobile Menu -->
   <div
-    class="fixed top-0 left-0 w-full h-full bg-black hidden z-[50] md:hidden pl-4"
+    class="fixed left-0 top-0 z-[50] hidden h-full w-full bg-black pl-4 md:hidden"
     id="mobile-menu"
   >
     <nav
-      class="space-y-6 text-5xl font-bold font-AreaInktrap tracking-tight mt-32 opacity-0
-        animate-slideinFast [--delay:0ms]"
+      class="mt-32 animate-slideinFast space-y-6 font-AreaInktrap text-5xl font-bold
+        tracking-tight opacity-0 [--delay:0ms]"
     >
       <a
         href="/deskreview/work"
-        class="block text-white hover:text-zinc-400 focus:outline-none focus:text-zinc-400"
+        class="block text-white hover:text-zinc-400 focus:text-zinc-400 focus:outline-none"
         >Work</a
       >
       <a
         href="/deskreview"
-        class="block text-white hover:text-zinc-400 focus:outline-none focus:text-zinc-400"
+        class="block text-white hover:text-zinc-400 focus:text-zinc-400 focus:outline-none"
         >About</a
       >
       <a
         href="/deskreview/studies"
-        class="block text-white hover:text-zinc-400 focus:outline-none focus:text-zinc-400"
+        class="block text-white hover:text-zinc-400 focus:text-zinc-400 focus:outline-none"
         >Studies</a
       >
       <a
         href="/deskreview/contact"
-        class="block text-white hover:text-zinc-400 focus:outline-none focus:text-zinc-400"
+        class="block text-white hover:text-zinc-400 focus:text-zinc-400 focus:outline-none"
         >Contact</a
       >
     </nav>
@@ -156,7 +154,7 @@ const currentPathClean = currentPath.replace(/\/$/, "");
 
     // Check initial state
     handleResize(mediaQuery);
-    
+
     // Add listener
     mediaQuery.addEventListener("change", handleResize);
 
@@ -167,7 +165,7 @@ const currentPathClean = currentPath.replace(/\/$/, "");
   // Set up handlers on each page load
   document.addEventListener("astro:page-load", () => {
     const cleanup = setupMobileMenuHandlers();
-    
+
     // Clean up on page unmount
     document.addEventListener("astro:unmount", cleanup);
   });
