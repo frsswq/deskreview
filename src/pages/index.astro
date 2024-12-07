@@ -1,10 +1,20 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import About from "../components/About.astro";
+import AboutCardLayout from "../layouts/AboutCardLayout.astro";
+import HeroText from "../components/HeroText.astro";
+
+const heroTitle = "About Us";
+const heroDescription = "A Branding & Campaign Strategy Studio";
+
 const pageTitle = "About";
 const withFooter = true;
 ---
 
-<Layout pageTitle={pageTitle} withFooter={withFooter}>
-  <About />
+<Layout pageTitle={pageTitle} withFooter={withFooter}>  
+  <main>
+    <HeroText heroTitle={heroTitle} heroDescription={heroDescription} />
+    <div class="hidden md:block mb-8"></div>
+    <AboutCardLayout />
+    <div class="flex h-[calc(100vh-52px)] items-center justify-center">CTA</div>
+  </main>
 </Layout>

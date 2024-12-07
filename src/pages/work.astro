@@ -1,48 +1,16 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import CardLayout from "../layouts/CardLayout.astro";
+import WorkCardLayout from "../layouts/WorkCardLayout.astro";
+import HeroText from "../components/HeroText.astro";
+
+const heroTitle = "Our Work";
+const heroDescription = "Market-ready branding strategies, <br/> competition-winning digital campaigns.";
+
 const pageTitle = "Work";
 const withFooter = true;
 ---
 
 <Layout pageTitle={pageTitle} withFooter={withFooter}>
-  <div
-    class="hidden md:flex flex-col justify-center items-center mx-4 py-24 font-AreaInktrap
-      text-center tracking-tight"
-  >
-    <p
-      class="text-desk-gray-700 text-xl md:text-6xl leading-none font-bold animate-slidein
-        [--delay:300ms] opacity-0"
-    >
-      Our Work
-    </p>
-    <p
-      class="text-desk-gray-700/80 pt-2 text-md md:text-2xl animate-slidein [--delay:400ms]
-        opacity-0"
-    >
-      Market-ready branding strategies,
-    </p>
-    <p
-      class="text-desk-gray-700/80 text-md md:text-2xl animate-slidein [--delay:400ms]
-        opacity-0"
-    >
-      competition-winning digital campaigns.
-    </p>
-  </div>
-  <div class="md:hidden">
-    <p
-      class="text-desk-gray-700 pt-6 mx-4 text-5xl tracking-tight
-        leading-none font-AreaInktrap font-bold animate-slidein [--delay:300ms]
-        opacity-0"
-    >
-      Our Work
-  </p>
-    <div
-      class="h-px bg-desk-gray-500 border-0 mx-4 animate-slidein [--delay:300ms] opacity-0"
-    >
-    </div>
-  </div>
-
-  <CardLayout />
-  <div class="md:mt-8"></div>
+  <HeroText heroTitle={heroTitle} heroDescription={heroDescription} />
+  <WorkCardLayout />
 </Layout>

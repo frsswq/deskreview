@@ -1,8 +1,9 @@
 ---
 import Divider from "./Divider.astro";
+const { withFooter } = Astro.props;
 ---
 
-<footer class="mx-4">
+<footer class={withFooter ? "mx-4" : "hidden"}>
   <Divider />
   <div
     class="mb-10 mt-2 w-full text-desk-gray-700/80 text-xs md:text-sm

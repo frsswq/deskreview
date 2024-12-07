@@ -1,0 +1,33 @@
+---
+const { heroTitle, heroDescription } = Astro.props;
+---
+
+<div
+  class="mx-4 hidden flex-col items-center justify-center py-24 text-center
+    font-AreaInktrap tracking-tight md:flex"
+>
+  <p
+    class="animate-slidein text-xl font-bold leading-none text-desk-gray-700 opacity-0
+      [--delay:300ms] md:text-6xl"
+  >
+    {heroTitle}
+  </p>
+  <p
+    class="text-md animate-slidein pt-2 text-desk-gray-700/80 opacity-0 [--delay:400ms]
+      md:text-2xl"
+  >
+    <Fragment set:html={heroDescription} />
+  </p>
+</div>
+<div class="md:hidden">
+  <p
+    class="mx-4 animate-slidein pt-6 font-AreaInktrap text-5xl font-bold leading-none
+      tracking-tight text-desk-gray-700 opacity-0 [--delay:300ms]"
+  >
+    {heroTitle}
+  </p>
+  <div
+    class="mx-4 h-px animate-slidein border-0 bg-desk-gray-500 opacity-0 [--delay:300ms]"
+  >
+  </div>
+</div>

@@ -1,10 +1,14 @@
 ---
-import Title from "../components/Title.astro";
 import Layout from "../layouts/Layout.astro";
+import HeroText from "../components/HeroText.astro";
+
 const pageTitle = "Studies";
 const withFooter = true;
+
+const heroTitle = pageTitle;
+const heroDescription = "";
 ---
 
 <Layout pageTitle={pageTitle} withFooter={withFooter}>
-  <Title title={pageTitle} />
+  <HeroText heroTitle={heroTitle} heroDescription={heroDescription} />
 </Layout>

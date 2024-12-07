@@ -27,8 +27,6 @@ const { pageTitle, withFooter } = Astro.props;
     <Header />
     <div class="h-[52px]"></div>
     <slot />
-    <div class={withFooter ? "block" : "hidden"}>
-      <Footer />
-    </div>
+    <Footer withFooter={withFooter} />
   </body>
 </html>
