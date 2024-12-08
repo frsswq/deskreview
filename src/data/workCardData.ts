@@ -4,7 +4,7 @@ import hayatiImg from "../assets/hayati.png";
 import salamGaneshaImg from "../assets/ganesha.png";
 import telkomselImg from "../assets/telkomsel.png";
 
-type CardData = {
+type WorkCardData = {
   title: string;
   description: string;
   image: ImageMetadata;
@@ -13,7 +13,7 @@ type CardData = {
   modalServices: string;
 };
 
-export const cardData: CardData[] = [
+export const workCardData: WorkCardData[] = [
   {
     title: "Astra Honda",
     description: "Vehicle Manufacture",

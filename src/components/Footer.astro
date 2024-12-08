@@ -3,11 +3,11 @@ import Divider from "./Divider.astro";
 const { withFooter } = Astro.props;
 ---
 
-<footer class={withFooter ? "mx-4" : "hidden"}>
+<footer class={withFooter ? "mx-6 mb-4" : "hidden"}>
   <Divider />
   <div
-    class="mb-10 mt-2 w-full text-desk-gray-700/80 text-xs md:text-sm
-      font-AreaInktrap tracking-tight grid grid-cols-2 items-center"
+    class="mt-2 grid w-full grid-cols-2 items-center font-AreaInktrap text-[10px]
+      tracking-tight text-desk-gray-700/80 md:text-sm"
   >
     <div class="flex justify-start">
       <a

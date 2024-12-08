@@ -1,46 +1,18 @@
 ---
 import AboutCard from "../components/AboutCard.astro";
+import AboutCardModal from "../components/AboutCardModal.astro";
+import Slider from "../components/Slider.astro";
+
+import { aboutCardData } from "../data/aboutCardData";
 ---
 
 <div
-  class="mx-4 mb-4 flex animate-slidein flex-col items-center justify-center opacity-0
+  class="mx-4 mb-4 grid animate-slidein grid-cols-1 place-items-center opacity-0
     [--delay:500ms]"
 >
-  <AboutCard
-    bgColor="bg-desk-orange"
-    cardTitle="Why we do it"
-    cardText="To help brands resonate"
-    cardText2="in a fast-changing world."
-    buttonText="Read our manifesto"
-    buttonColor="group-hover:bg-desk-white"
-    hoverColor="group-hover:text-desk-orange"
-  />
-  <AboutCard
-    bgColor="bg-desk-blue"
-    cardTitle="What we do"
-    cardText="We craft strategies that"
-    cardText2="make brands unforgettable."
-    buttonText="See our work"
-    buttonColor="group-hover:bg-desk-white"
-    hoverColor="group-hover:text-desk-blue"
-    cardHref="/deskreview/work"
-  />
-  <AboutCard
-    bgColor="bg-desk-brown"
-    cardTitle="Who we do it for"
-    cardText="For brands seeking"
-    cardText2="meaningful connections."
-    buttonText="See who we've worked with"
-    buttonColor="group-hover:bg-desk-white"
-    hoverColor="group-hover:text-desk-brown"
-  />
-  <AboutCard
-    bgColor="bg-desk-gray-700"
-    cardTitle="How we do it"
-    cardText="By combining strategy with"
-    cardText2=" creativity to inspire belief."
-    buttonText="See our services"
-    buttonColor="group-hover:bg-desk-white"
-    hoverColor="group-hover:text-desk-gray-700"
-  />
+  {aboutCardData.map((card) => 
+    card.isModal 
+      ? <AboutCardModal {...card} /> 
+      : <AboutCard {...card} />
+  )}
 </div>

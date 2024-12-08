@@ -8,26 +8,24 @@ const withFooter = false;
 
 <Layout pageTitle={pageTitle} withFooter={withFooter}>
   <div
-    class="flex-grow h-[calc(100vh-52px)] flex items-center w-full justify-center"
+    class="flex h-[calc(100vh-52px)] w-full flex-grow items-center justify-center
+      md:animate-slidein md:opacity-0 md:[--delay:300ms]"
   >
     <div class="md:mx-auto">
       <div class="text-center">
-        <h1
-          class="text-4xl font-bold text-desk-gray-700 tracking-tight md:opacity-0
-            md:animate-slidein md:[--delay:300ms]"
-        >
+        <h1 class="text-4xl font-bold tracking-tight text-desk-gray-700">
           Get in touch
         </h1>
       </div>
 
       <div
-        class="mt-4 mb-4 grid items-center justify-center md:grid-cols-2 md:gap-9"
+        class="mb-4 mt-4 grid items-center justify-center md:grid-cols-2 md:gap-9"
       >
         <!-- Card -->
         <div class="hidden md:flex">
           <Image
             src={logoGif}
-            class="w-auto h-auto max-w-96"
+            class="h-auto w-auto max-w-96"
             alt="Deskreview Logo Animation"
             width="350"
             height="350"
@@ -38,11 +36,9 @@ const withFooter = false;
         <!-- End Card -->
         <div class="divide-y divide-desk-gray-500">
           <!-- Icon Block -->
-          <div
-            class="flex gap-x-7 py-6 md:opacity-0 md:animate-slidein md:[--delay:300ms]"
-          >
+          <div class="flex gap-x-7 py-6">
             <svg
-              class="shrink-0 size-6 mt-1.5 text-desk-black"
+              class="mt-1.5 size-6 shrink-0 text-desk-black"
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
@@ -61,13 +57,13 @@ const withFooter = false;
               <p class="font-semibold text-desk-black">Email us</p>
               <a
                 class="mt-2 inline-flex items-center gap-x-2 text-sm font-medium text-desk-gray-700/80
-                  hover:text-desk-black focus:outline-none focus:text-desk-black"
+                  hover:text-desk-black focus:text-desk-black focus:outline-none"
                 href="mailto:zaidandzaki@gmail.com"
                 target="_blank"
               >
                 zaidandzaki@gmail.com
                 <svg
-                  class="shrink-0 size-2.5 mb-[1px]"
+                  class="mb-[1px] size-2.5 shrink-0"
                   width="16"
                   height="16"
                   viewBox="0 0 16 16"
@@ -86,11 +82,9 @@ const withFooter = false;
           <!-- End Icon Block -->
 
           <!-- Icon Block -->
-          <div
-            class="flex gap-x-7 py-6 md:opacity-0 md:animate-slidein md:[--delay:300ms]"
-          >
+          <div class="flex gap-x-7 py-6">
             <svg
-              class="shrink-0 size-6 mt-1.5 text-desk-black"
+              class="mt-1.5 size-6 shrink-0 text-desk-black"
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
@@ -109,13 +103,13 @@ const withFooter = false;
               <p class="font-semibold text-desk-black">Call us</p>
               <a
                 class="mt-2 inline-flex items-center gap-x-2 text-sm font-medium text-desk-gray-700/80
-                  hover:text-desk-black focus:outline-none focus:text-desk-black"
+                  hover:text-desk-black focus:text-desk-black focus:outline-none"
                 href="https://wa.me/+6285159177206"
                 target="_blank"
               >
                 +62 851-5917-7206
                 <svg
-                  class="shrink-0 size-2.5 mb-[3px]"
+                  class="mb-[3px] size-2.5 shrink-0"
                   width="16"
                   height="16"
                   viewBox="0 0 16 16"
@@ -136,5 +130,4 @@ const withFooter = false;
       </div>
     </div>
   </div>
-</LayoutClean>
-
+</Layout>

@@ -1,0 +1,58 @@
+---
+const { modalTitle } = Astro.props;
+---
+
+<input type="checkbox" id={modalTitle} class="hidden" />
+  
+    <!-- Close Button -->
+    <label
+    for={modalTitle}
+    class="close-icon fixed right-4 top-[24px] z-[60] cursor-pointer md:hidden"
+  >
+    <span class="block h-[0.5px] w-8 bg-black rotate-45 top-[2px]"></span>
+      <span class="my-0.5 block h-[0.5px] w-8 bg-transparent"></span>
+      <span class="block h-[0.5px] w-8 bg-black -rotate-45 top-[2px]"></span>
+    </label>
+    
+    <!-- Content -->
+    <div
+      class="fixed left-0 top-0 z-[50] hidden h-full w-full bg-black m-4 md:hidden"
+      id={modalTitle}
+    >
+      <p
+        class="mt-32 animate-slideinFast space-y-6 font-AreaInktrap text-5xl font-bold
+          tracking-tight opacity-0 [--delay:0ms]"
+      >
+      TEST TEST TEST
+      </p>
+    </div>
+  
+  <style>
+    #{modalTitle}:checked ~ label .hamburger-line {
+      background-color: white;
+    }
+  
+    #{modalTitle}:checked ~ label .close-icon span:nth-child(1) {
+      position: absolute;
+      transform: rotate(-45deg);
+      top: 2px;
+      background-color: white;
+    }
+  
+    #{modalTitle}:checked ~ label .close-icon span:nth-child(3) {
+      position: absolute;
+      transform: rotate(45deg);
+      top: 2px;
+      background-color: white;
+    }
+  
+    /* Mobile menu display */
+    #{modalTitle}:checked ~ #{modalTitle} {
+      display: flex;
+    }
+  
+    /* Navigation background change */
+    #{modalTitle}:checked ~ #{modalTitle} {
+      background-color: black;
+    }
+  </style>

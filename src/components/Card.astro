@@ -7,12 +7,12 @@ import Dialog from "./Dialog.astro";
 
 <div>
   <label for={title} class="cursor-pointer">
-    <article class="space-y-3 opacity-0 animate-slidein [--delay:500ms]">
-      <figure class="bg-desk-gray-300/80 aspect-square rounded-lg">
+    <article class="animate-slidein space-y-3 opacity-0 [--delay:500ms]">
+      <figure class="aspect-square rounded-lg bg-desk-gray-300/80">
         <Image
           src={image}
           alt={title}
-          class="object-cover w-full h-full rounded-lg"
+          class="h-full w-full rounded-lg object-cover"
           width={800}
           height={800}
           loading="eager"
@@ -20,13 +20,13 @@ import Dialog from "./Dialog.astro";
       </figure>
 
       <div
-        class="flex justify-between tracking-tight text-sm md:text-base lg:text-lg"
+        class="flex justify-between text-sm tracking-tight md:text-base lg:text-lg"
       >
         <div>
-          <p class="text-desk-black/70 font-bold leading-none">{title}</p>
-          <p class="text-desk-gray-700/70 capitalize">{description}</p>
+          <p class="font-bold leading-none text-desk-black/70">{title}</p>
+          <p class="capitalize text-desk-gray-700/70">{description}</p>
         </div>
-        <p class="text-desk-black/70 font-bold leading-none">{year}</p>
+        <p class="font-bold leading-none text-desk-black/70">{year}</p>
       </div>
     </article>
   </label>

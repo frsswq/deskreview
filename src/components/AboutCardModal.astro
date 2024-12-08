@@ -2,23 +2,16 @@
 import { Image } from "astro:assets";
 import asset_logo from "../assets/logo_clean.svg";
 
-const {
-  bgColor,
-  cardTitle,
-  cardText,
-  buttonText,
-  cardHref,
-  buttonColor,
-  hoverColor,
-} = Astro.props;
+const { bgColor, cardTitle, cardText, buttonText, buttonColor, hoverColor } =
+  Astro.props;
 ---
 
-<a
-  class={`md:pt-0 mt-4 max-h-[400px] min-h-[400px] w-full max-w-[750px] rounded-lg
+<!-- Card -->
+<button
+  class={`cursor-pointer mt-4 max-h-[400px] min-h-[400px] w-full max-w-[750px] rounded-lg
     ${bgColor} group relative`}
-  href={cardHref}
 >
-  <div class="absolute m-8 text-left md:left-0 md:top-0">
+  <div class="absolute left-0 top-0 m-8 text-left">
     <p class="font-AreaInktrap text-2xl font-bold text-desk-white md:text-3xl">
       {cardTitle}
     </p>
@@ -40,7 +33,7 @@ const {
   >
     &nbsp; ⌘ &nbsp;
   </div>
-  <div class={"hidden md:block absolute top-0 right-0 m-8"}>
+  <div class="absolute right-0 top-0 m-8 hidden md:block">
     <Image
       src={asset_logo}
       alt="about_card_element_graphic"
@@ -48,4 +41,4 @@ const {
       height={80}
     />
   </div>
-</a>
+</button>
