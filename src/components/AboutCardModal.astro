@@ -10,8 +10,9 @@ const { bgColor, cardTitle, cardText, buttonText, buttonColor, hoverColor } =
 <button
   class={`cursor-pointer mt-4 max-h-[400px] min-h-[400px] w-full max-w-[750px] rounded-lg
     ${bgColor} group relative`}
+  data-slide-toggle
 >
-  <div class="absolute left-0 top-0 m-8 text-left">
+  <div class="pointer-events-none absolute left-0 top-0 m-8 text-left">
     <p class="font-AreaInktrap text-2xl font-bold text-desk-white md:text-3xl">
       {cardTitle}
     </p>
@@ -22,18 +23,20 @@ const { bgColor, cardTitle, cardText, buttonText, buttonColor, hoverColor } =
   <div
     class={`absolute bottom-0 md:left-0 inset-x-0 md:text-left text-center m-8 p-3 text-xs
       text-desk-white border-[1px] border-desk-gray-300/50 rounded-lg md:w-fit
-      ${hoverColor} ${buttonColor} ease-in duration-100 leading-none`}
+      ${hoverColor} ${buttonColor} ease-in duration-100 leading-none
+      pointer-events-none`}
   >
     {buttonText}
   </div>
   <div
     class={`hidden md:block absolute bottom-0 md:right-0 md:text-left text-center m-8 p-3
       text-xs text-desk-white border-[1px] border-desk-gray-300/50 rounded-lg md:w-fit
-      ${hoverColor} ${buttonColor} ease-in duration-100 leading-none`}
+      ${hoverColor} ${buttonColor} ease-in duration-100 leading-none
+      pointer-events-none`}
   >
     &nbsp; ⌘ &nbsp;
   </div>
-  <div class="absolute right-0 top-0 m-8 hidden md:block">
+  <div class="pointer-events-none absolute right-0 top-0 m-8 hidden md:block">
     <Image
       src={asset_logo}
       alt="about_card_element_graphic"

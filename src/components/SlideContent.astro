@@ -1,0 +1,38 @@
+---
+import { manifesto } from "../data/manifesto.ts";
+import { services } from "../data/services.ts";
+import { workedWith } from "../data/workedWith.ts";
+---
+
+<div
+  class="hidden overflow-y-auto overscroll-contain px-10 pb-10 pt-[52px] font-AreaInktrap
+    text-desk-white"
+  id="first-card-content"
+>
+  <p class="text-2xl font-bold leading-none tracking-tight md:text-5xl">
+    {manifesto.title}
+  </p>
+  <div class="space-y-6 text-pretty pr-10 pt-5 text-lg leading-relaxed">
+    <p>
+      <em>{manifesto.paragraphs[0].slice(0, 19)}</em>{
+        manifesto.paragraphs[0].slice(19)
+      }
+    </p>
+    {manifesto.paragraphs.slice(1).map((paragraph) => <p>{paragraph}</p>)}
+    <p>"{manifesto.quote}" <br />- {manifesto.quoteAuthor}</p>
+  </div>
+</div>
+<div
+  class="hidden overflow-y-auto overscroll-contain px-10 pb-10 pt-[52px] font-AreaInktrap
+    text-desk-white"
+  id="second-card-content"
+>
+  <p class="text-2xl font-bold leading-none tracking-tight md:text-5xl">Worked With</p>
+</div>
+<div
+  class="hidden overflow-y-auto overscroll-contain px-10 pb-10 pt-[52px] font-AreaInktrap
+    text-desk-white"
+  id="third-card-content"
+>
+  <p class="text-2xl font-bold leading-none tracking-tight md:text-5xl">Services</p>
+</div>

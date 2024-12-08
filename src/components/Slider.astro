@@ -1,36 +1,140 @@
 ---
-
+import SlideContent from "./SlideContent.astro";
 ---
 
-<input type="checkbox" id="card-toggle" class="hidden" />
+<div class="overlay hidden" id="overlay"></div>
 
-<label
-  for="card-toggle"
+<div
   id="slide"
-  class="fixed right-0 top-0 z-[9999] h-screen w-screen translate-x-full bg-desk-black
-    transition-transform duration-500"
+  class="ease-[cubic-bezier(0.7, 0, 0.84, 0)] fixed right-0 top-0 z-[60] h-screen
+    w-screen translate-x-full overflow-y-auto overscroll-contain bg-desk-black
+    transition-transform duration-300 md:w-[50vw] md:duration-500"
 >
-</label>
+  <SlideContent />
+</div>
 
-<script>
-  const slide = document.getElementById("slide");
-  const buttons = document.querySelectorAll("button");
+<button
+  id="x-btn"
+  class="fixed right-[40px] top-[40px] z-[60] hidden cursor-pointer items-center
+    justify-center rounded-full bg-desk-gray-700 p-6 md:p-8"
+>
+  <span
+    class="absolute top-[50%] block h-[2px] w-4 -translate-y-[50%] rotate-45 transform
+      bg-desk-white md:w-6"
+  ></span>
+  <span
+    class="absolute top-[50%] block h-[2px] w-4 -translate-y-[50%] -rotate-45 transform
+      bg-desk-white md:w-6"
+  ></span>
+</button>
 
-  // Function to toggle slide and lines
-  const toggleSlide = () => {
-    slide.classList.toggle("translate-x-0");
-    slide.classList.toggle("translate-x-full");
+<style>
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 55;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
 
-    // Toggle the nav-toggle checkbox
-    if (slide.classList.contains("translate-x-0")) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
+  .overlay.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+</style>
+
+<script is:inline>
+  function initSlidePanel() {
+    const slide = document.getElementById("slide");
+    const xBtn = document.getElementById("x-btn");
+    const overlay = document.getElementById("overlay");
+
+    const firstCard = document.querySelector(
+      ".about-card > button:nth-child(1)"
+    );
+    const secondCard = document.querySelector(
+      ".about-card > button:nth-child(3)"
+    );
+    const thirdCard = document.querySelector(
+      ".about-card > button:nth-child(4)"
+    );
+
+    const firstCardContent = document.getElementById("first-card-content");
+    const secondCardContent = document.getElementById("second-card-content");
+    const thirdCardContent = document.getElementById("third-card-content");
+
+    if (!slide || !xBtn) return;
+
+    const hideCardContents = () => {
+      firstCardContent.classList.add("hidden");
+      secondCardContent.classList.add("hidden");
+      thirdCardContent.classList.add("hidden");
+    };
+
+    const showCardContent = (cardContent) => {
+      cardContent.classList.remove("hidden");
+    };
+
+    const updateSlideState = () => {
+      slide.classList.toggle("translate-x-0");
+      slide.classList.toggle("translate-x-full");
+      overlay.classList.toggle("hidden");
+      overlay.classList.toggle("visible");
+
+      if (slide.classList.contains("translate-x-full")) {
+        slide.addEventListener("transitionend", hideCardContents, {
+          once: true,
+        });
+        xBtn.style.display = xBtn.style.display === "flex" ? "none" : "flex";
+      } else {
+        setTimeout(() => {
+          xBtn.style.display = xBtn.style.display === "flex" ? "none" : "flex";
+        }, 300);
+        hideCardContents();
+      }
+    };
+
+    // Remove existing listeners first to prevent multiple attachments
+    document.removeEventListener("click", handleToggleClick);
+    xBtn.removeEventListener("click", updateSlideState);
+    overlay.removeEventListener("click", updateSlideState);
+
+    function handleToggleClick(event) {
+      if (event.target.matches("[data-slide-toggle]")) {
+        updateSlideState();
+      }
+
+      if (event.target === firstCard) {
+        showCardContent(firstCardContent);
+      }
+
+      if (event.target === secondCard) {
+        showCardContent(secondCardContent);
+      }
+
+      if (event.target === thirdCard) {
+        showCardContent(thirdCardContent);
+      }
     }
-  };
 
-  // Add click event to buttons
-  buttons.forEach((button) => {
-    button.addEventListener("click", toggleSlide);
+    // Reattach listeners
+    document.addEventListener("click", handleToggleClick);
+    xBtn.addEventListener("click", updateSlideState);
+    overlay.addEventListener("click", updateSlideState);
+  }
+
+  // Initialize on first load
+  document.addEventListener("DOMContentLoaded", () => {
+    initSlidePanel();
+  });
+
+  // Listen for Astro view transitions
+  document.addEventListener("astro:after-swap", () => {
+    initSlidePanel();
   });
 </script>
