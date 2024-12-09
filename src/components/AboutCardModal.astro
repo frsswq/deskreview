@@ -8,11 +8,14 @@ const { bgColor, cardTitle, cardText, buttonText, buttonColor, hoverColor } =
 
 <!-- Card -->
 <button
-  class={`cursor-pointer mt-4 max-h-[400px] min-h-[400px] w-full max-w-[750px] rounded-lg
-    ${bgColor} group relative`}
+  class={`cursor-pointer mt-4 max-h-[350px] min-h-[350px] md:max-h-[400px]
+    md:min-h-[400px] w-full max-w-[750px] rounded-lg ${bgColor} group relative`}
   data-slide-toggle
 >
-  <div class="pointer-events-none absolute left-0 top-0 m-8 text-left">
+  <div
+    class="pointer-events-none relative translate-y-[34%] text-center md:absolute
+      md:left-0 md:top-0 md:m-8 md:translate-y-0 md:text-left"
+  >
     <p class="font-AreaInktrap text-xl font-bold text-desk-white md:text-3xl">
       {cardTitle}
     </p>
@@ -36,7 +39,10 @@ const { bgColor, cardTitle, cardText, buttonText, buttonColor, hoverColor } =
   >
     &nbsp; ⌘ &nbsp;
   </div>
-  <div class="pointer-events-none absolute right-0 top-0 m-8 hidden md:block">
+  <div
+    class="pointer-events-none absolute inset-x-0 translate-y-[-181%] right-2 mx-auto w-fit
+      md:absolute md:inset-x-auto md:right-0 md:top-0 md:m-8 md:translate-y-0"
+  >
     <Image
       src={asset_logo}
       alt="about_card_element_graphic"
