@@ -53,31 +53,28 @@ import SlideContent from "./SlideContent.astro";
     const slide = document.getElementById("slide");
     const xBtn = document.getElementById("x-btn");
     const overlay = document.getElementById("overlay");
+    const cardContents = {
+      first: document.getElementById("first-card-content"),
+      second: document.getElementById("second-card-content"),
+      third: document.getElementById("third-card-content"),
+    };
+    const cardButtons = {
+      first: document.querySelector(".about-card > button:nth-child(1)"),
+      second: document.querySelector(".about-card > button:nth-child(3)"),
+      third: document.querySelector(".about-card > button:nth-child(4)"),
+    };
 
-    const firstCard = document.querySelector(
-      ".about-card > button:nth-child(1)"
-    );
-    const secondCard = document.querySelector(
-      ".about-card > button:nth-child(3)"
-    );
-    const thirdCard = document.querySelector(
-      ".about-card > button:nth-child(4)"
-    );
-
-    const firstCardContent = document.getElementById("first-card-content");
-    const secondCardContent = document.getElementById("second-card-content");
-    const thirdCardContent = document.getElementById("third-card-content");
-
-    if (!slide || !xBtn) return;
+    if (!slide || !xBtn || !overlay) return;
 
     const hideCardContents = () => {
-      firstCardContent.classList.add("hidden");
-      secondCardContent.classList.add("hidden");
-      thirdCardContent.classList.add("hidden");
+      Object.values(cardContents).forEach((content) => {
+        content?.classList.add("hidden");
+      });
     };
 
     const showCardContent = (cardContent) => {
-      cardContent.classList.remove("hidden");
+      hideCardContents();
+      cardContent?.classList.remove("hidden");
     };
 
     const updateSlideState = () => {
@@ -86,55 +83,44 @@ import SlideContent from "./SlideContent.astro";
       overlay.classList.toggle("hidden");
       overlay.classList.toggle("visible");
 
-      if (slide.classList.contains("translate-x-full")) {
+      const isClosed = slide.classList.contains("translate-x-full");
+
+      if (isClosed) {
         slide.addEventListener("transitionend", hideCardContents, {
           once: true,
         });
-        xBtn.style.display = xBtn.style.display === "flex" ? "none" : "flex";
+        xBtn.style.display = "none";
       } else {
         setTimeout(() => {
-          xBtn.style.display = xBtn.style.display === "flex" ? "none" : "flex";
+          xBtn.style.display = "flex";
         }, 300);
         hideCardContents();
       }
     };
-
-    // Remove existing listeners first to prevent multiple attachments
-    document.removeEventListener("click", handleToggleClick);
-    xBtn.removeEventListener("click", updateSlideState);
-    overlay.removeEventListener("click", updateSlideState);
 
     function handleToggleClick(event) {
       if (event.target.matches("[data-slide-toggle]")) {
         updateSlideState();
       }
 
-      if (event.target === firstCard) {
-        showCardContent(firstCardContent);
-      }
-
-      if (event.target === secondCard) {
-        showCardContent(secondCardContent);
-      }
-
-      if (event.target === thirdCard) {
-        showCardContent(thirdCardContent);
+      if (event.target === cardButtons.first) {
+        showCardContent(cardContents.first);
+      } else if (event.target === cardButtons.second) {
+        showCardContent(cardContents.second);
+      } else if (event.target === cardButtons.third) {
+        showCardContent(cardContents.third);
       }
     }
 
-    // Reattach listeners
+    document.removeEventListener("click", handleToggleClick);
+    xBtn.removeEventListener("click", updateSlideState);
+    overlay.removeEventListener("click", updateSlideState);
+
     document.addEventListener("click", handleToggleClick);
     xBtn.addEventListener("click", updateSlideState);
     overlay.addEventListener("click", updateSlideState);
   }
 
-  // Initialize on first load
-  document.addEventListener("DOMContentLoaded", () => {
-    initSlidePanel();
-  });
-
-  // Listen for Astro view transitions
-  document.addEventListener("astro:after-swap", () => {
-    initSlidePanel();
-  });
+  document.addEventListener("DOMContentLoaded", initSlidePanel);
+  document.addEventListener("astro:after-swap", initSlidePanel);
 </script>

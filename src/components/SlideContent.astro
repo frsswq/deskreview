@@ -5,34 +5,54 @@ import { workedWith } from "../data/workedWith.ts";
 ---
 
 <div
-  class="hidden overflow-y-auto overscroll-contain px-10 pb-10 pt-[52px] font-AreaInktrap
-    text-desk-white"
+  class="hidden animate-slidein overflow-y-auto overscroll-contain px-10 pb-10 pt-[52px]
+    font-AreaInktrap text-desk-white opacity-0 [--delay:500ms]"
   id="first-card-content"
 >
   <p class="text-2xl font-bold leading-none tracking-tight md:text-5xl">
     {manifesto.title}
   </p>
-  <div class="space-y-6 text-pretty pr-10 pt-5 text-lg leading-relaxed">
+  <div
+    class="text-balanced space-y-6 pt-10 text-lg leading-relaxed md:pr-10 md:pt-5"
+  >
     <p>
       <em>{manifesto.paragraphs[0].slice(0, 19)}</em>{
         manifesto.paragraphs[0].slice(19)
       }
     </p>
     {manifesto.paragraphs.slice(1).map((paragraph) => <p>{paragraph}</p>)}
-    <p>"{manifesto.quote}" <br />- {manifesto.quoteAuthor}</p>
+    <p>
+      <strong>"{manifesto.quote}"</strong>
+      <br />- {manifesto.quoteAuthor}
+    </p>
   </div>
 </div>
 <div
-  class="hidden overflow-y-auto overscroll-contain px-10 pb-10 pt-[52px] font-AreaInktrap
-    text-desk-white"
+  class="hidden animate-slidein overflow-y-auto overscroll-contain px-10 pb-10 pt-[52px]
+    font-AreaInktrap text-desk-white opacity-0 [--delay:500ms]"
   id="second-card-content"
 >
-  <p class="text-2xl font-bold leading-none tracking-tight md:text-5xl">Worked With</p>
+  <p class="text-2xl font-bold leading-none tracking-tight md:text-5xl">
+    Worked With
+  </p>
+  <div
+    class="text-balanced space-y-6 divide-y divide-desk-gray-300/50 pt-10 text-lg
+      leading-relaxed md:pr-10 md:pt-5"
+  >
+    {workedWith.map((item) => <p>{item.name}</p>)}
+  </div>
 </div>
 <div
-  class="hidden overflow-y-auto overscroll-contain px-10 pb-10 pt-[52px] font-AreaInktrap
-    text-desk-white"
+  class="hidden animate-slidein overflow-y-auto overscroll-contain px-10 pb-10 pt-[52px]
+    font-AreaInktrap text-desk-white opacity-0 [--delay:500ms]"
   id="third-card-content"
 >
-  <p class="text-2xl font-bold leading-none tracking-tight md:text-5xl">Services</p>
+  <p class="text-2xl font-bold leading-none tracking-tight md:text-5xl">
+    Services
+  </p>
+  <div
+    class="text-balanced space-y-6 pt-10 text-lg leading-relaxed md:pr-10 md:pt-5"
+  >
+    {services.map((item) => <p>{item}</p>)}
+  </div>
 </div>
