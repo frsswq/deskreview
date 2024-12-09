@@ -49,30 +49,21 @@ import SlideContent from "../components/SlideContent.astro";
 </style>
 
 <script>
-  let isInitialized: boolean = false;
+  let isInitialized = false;
 
   function initSlidePanel() {
-    // Prevent multiple initializations
     if (isInitialized) return;
     isInitialized = true;
 
-    const slide: HTMLElement | null = document.getElementById("slide");
-    const xBtn: HTMLElement | null = document.getElementById("x-btn");
-    const overlay: HTMLElement | null = document.getElementById("overlay");
-    const cardContents: {
-      first: HTMLElement | null;
-      second: HTMLElement | null;
-      third: HTMLElement | null;
-    } = {
+    const slide = document.getElementById("slide");
+    const xBtn = document.getElementById("x-btn");
+    const overlay = document.getElementById("overlay");
+    const cardContents = {
       first: document.getElementById("first-card-content"),
       second: document.getElementById("second-card-content"),
       third: document.getElementById("third-card-content"),
     };
-    const cardButtons: {
-      first: HTMLElement | null;
-      second: HTMLElement | null;
-      third: HTMLElement | null;
-    } = {
+    const cardButtons = {
       first: document.querySelector(".about-card > button:nth-child(1)"),
       second: document.querySelector(".about-card > button:nth-child(3)"),
       third: document.querySelector(".about-card > button:nth-child(4)"),
@@ -83,7 +74,6 @@ import SlideContent from "../components/SlideContent.astro";
       return;
     }
 
-    // Reset card contents visibility
     const hideCardContents = () => {
       Object.values(cardContents).forEach((content) => {
         content?.classList.remove("grid");
@@ -91,15 +81,13 @@ import SlideContent from "../components/SlideContent.astro";
       });
     };
 
-    const showCardContent = (cardContent: HTMLElement | null) => {
+    const showCardContent = (cardContent) => {
       hideCardContents();
       cardContent?.classList.remove("hidden");
       cardContent?.classList.add("grid");
-
-      
     };
 
-    let isTransitioning: boolean = false;
+    let isTransitioning = false;
 
     const updateSlideState = () => {
       if (isTransitioning) return;
@@ -130,34 +118,39 @@ import SlideContent from "../components/SlideContent.astro";
       }
     };
 
-    const handleToggleClick = (event: MouseEvent) => {
-      if ((event.target as HTMLElement).matches("[data-slide-toggle]")) {
+    const handleToggleClick = (event) => {
+      const target = event.target;
+
+      if (target.matches("[data-slide-toggle]")) {
         updateSlideState();
       }
 
-      if (event.target === cardButtons.first) {
+      if (target === cardButtons.first) {
         showCardContent(cardContents.first);
-      } else if (event.target === cardButtons.second) {
+      } else if (target === cardButtons.second) {
         showCardContent(cardContents.second);
-      } else if (event.target === cardButtons.third) {
+      } else if (target === cardButtons.third) {
         showCardContent(cardContents.third);
       }
     };
 
     const cleanup = () => {
       document.removeEventListener("click", handleToggleClick);
-      xBtn.removeEventListener("click", () => updateSlideState());
-      overlay.removeEventListener("click", () => updateSlideState());
+      xBtn.removeEventListener("click", updateSlideState);
+      overlay.removeEventListener("click", updateSlideState);
       isInitialized = false;
     };
 
     document.addEventListener("click", handleToggleClick);
-    xBtn.addEventListener("click", () => updateSlideState());
-    overlay.addEventListener("click", () => updateSlideState());
+    xBtn.addEventListener("click", updateSlideState);
+    overlay.addEventListener("click", updateSlideState);
 
     document.addEventListener("astro:before-swap", cleanup);
   }
 
-  document.addEventListener("astro:page-load", initSlidePanel);
-  document.addEventListener("astro:after-swap", initSlidePanel);
+  document.addEventListener("DOMContentLoaded", initSlidePanel);
+  document.addEventListener("astro:page-load", () => {
+    isInitialized = false; // Reset initialization to allow reinitialization on the same page.
+    initSlidePanel();
+  });
 </script>
