@@ -48,7 +48,7 @@ import SlideContent from "./SlideContent.astro";
   }
 </style>
 
-<script is:inline>
+<script>
   function initSlidePanel() {
     const slide = document.getElementById("slide");
     const xBtn = document.getElementById("x-btn");
@@ -72,12 +72,17 @@ import SlideContent from "./SlideContent.astro";
       });
     };
 
-    const showCardContent = (cardContent) => {
+    const showCardContent = (cardContent: HTMLElement | null) => {
       hideCardContents();
       cardContent?.classList.remove("hidden");
     };
 
+    let isTransitioning = false;
+
     const updateSlideState = () => {
+      if (isTransitioning) return;
+      isTransitioning = true;
+
       slide.classList.toggle("translate-x-0");
       slide.classList.toggle("translate-x-full");
       overlay.classList.toggle("hidden");
@@ -86,13 +91,21 @@ import SlideContent from "./SlideContent.astro";
       const isClosed = slide.classList.contains("translate-x-full");
 
       if (isClosed) {
-        slide.addEventListener("transitionend", hideCardContents, {
-          once: true,
-        });
+        slide.addEventListener(
+          "transitionend",
+          () => {
+            hideCardContents();
+            isTransitioning = false;
+          },
+          {
+            once: true,
+          }
+        );
         xBtn.style.display = "none";
       } else {
         setTimeout(() => {
           xBtn.style.display = "flex";
+          isTransitioning = false;
         }, 300);
         hideCardContents();
       }

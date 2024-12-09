@@ -2,6 +2,11 @@
 import { manifesto } from "../data/manifesto.ts";
 import { services } from "../data/services.ts";
 import { workedWith } from "../data/workedWith.ts";
+
+const titleTextWeb = "md:text-5xl";
+const titleTextMobile = "text-2xl";
+const contentTextWeb = "md:text-lg";
+const contentTextMobile = "text-base";
 ---
 
 <div
@@ -9,11 +14,14 @@ import { workedWith } from "../data/workedWith.ts";
     font-AreaInktrap text-desk-white opacity-0 [--delay:500ms]"
   id="first-card-content"
 >
-  <p class="text-2xl font-bold leading-none tracking-tight md:text-5xl">
+  <p
+    class={`${titleTextWeb} ${titleTextMobile} font-bold leading-none tracking-tight`}
+  >
     {manifesto.title}
   </p>
   <div
-    class="text-balanced space-y-6 pt-10 text-lg leading-relaxed md:pr-10 md:pt-5"
+    class={`${contentTextWeb} ${contentTextMobile} space-y-6 pr-6 pt-10 leading-relaxed
+      md:pr-20 md:pt-8`}
   >
     <p>
       <em>{manifesto.paragraphs[0].slice(0, 19)}</em>{
@@ -22,7 +30,10 @@ import { workedWith } from "../data/workedWith.ts";
     </p>
     {manifesto.paragraphs.slice(1).map((paragraph) => <p>{paragraph}</p>)}
     <p>
-      <strong>"{manifesto.quote}"</strong>
+      <strong
+        >"{manifesto.quote.split(";")[0]};
+        <br />{manifesto.quote.split(";")[1]}"</strong
+      >
       <br />- {manifesto.quoteAuthor}
     </p>
   </div>
@@ -32,14 +43,22 @@ import { workedWith } from "../data/workedWith.ts";
     font-AreaInktrap text-desk-white opacity-0 [--delay:500ms]"
   id="second-card-content"
 >
-  <p class="text-2xl font-bold leading-none tracking-tight md:text-5xl">
-    Worked With
+  <p
+    class={`${titleTextWeb} ${titleTextMobile} font-bold leading-none tracking-tight`}
+  >
+    Clients
   </p>
   <div
-    class="text-balanced space-y-6 divide-y divide-desk-gray-300/50 pt-10 text-lg
-      leading-relaxed md:pr-10 md:pt-5"
+    class={`${contentTextWeb} ${contentTextMobile}space-y-3 pr-6 pt-10 md:pr-20 md:pt-8 `}
   >
-    {workedWith.map((item) => <p>{item.name}</p>)}
+    {
+      workedWith.map((item) => (
+        <>
+          <p>{item.name}</p>
+          <div class="h-[0.5px] bg-desk-white" />
+        </>
+      ))
+    }
   </div>
 </div>
 <div
@@ -47,12 +66,28 @@ import { workedWith } from "../data/workedWith.ts";
     font-AreaInktrap text-desk-white opacity-0 [--delay:500ms]"
   id="third-card-content"
 >
-  <p class="text-2xl font-bold leading-none tracking-tight md:text-5xl">
+  <p
+    class={`${titleTextWeb} ${titleTextMobile} font-bold leading-none tracking-tight`}
+  >
     Services
   </p>
   <div
-    class="text-balanced space-y-6 pt-10 text-lg leading-relaxed md:pr-10 md:pt-5"
+    class={`${contentTextWeb} ${contentTextMobile}space-y-3 pr-6 pt-10 md:pr-20 md:pt-8 `}
   >
-    {services.map((item) => <p>{item}</p>)}
+    {
+      services.map((item, index, array) => (
+        <>
+          <p class={`font-bold ${index === array.length - 1 ? "pt-6" : ""}`}>
+            {item.title}
+          </p>
+          {item.types.map((type) => (
+            <>
+              <p class="capitalize">{type}</p>
+              <div class="h-[0.5px] bg-desk-white" />
+            </>
+          ))}
+        </>
+      ))
+    }
   </div>
 </div>
