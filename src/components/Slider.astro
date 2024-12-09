@@ -50,6 +50,7 @@ import SlideContent from "../components/SlideContent.astro";
 
 <script>
   let isInitialized = false;
+  let isTransitioning = false;
 
   function initSlidePanel() {
     if (isInitialized) return;
@@ -87,8 +88,6 @@ import SlideContent from "../components/SlideContent.astro";
       cardContent?.classList.add("grid");
     };
 
-    let isTransitioning = false;
-
     const updateSlideState = () => {
       if (isTransitioning) return;
       isTransitioning = true;
@@ -118,7 +117,15 @@ import SlideContent from "../components/SlideContent.astro";
       }
     };
 
-    const handleToggleClick = (event) => {
+    const debounce = (fn, delay) => {
+      let timeout;
+      return (...args) => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => fn(...args), delay);
+      };
+    };
+
+    const handleToggleClick = debounce((event) => {
       const target = event.target;
 
       if (target.matches("[data-slide-toggle]")) {
@@ -132,7 +139,7 @@ import SlideContent from "../components/SlideContent.astro";
       } else if (target === cardButtons.third) {
         showCardContent(cardContents.third);
       }
-    };
+    }, 100);
 
     const cleanup = () => {
       document.removeEventListener("click", handleToggleClick);
