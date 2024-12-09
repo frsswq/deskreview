@@ -1,5 +1,5 @@
 ---
-import SlideContent from "./SlideContent.astro";
+import SlideContent from "../components/SlideContent.astro";
 ---
 
 <div class="overlay hidden" id="overlay"></div>
@@ -49,22 +49,30 @@ import SlideContent from "./SlideContent.astro";
 </style>
 
 <script>
-  let isInitialized = false;
+  let isInitialized: boolean = false;
 
   function initSlidePanel() {
     // Prevent multiple initializations
     if (isInitialized) return;
     isInitialized = true;
 
-    const slide = document.getElementById("slide");
-    const xBtn = document.getElementById("x-btn");
-    const overlay = document.getElementById("overlay");
-    const cardContents = {
+    const slide: HTMLElement | null = document.getElementById("slide");
+    const xBtn: HTMLElement | null = document.getElementById("x-btn");
+    const overlay: HTMLElement | null = document.getElementById("overlay");
+    const cardContents: {
+      first: HTMLElement | null;
+      second: HTMLElement | null;
+      third: HTMLElement | null;
+    } = {
       first: document.getElementById("first-card-content"),
       second: document.getElementById("second-card-content"),
       third: document.getElementById("third-card-content"),
     };
-    const cardButtons = {
+    const cardButtons: {
+      first: HTMLElement | null;
+      second: HTMLElement | null;
+      third: HTMLElement | null;
+    } = {
       first: document.querySelector(".about-card > button:nth-child(1)"),
       second: document.querySelector(".about-card > button:nth-child(3)"),
       third: document.querySelector(".about-card > button:nth-child(4)"),
@@ -82,12 +90,12 @@ import SlideContent from "./SlideContent.astro";
       });
     };
 
-    const showCardContent = (cardContent) => {
+    const showCardContent = (cardContent: HTMLElement | null) => {
       hideCardContents();
       cardContent?.classList.remove("hidden");
     };
 
-    let isTransitioning = false;
+    let isTransitioning: boolean = false;
 
     const updateSlideState = () => {
       if (isTransitioning) return;
@@ -118,8 +126,8 @@ import SlideContent from "./SlideContent.astro";
       }
     };
 
-    const handleToggleClick = (event) => {
-      if (event.target.matches("[data-slide-toggle]")) {
+    const handleToggleClick = (event: MouseEvent) => {
+      if ((event.target as HTMLElement).matches("[data-slide-toggle]")) {
         updateSlideState();
       }
 
@@ -143,7 +151,6 @@ import SlideContent from "./SlideContent.astro";
     xBtn.addEventListener("click", () => updateSlideState());
     overlay.addEventListener("click", () => updateSlideState());
 
-    // Cleanup before navigating away
     document.addEventListener("astro:before-swap", cleanup);
   }
 

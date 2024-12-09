@@ -2,92 +2,60 @@
 import { manifesto } from "../data/manifesto.ts";
 import { services } from "../data/services.ts";
 import { workedWith } from "../data/workedWith.ts";
-
-const titleTextWeb = "md:text-5xl";
-const titleTextMobile = "text-2xl";
-const contentTextWeb = "md:text-lg";
-const contentTextMobile = "text-base";
+import SlideContentLayout from "../layouts/SlideContentLayout.astro";
 ---
 
-<div
-  class="hidden animate-slidein overflow-y-auto overscroll-contain px-10 pb-10 pt-[52px]
-    font-AreaInktrap text-desk-white opacity-0 [--delay:500ms]"
+<SlideContentLayout
   id="first-card-content"
+  title={manifesto.title}
+  spaceY="space-y-6"
 >
-  <p
-    class={`${titleTextWeb} ${titleTextMobile} font-bold leading-none tracking-tight`}
-  >
-    {manifesto.title}
+  <p>
+    <em>{manifesto.paragraphs[0].slice(0, 19)}</em>{
+      manifesto.paragraphs[0].slice(19)
+    }
   </p>
-  <div
-    class={`${contentTextWeb} ${contentTextMobile} space-y-6 pr-6 pt-10 leading-relaxed
-      md:pr-20 md:pt-8`}
-  >
-    <p>
-      <em>{manifesto.paragraphs[0].slice(0, 19)}</em>{
-        manifesto.paragraphs[0].slice(19)
-      }
-    </p>
-    {manifesto.paragraphs.slice(1).map((paragraph) => <p>{paragraph}</p>)}
-    <p>
-      <strong
-        >"{manifesto.quote.split(";")[0]};
-        <br />{manifesto.quote.split(";")[1]}"</strong
-      >
-      <br />- {manifesto.quoteAuthor}
-    </p>
-  </div>
-</div>
-<div
-  class="hidden animate-slidein overflow-y-auto overscroll-contain px-10 pb-10 pt-[52px]
-    font-AreaInktrap text-desk-white opacity-0 [--delay:500ms]"
+  {manifesto.paragraphs.slice(1).map((paragraph) => <p>{paragraph}</p>)}
+  <p>
+    <strong
+      >"{manifesto.quote.split(";")[0]};
+      <br />{manifesto.quote.split(";")[1]}"</strong
+    >
+    <br />- {manifesto.quoteAuthor}
+  </p>
+</SlideContentLayout>
+<SlideContentLayout
   id="second-card-content"
+  title="Clients"
+  spaceY="space-y-3"
 >
-  <p
-    class={`${titleTextWeb} ${titleTextMobile} font-bold leading-none tracking-tight`}
-  >
-    Clients
-  </p>
-  <div
-    class={`${contentTextWeb} ${contentTextMobile} space-y-3 pr-6 pt-10 md:pr-20 md:pt-8`}
-  >
-    {
-      workedWith.map((item) => (
-        <>
-          <p>{item.name}</p>
-          <div class="h-[0.5px] bg-desk-white" />
-        </>
-      ))
-    }
-  </div>
-</div>
-<div
-  class="hidden animate-slidein overflow-y-auto overscroll-contain px-10 pb-10 pt-[52px]
-    font-AreaInktrap text-desk-white opacity-0 [--delay:500ms]"
+  {
+    workedWith.map((item) => (
+      <>
+        <p>{item.name}</p>
+        <div class="h-[0.5px] bg-desk-white" />
+      </>
+    ))
+  }
+</SlideContentLayout>
+<SlideContentLayout
   id="third-card-content"
+  title="Services"
+  spaceY="space-y-3"
 >
-  <p
-    class={`${titleTextWeb} ${titleTextMobile} font-bold leading-none tracking-tight`}
-  >
-    Services
-  </p>
-  <div
-    class={`${contentTextWeb} ${contentTextMobile} space-y-3 pr-6 pt-10 md:pr-20 md:pt-8`}
-  >
-    {
-      services.map((item, index, array) => (
-        <>
-          <p class={`font-bold ${index === array.length - 1 ? "pt-6" : ""}`}>
-            {item.title}
-          </p>
-          {item.types.map((type) => (
-            <>
-              <p class="capitalize">{type}</p>
-              <div class="h-[0.5px] bg-desk-white" />
-            </>
-          ))}
-        </>
-      ))
-    }
-  </div>
-</div>
+  {
+    services.map((item, index, array) => (
+      <>
+        <p class={`font-bold ${index === array.length - 1 ? "pt-6" : ""}`}>
+          {item.title}
+        </p>
+        {item.types.map((type) => (
+          <>
+            <p class="capitalize">{type}</p>
+            <div class="h-[0.5px] bg-desk-white" />
+          </>
+        ))}
+      </>
+    ))
+  }
+</SlideContentLayout>
