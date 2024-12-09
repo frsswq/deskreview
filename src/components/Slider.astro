@@ -118,51 +118,30 @@ import SlideContent from "./SlideContent.astro";
       }
     };
 
-    // Debounce user interactions
-    let lastInteractionTime = 0;
-    const debounceTime = 300; // 300ms debounce
-
-    const handleDebouncedInteraction = (callback) => {
-      const currentTime = Date.now();
-      if (currentTime - lastInteractionTime < debounceTime) return;
-      lastInteractionTime = currentTime;
-      callback();
-    };
-
     const handleToggleClick = (event) => {
-      handleDebouncedInteraction(() => {
-        if (event.target.matches("[data-slide-toggle]")) {
-          updateSlideState();
-        }
+      if (event.target.matches("[data-slide-toggle]")) {
+        updateSlideState();
+      }
 
-        if (event.target === cardButtons.first) {
-          showCardContent(cardContents.first);
-        } else if (event.target === cardButtons.second) {
-          showCardContent(cardContents.second);
-        } else if (event.target === cardButtons.third) {
-          showCardContent(cardContents.third);
-        }
-      });
+      if (event.target === cardButtons.first) {
+        showCardContent(cardContents.first);
+      } else if (event.target === cardButtons.second) {
+        showCardContent(cardContents.second);
+      } else if (event.target === cardButtons.third) {
+        showCardContent(cardContents.third);
+      }
     };
 
     const cleanup = () => {
       document.removeEventListener("click", handleToggleClick);
-      xBtn.removeEventListener("click", () =>
-        handleDebouncedInteraction(updateSlideState)
-      );
-      overlay.removeEventListener("click", () =>
-        handleDebouncedInteraction(updateSlideState)
-      );
+      xBtn.removeEventListener("click", () => updateSlideState());
+      overlay.removeEventListener("click", () => updateSlideState());
       isInitialized = false;
     };
 
     document.addEventListener("click", handleToggleClick);
-    xBtn.addEventListener("click", () =>
-      handleDebouncedInteraction(updateSlideState)
-    );
-    overlay.addEventListener("click", () =>
-      handleDebouncedInteraction(updateSlideState)
-    );
+    xBtn.addEventListener("click", () => updateSlideState());
+    overlay.addEventListener("click", () => updateSlideState());
 
     // Cleanup before navigating away
     document.addEventListener("astro:before-swap", cleanup);
