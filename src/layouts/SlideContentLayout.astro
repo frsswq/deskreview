@@ -1,4 +1,7 @@
 ---
+import { Image } from "astro:assets";
+import logoAnim from "../assets/logo_anim_1x.gif";
+
 interface Props {
   id: string;
   title: string;
@@ -9,14 +12,28 @@ const { id, title, spaceY } = Astro.props;
 ---
 
 <div
-  class="hidden animate-slidein overflow-y-auto overscroll-contain px-10 pb-10 pt-[52px]
-    font-AreaInktrap text-desk-white opacity-0 [--delay:500ms]"
+  class="hidden h-[calc(100vh-52px)] animate-slidein grid-cols-1 overflow-hidden px-10
+    pt-[52px] font-AreaInktrap text-desk-white antialiased opacity-0 [--delay:500ms]
+    md:grid-cols-2"
   id={id}
 >
-  <p class="text-2xl md:text-5xl font-bold leading-none tracking-tight">
-    {title}
-  </p>
-  <div class={`text-base md:text-lg ${spaceY} pr-6 pt-10 md:pr-20 md:pt-8`}>
-    <slot />
+  <div class="-z-10 hidden justify-center md:flex">
+    <Image
+      src={logoAnim}
+      alt="about_card_element_graphic"
+      width={540}
+      height={540}
+      class="fixed top-[50%] -translate-y-[calc(50%-26px)] invert"
+      loading="lazy"
+    />
+  </div>
+  <div class="no-scrollbar overflow-y-auto overscroll-contain pt-px md:pt-1">
+    <p class="text-2xl font-bold leading-none tracking-tight md:text-5xl">
+      {title}
+    </p>
+
+    <div class={`text-base md:text-lg ${spaceY} pr-6 pt-10 md:pr-20 md:pt-8`}>
+      <slot />
+    </div>
   </div>
 </div>

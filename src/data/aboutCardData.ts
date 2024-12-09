@@ -12,7 +12,7 @@ type AboutCardData = {
 // Structured data for cards
 export const aboutCardData: AboutCardData[] = [
   {
-    bgColor: "bg-desk-orange",
+    bgColor: "bg-desk-orange md:justify-self-end",
     cardTitle: "Why we do it",
     cardText: "To help brands resonate <br /> in a fast-changing world.",
     buttonText: "Read our manifesto",
@@ -21,7 +21,7 @@ export const aboutCardData: AboutCardData[] = [
     isModal: true,
   },
   {
-    bgColor: "bg-desk-blue",
+    bgColor: "bg-desk-blue md:justify-self-start",
     cardTitle: "What we do",
     cardText: "We craft strategies that <br /> make brands unforgettable.",
     buttonText: "See our work",
@@ -31,7 +31,7 @@ export const aboutCardData: AboutCardData[] = [
     isModal: false,
   },
   {
-    bgColor: "bg-desk-brown",
+    bgColor: "bg-desk-brown md:justify-self-end",
     cardTitle: "Who we do it for",
     cardText: "For brands seeking <br /> meaningful connections.",
     buttonText: "See who we've worked with",
@@ -41,7 +41,7 @@ export const aboutCardData: AboutCardData[] = [
     isModal: true,
   },
   {
-    bgColor: "bg-desk-gray-700",
+    bgColor: "bg-desk-gray-700 md:justify-self-start",
     cardTitle: "How we do it",
     cardText: "By combining strategy with <br /> creativity to inspire belief.",
     buttonText: "See our services",

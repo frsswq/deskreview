@@ -14,7 +14,7 @@ const {
 ---
 
 <a
-  class={`md:pt-0 mt-4 max-h-[350px] min-h-[350px] md:max-h-[400px] md:min-h-[400px]
+  class={`md:pt-0 max-h-[350px] min-h-[350px] md:max-h-[400px] md:min-h-[400px]
     w-full max-w-[750px] rounded-lg ${bgColor} group relative`}
   href={cardHref}
 >
@@ -22,10 +22,10 @@ const {
     class="relative translate-y-[190%] text-center md:absolute md:left-0 md:top-0 md:m-8
       md:translate-y-0 md:text-left"
   >
-    <p class="font-AreaInktrap text-xl font-bold text-desk-white md:text-3xl">
+    <p class="font-AreaInktrap text-xl font-bold text-desk-white md:text-2xl">
       {cardTitle}
     </p>
-    <p class="text-xl tracking-tight text-desk-white md:text-3xl">
+    <p class="text-xl tracking-tight text-desk-white md:text-2xl">
       <Fragment set:html={cardText} />
     </p>
   </div>
@@ -50,8 +50,8 @@ const {
     <Image
       src={asset_logo}
       alt="about_card_element_graphic"
-      width={80}
-      height={80}
+      width={75}
+      height={75}
     />
   </div>
 </a>

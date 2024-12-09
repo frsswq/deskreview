@@ -8,7 +8,7 @@ import SlideContent from "../components/SlideContent.astro";
   id="slide"
   class="ease-[cubic-bezier(0.7, 0, 0.84, 0)] fixed right-0 top-0 z-[60] h-screen
     w-screen translate-x-full overflow-y-auto overscroll-contain bg-desk-black
-    transition-transform duration-300 md:w-[50vw] md:duration-500"
+    transition-transform duration-300 md:duration-500"
 >
   <SlideContent />
 </div>
@@ -86,6 +86,7 @@ import SlideContent from "../components/SlideContent.astro";
     // Reset card contents visibility
     const hideCardContents = () => {
       Object.values(cardContents).forEach((content) => {
+        content?.classList.remove("grid");
         content?.classList.add("hidden");
       });
     };
@@ -93,6 +94,9 @@ import SlideContent from "../components/SlideContent.astro";
     const showCardContent = (cardContent: HTMLElement | null) => {
       hideCardContents();
       cardContent?.classList.remove("hidden");
+      cardContent?.classList.add("grid");
+
+      
     };
 
     let isTransitioning: boolean = false;

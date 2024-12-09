@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import AboutCardLayout from "../layouts/AboutCardLayout.astro";
 import HeroText from "../components/HeroText.astro";
+import AboutCTA from "../components/AboutCTA.astro";
 
 const heroTitle = "About Us";
 const heroDescription = "A Branding & Campaign Strategy Studio";
@@ -15,6 +16,6 @@ const withFooter = true;
     <HeroText heroTitle={heroTitle} heroDescription={heroDescription} />
     <div class="mb-8 hidden md:block"></div>
     <AboutCardLayout />
-    <div class="flex h-[calc(100vh-52px)] items-center justify-center">CTA</div>
+    <AboutCTA />
   </main>
 </Layout>
