@@ -52,7 +52,8 @@ import SlideContent from "./SlideContent.astro";
   let isInitialized = false;
 
   function initSlidePanel() {
-    if (isInitialized) return; // Prevent multiple initializations
+    // Prevent multiple initializations
+    if (isInitialized) return;
     isInitialized = true;
 
     const slide = document.getElementById("slide");
@@ -69,8 +70,12 @@ import SlideContent from "./SlideContent.astro";
       third: document.querySelector(".about-card > button:nth-child(4)"),
     };
 
-    if (!slide || !xBtn || !overlay) return;
+    if (!slide || !xBtn || !overlay) {
+      console.error("Missing essential DOM elements for the slide panel.");
+      return;
+    }
 
+    // Reset card contents visibility
     const hideCardContents = () => {
       Object.values(cardContents).forEach((content) => {
         content?.classList.add("hidden");
@@ -88,14 +93,20 @@ import SlideContent from "./SlideContent.astro";
       if (isTransitioning) return;
       isTransitioning = true;
 
-      slide.classList.toggle("translate-x-0");
-      slide.classList.toggle("translate-x-full");
-      overlay.classList.toggle("hidden");
-      overlay.classList.toggle("visible");
+      const isOpening = slide.classList.contains("translate-x-full");
 
-      const isClosed = slide.classList.contains("translate-x-full");
+      slide.classList.toggle("translate-x-0", isOpening);
+      slide.classList.toggle("translate-x-full", !isOpening);
+      overlay.classList.toggle("hidden", !isOpening);
+      overlay.classList.toggle("visible", isOpening);
 
-      if (isClosed) {
+      if (isOpening) {
+        setTimeout(() => {
+          xBtn.style.display = "flex";
+          isTransitioning = false;
+        }, 300);
+      } else {
+        xBtn.style.display = "none";
         slide.addEventListener(
           "transitionend",
           () => {
@@ -104,42 +115,56 @@ import SlideContent from "./SlideContent.astro";
           },
           { once: true }
         );
-        xBtn.style.display = "none";
-      } else {
-        setTimeout(() => {
-          xBtn.style.display = "flex";
-          isTransitioning = false;
-        }, 300);
-        hideCardContents();
       }
     };
 
-    const handleToggleClick = (event) => {
-      if (event.target.matches("[data-slide-toggle]")) {
-        updateSlideState();
-      }
+    // Debounce user interactions
+    let lastInteractionTime = 0;
+    const debounceTime = 300; // 300ms debounce
 
-      if (event.target === cardButtons.first) {
-        showCardContent(cardContents.first);
-      } else if (event.target === cardButtons.second) {
-        showCardContent(cardContents.second);
-      } else if (event.target === cardButtons.third) {
-        showCardContent(cardContents.third);
-      }
+    const handleDebouncedInteraction = (callback) => {
+      const currentTime = Date.now();
+      if (currentTime - lastInteractionTime < debounceTime) return;
+      lastInteractionTime = currentTime;
+      callback();
+    };
+
+    const handleToggleClick = (event) => {
+      handleDebouncedInteraction(() => {
+        if (event.target.matches("[data-slide-toggle]")) {
+          updateSlideState();
+        }
+
+        if (event.target === cardButtons.first) {
+          showCardContent(cardContents.first);
+        } else if (event.target === cardButtons.second) {
+          showCardContent(cardContents.second);
+        } else if (event.target === cardButtons.third) {
+          showCardContent(cardContents.third);
+        }
+      });
     };
 
     const cleanup = () => {
       document.removeEventListener("click", handleToggleClick);
-      xBtn.removeEventListener("click", updateSlideState);
-      overlay.removeEventListener("click", updateSlideState);
-      isInitialized = false; // Allow reinitialization
+      xBtn.removeEventListener("click", () =>
+        handleDebouncedInteraction(updateSlideState)
+      );
+      overlay.removeEventListener("click", () =>
+        handleDebouncedInteraction(updateSlideState)
+      );
+      isInitialized = false;
     };
 
     document.addEventListener("click", handleToggleClick);
-    xBtn.addEventListener("click", updateSlideState);
-    overlay.addEventListener("click", updateSlideState);
+    xBtn.addEventListener("click", () =>
+      handleDebouncedInteraction(updateSlideState)
+    );
+    overlay.addEventListener("click", () =>
+      handleDebouncedInteraction(updateSlideState)
+    );
 
-    // Cleanup on navigation
+    // Cleanup before navigating away
     document.addEventListener("astro:before-swap", cleanup);
   }
 
