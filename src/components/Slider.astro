@@ -50,7 +50,7 @@ import SlideContent from "../components/SlideContent.astro";
 
 <script>
   document.addEventListener("astro:page-load", () => {
-    if (window.location.pathname === "/deskreview") {
+    if (window.location.pathname.replace(/\/$/, "") === "/deskreview") {
       const slide = document.getElementById("slide");
       const xBtn = document.getElementById("x-btn");
       const overlay = document.getElementById("overlay");
@@ -117,7 +117,7 @@ import SlideContent from "../components/SlideContent.astro";
           }
         }
       };
-      
+
       xBtn.addEventListener("click", () => toggleSlide(false));
       document.addEventListener("click", handleSlideToggle);
     }
