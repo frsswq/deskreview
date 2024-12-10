@@ -49,134 +49,77 @@ import SlideContent from "../components/SlideContent.astro";
 </style>
 
 <script>
-  let isInitialized: boolean = false;
+  document.addEventListener("astro:page-load", () => {
+    if (window.location.pathname === "/deskreview") {
+      const slide = document.getElementById("slide");
+      const xBtn = document.getElementById("x-btn");
+      const overlay = document.getElementById("overlay");
+      const cardContents = {
+        first: document.getElementById("first-card-content"),
+        second: document.getElementById("second-card-content"),
+        third: document.getElementById("third-card-content"),
+      };
+      const cardButtons = {
+        first: document.querySelector(".about-card > button:nth-child(1)"),
+        second: document.querySelector(".about-card > button:nth-child(3)"),
+        third: document.querySelector(".about-card > button:nth-child(4)"),
+      };
 
-  function initSlidePanel() {
-    // Prevent multiple initializations
-    if (isInitialized) return;
-    isInitialized = true;
+      // Helper Functions
+      const hideCardContents = () => {
+        Object.values(cardContents).forEach((content) => {
+          content?.classList.remove("grid");
+          content?.classList.add("hidden");
+        });
+      };
 
-    const slide: HTMLElement | null = document.getElementById("slide");
-    const xBtn: HTMLElement | null = document.getElementById("x-btn");
-    const overlay: HTMLElement | null = document.getElementById("overlay");
-    const cardContents: {
-      first: HTMLElement | null;
-      second: HTMLElement | null;
-      third: HTMLElement | null;
-    } = {
-      first: document.getElementById("first-card-content"),
-      second: document.getElementById("second-card-content"),
-      third: document.getElementById("third-card-content"),
-    };
-    const cardButtons: {
-      first: HTMLElement | null;
-      second: HTMLElement | null;
-      third: HTMLElement | null;
-    } = {
-      first: document.querySelector(".about-card > button:nth-child(1)"),
-      second: document.querySelector(".about-card > button:nth-child(3)"),
-      third: document.querySelector(".about-card > button:nth-child(4)"),
-    };
+      const showCardContent = (cardContent) => {
+        hideCardContents();
+        cardContent?.classList.remove("hidden");
+        cardContent?.classList.add("grid");
+      };
 
-    if (!slide || !xBtn || !overlay) {
-      console.error("Missing essential DOM elements for the slide panel.");
-      return;
+      const toggleSlide = (isOpening) => {
+        slide.classList.toggle("translate-x-0", isOpening);
+        slide.classList.toggle("translate-x-full", !isOpening);
+        overlay.classList.toggle("hidden", !isOpening);
+        overlay.classList.toggle("visible", isOpening);
+
+        if (isOpening) {
+          setTimeout(() => {
+            xBtn.classList.remove("hidden");
+            xBtn.classList.add("flex");
+          }, 300); // Matches the slide transition duration
+        } else {
+          xBtn.classList.remove("flex");
+          xBtn.classList.add("hidden");
+          slide.addEventListener(
+            "transitionend",
+            () => {
+              hideCardContents();
+            },
+            { once: true }
+          );
+        }
+      };
+
+      const handleSlideToggle = (event) => {
+        if (event.target.matches("[data-slide-toggle]")) {
+          toggleSlide(true);
+
+          // Handle card content display
+          if (event.target === cardButtons.first) {
+            showCardContent(cardContents.first);
+          } else if (event.target === cardButtons.second) {
+            showCardContent(cardContents.second);
+          } else if (event.target === cardButtons.third) {
+            showCardContent(cardContents.third);
+          }
+        }
+      };
+      
+      xBtn.addEventListener("click", () => toggleSlide(false));
+      document.addEventListener("click", handleSlideToggle);
     }
-
-    // Reset card contents visibility
-    const hideCardContents = () => {
-      Object.values(cardContents).forEach((content) => {
-        content?.classList.remove("grid");
-        content?.classList.add("hidden");
-      });
-    };
-
-    const showCardContent = (cardContent: HTMLElement | null) => {
-      hideCardContents();
-      cardContent?.classList.remove("hidden");
-      cardContent?.classList.add("grid");
-    };
-
-    let isTransitioning: boolean = false;
-
-    const updateSlideState = () => {
-      if (isTransitioning) return;
-      isTransitioning = true;
-
-      const isOpening = slide.classList.contains("translate-x-full");
-
-      slide.classList.toggle("translate-x-0", isOpening);
-      slide.classList.toggle("translate-x-full", !isOpening);
-      overlay.classList.toggle("hidden", !isOpening);
-      overlay.classList.toggle("visible", isOpening);
-
-      if (isOpening) {
-        setTimeout(() => {
-          xBtn.style.display = "flex";
-          isTransitioning = false;
-        }, 300);
-      } else {
-        xBtn.style.display = "none";
-        slide.addEventListener(
-          "transitionend",
-          () => {
-            hideCardContents();
-            isTransitioning = false;
-          },
-          { once: true }
-        );
-      }
-    };
-
-    // Debounce user interactions
-    let lastInteractionTime: number = 0;
-    const debounceTime: number = 300; // 300ms debounce
-
-    const handleDebouncedInteraction = (callback) => {
-      const currentTime = Date.now();
-      if (currentTime - lastInteractionTime < debounceTime) return;
-      lastInteractionTime = currentTime;
-      callback();
-    };
-
-    const handleToggleClick = (event: MouseEvent) => {
-      handleDebouncedInteraction(() => {
-        if ((event.target as HTMLElement).matches("[data-slide-toggle]")) {
-          updateSlideState();
-        }
-
-        if (event.target === cardButtons.first) {
-          showCardContent(cardContents.first);
-        } else if (event.target === cardButtons.second) {
-          showCardContent(cardContents.second);
-        } else if (event.target === cardButtons.third) {
-          showCardContent(cardContents.third);
-        }
-      });
-    };
-
-    const cleanup = () => {
-      document.removeEventListener("click", handleToggleClick);
-      xBtn.removeEventListener("click", () =>
-        handleDebouncedInteraction(updateSlideState)
-      );
-      overlay.removeEventListener("click", () =>
-        handleDebouncedInteraction(updateSlideState)
-      );
-      isInitialized = false;
-    };
-
-    document.addEventListener("click", handleToggleClick);
-    xBtn.addEventListener("click", () =>
-      handleDebouncedInteraction(updateSlideState)
-    );
-    overlay.addEventListener("click", () =>
-      handleDebouncedInteraction(updateSlideState)
-    );
-
-    document.addEventListener("astro:before-swap", cleanup);
-  }
-
-  document.addEventListener("DOMContentLoaded", initSlidePanel);
-  document.addEventListener("astro:after-swap", initSlidePanel);
+  });
 </script>
