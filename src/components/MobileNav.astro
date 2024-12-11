@@ -1,0 +1,31 @@
+---
+const { mnavTitle, mnavHref, mnavDelay } = Astro.props;
+const currentPath = Astro.url.pathname;
+const currentPathClean = currentPath.replace(/\/$/, "");
+
+const linkHighlight = (() => {
+  if (currentPathClean === "/deskreview") {
+    return "text-desk-white";
+  } else if (
+    currentPathClean.startsWith(mnavHref) &&
+    mnavHref !== "/deskreview"
+  ) {
+    return "text-desk-white";
+  } else {
+    return "text-desk-white/50";
+  }
+})();
+---
+
+<a
+  href={mnavHref}
+  class={`${linkHighlight} ${mnavDelay} bottom-2 block pt-[15px] pb-[9px] leading-none
+    after:w-full animate-slideinFast opacity-0 hover:text-zinc-400
+    focus:text-zinc-400 focus:outline-none`}
+  >{mnavTitle} <p class="text-desk-white/50 fixed right-0 inline-block text-end">→</p></a
+>
+<div
+  class={`${mnavDelay} block h-[0.5px] w-full animate-slideinFast bg-desk-white/50
+    opacity-0`}
+>
+</div>

@@ -1,4 +1,6 @@
 ---
+import MobileNav from "../components/MobileNav.astro";
+
 const currentPath = Astro.url.pathname;
 const currentPathClean = currentPath.replace(/\/$/, "");
 ---
@@ -75,33 +77,32 @@ const currentPathClean = currentPath.replace(/\/$/, "");
 
   <!-- Mobile Menu -->
   <div
-    class="fixed left-0 top-0 z-[50] hidden h-full w-full bg-black pl-4 md:hidden"
+    class="fixed inset-0 z-[50] hidden h-full w-full bg-desk-black px-6 md:hidden"
     id="mobile-menu"
   >
     <nav
-      class="mt-32 animate-slideinFast space-y-6 font-AreaInktrap text-5xl font-bold
-        tracking-tight opacity-0 [--delay:0ms]"
+      class="my-auto w-full font-AreaInktrap text-5xl font-bold tracking-tight"
     >
-      <a
-        href="/deskreview/work"
-        class="block text-white hover:text-zinc-400 focus:text-zinc-400 focus:outline-none"
-        >Work</a
-      >
-      <a
-        href="/deskreview"
-        class="block text-white hover:text-zinc-400 focus:text-zinc-400 focus:outline-none"
-        >About</a
-      >
-      <a
-        href="/deskreview/studies"
-        class="block text-white hover:text-zinc-400 focus:text-zinc-400 focus:outline-none"
-        >Studies</a
-      >
-      <a
-        href="/deskreview/contact"
-        class="block text-white hover:text-zinc-400 focus:text-zinc-400 focus:outline-none"
-        >Contact</a
-      >
+      <MobileNav
+        mnavTitle="Work"
+        mnavHref="/deskreview/work"
+        mnavDelay="[--delay:50ms]"
+      />
+      <MobileNav
+        mnavTitle="About"
+        mnavHref="/deskreview"
+        mnavDelay="[--delay:100ms]"
+      />
+      <MobileNav
+        mnavTitle="Studies"
+        mnavHref="/deskreview/studies"
+        mnavDelay="[--delay:150ms]"
+      />
+      <MobileNav
+        mnavTitle="Contact"
+        mnavHref="/deskreview/contact"
+        mnavDelay="[--delay:200ms]"
+      />
     </nav>
   </div>
 </header>
@@ -128,7 +129,8 @@ const currentPathClean = currentPath.replace(/\/$/, "");
 
   /* Navigation background change */
   #nav-toggle:checked ~ #main-nav {
-    background-color: black;
+    box-shadow: none;
+    background-color: transparent;
   }
 
   /* Logo inversion */
