@@ -2,7 +2,12 @@
 import SlideContent from "../components/SlideContent.astro";
 ---
 
-<div class="overlay hidden" id="overlay"></div>
+<div
+  class="pointer-events-none fixed inset-0 z-[55] hidden bg-desk-black/50 opacity-0
+    transition-opacity duration-300"
+  id="overlay"
+>
+</div>
 
 <div
   id="slide"
@@ -27,26 +32,6 @@ import SlideContent from "../components/SlideContent.astro";
       bg-desk-white md:w-6"
   ></span>
 </button>
-
-<style>
-  .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 55;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-  }
-
-  .overlay.visible {
-    opacity: 1;
-    pointer-events: auto;
-  }
-</style>
 
 <script>
   document.addEventListener("astro:page-load", () => {
@@ -83,7 +68,7 @@ import SlideContent from "../components/SlideContent.astro";
         slide.classList.toggle("translate-x-0", isOpening);
         slide.classList.toggle("translate-x-full", !isOpening);
         overlay.classList.toggle("hidden", !isOpening);
-        overlay.classList.toggle("visible", isOpening);
+        overlay.classList.toggle("opacity-100", isOpening);
 
         if (isOpening) {
           setTimeout(() => {
