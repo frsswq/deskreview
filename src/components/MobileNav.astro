@@ -4,7 +4,9 @@ const currentPath = Astro.url.pathname;
 const currentPathClean = currentPath.replace(/\/$/, "");
 
 const linkHighlight = (() => {
-  if (mnavHref === currentPathClean) {
+  if (mnavHref === currentPathClean ||
+    mnavHref.startsWith(currentPathClean, currentPathClean.length)
+  ) {
     return "text-desk-white";
   } else {
     return "text-desk-white/50";

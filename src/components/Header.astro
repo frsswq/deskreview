@@ -5,7 +5,7 @@ const currentPath = Astro.url.pathname;
 const currentPathClean = currentPath.replace(/\/$/, "");
 ---
 
-<header>
+<header class="pb-[52px]">
   <input type="checkbox" id="nav-toggle" class="hidden" />
 
   <!-- Hamburger Button -->
@@ -20,7 +20,7 @@ const currentPathClean = currentPath.replace(/\/$/, "");
 
   <!-- Main Navigation -->
   <div
-    class="fixed left-0 top-0 z-[55] w-full bg-white shadow-sm"
+    class="fixed left-0 top-0 z-[55] w-full bg-desk-white shadow-sm"
     id="main-nav"
   >
     <div

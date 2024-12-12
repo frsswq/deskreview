@@ -4,13 +4,20 @@ import WorkCardLayout from "../layouts/WorkCardLayout.astro";
 import HeroText from "../components/HeroText.astro";
 
 const heroTitle = "Our Work";
-const heroDescription = "Market-ready branding strategies, <br/> competition-winning digital campaigns.";
+const heroDescription =
+  "Market-ready branding strategies, <br/> competition-winning digital campaigns.";
+const heroDescriptionMobile =
+  "Market-ready <br/> branding strategies, <br/> competition-winning <br/> digital campaigns.";
 
 const pageTitle = "Work";
 const withFooter = true;
 ---
 
 <Layout pageTitle={pageTitle} withFooter={withFooter}>
-  <HeroText heroTitle={heroTitle} heroDescription={heroDescription} />
+  <HeroText
+    heroTitle={heroTitle}
+    heroDescription={heroDescription}
+    heroDescriptionMobile={heroDescriptionMobile}
+  />
   <WorkCardLayout />
 </Layout>

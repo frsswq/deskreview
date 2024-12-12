@@ -35,9 +35,12 @@ $ npm run dev
 
 ## References
 
-- https://carlbeaverson.com
-- https://vvichael.com
-- https://id-c.se
-- https://davejreid.com
-- https://norgram.co
-- https://099.supply
+- https://www.lundqvistdallyn.studio/ [overall good web]
+- https://austen.fun/ [clean bento layout]
+- https://plasticbionic.com/ [cool page progress]
+- https://studiofables.com/en [unique layout]
+- https://deuxhuithuit.com/en [unique bento-like layout]
+- https://www.madebyshore.com/ [super minimal]
+- https://aku.co/ [complete one-pager]
+- https://www.instrument.com/ [clean bento]
+- https://loveandmoney.agency/ [detailed landing page]

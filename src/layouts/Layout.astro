@@ -5,11 +5,19 @@ import Footer from "../components/Footer.astro";
 import ScrollbarGutter from "../components/ScrollbarGutter.astro";
 import HideScrollbar from "../components/HideSrollbar.astro";
 import { ClientRouter } from "astro:transitions";
-const { pageTitle, withFooter } = Astro.props;
+
+type Props = {
+  pageTitle: string;
+  withFooter: boolean;
+  bgColor?: string;
+};
+
+const { pageTitle, withFooter, bgColor } = Astro.props;
+const isWithFooter = withFooter ? "mb-[calc(100vh-52px)]" : "";
 ---
 
 <!-- classic layout -->
-<html lang="en" class="scroll-smooth">
+<html lang="en" class={`${bgColor ? bgColor : "bg-desk-white"} scroll-smooth`}>
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/deskreview/ico/favicon.ico" />
@@ -26,10 +34,11 @@ const { pageTitle, withFooter } = Astro.props;
     <HideScrollbar />
     <title>{pageTitle}</title>
   </head>
-  <body>
+  <body class={`${bgColor ? bgColor : "bg-desk-white"}`}>
     <Header />
-    <div class="h-[52px]"></div>
-    <slot />
+    <main class={`${isWithFooter} min-h-[calc(100vh-52px)]`}>
+      <slot />
+    </main>
     <Footer withFooter={withFooter} />
   </body>
 </html>

@@ -5,13 +5,8 @@ import { workCardData } from "../data/workCardData";
 
 <div class="flex w-full flex-col md:mb-8">
   <div
-    class="grid w-full grid-cols-1 gap-x-4 gap-y-8 px-4 pb-8 pt-4 md:grid-cols-2"
+    class="grid w-full grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-10 md:gap-y-8 px-4 pb-8"
   >
-    {workCardData.slice(0, 2).map((card) => <Card {...card} />)}
-  </div>
-  <div
-    class="grid w-full grid-cols-1 gap-x-4 gap-y-8 px-4 pb-8 md:grid-cols-3 md:py-8"
-  >
-    {workCardData.slice(2).map((card) => <Card {...card} />)}
+    {workCardData.map((card) => <Card {...card} />)}
   </div>
 </div>

@@ -1,33 +1,64 @@
 ---
-import Divider from "./Divider.astro";
 const { withFooter } = Astro.props;
+
+const linkHover = "hover:text-desk-gray-300 hover:underline";
 ---
 
-<footer class={withFooter ? "mx-4 mb-4" : "hidden"}>
-  <Divider />
+<footer
+  class={withFooter
+    ? `h-[calc(100vh-52px)] fixed bottom-0 left-0 -z-50 w-full bg-desk-black
+      text-desk-white`
+    : "hidden"}
+>
   <div
-    class="mt-2 grid w-full grid-cols-2 items-center font-AreaInktrap text-[10px]
-      tracking-tight text-desk-gray-700/80 md:text-sm"
+    id="footer-content"
+    class="flex h-full flex-col items-center justify-center font-AreaInktrap
+      will-change-transform"
   >
-    <div class="flex justify-start">
-      <a
-        href="https://www.instagram.com/deskreview/"
-        target="_blank"
-        class="hover:text-desk-black">Instagram</a
-      >
-      <div class="mx-2">/</div>
-      <a
-        href="mailto:zaidandzaki@gmail.com"
-        target="_blank"
-        class="hover:text-desk-black">Email</a
-      >
-      <div class="mx-2">/</div>
-      <a
-        href="https://wa.me/+6285159177206"
-        target="_blank"
-        class="hover:text-desk-black">WhatsApp</a
-      >
-    </div>
-    <p class="text-right">&copy; 2024 Deskreview</p>
+    <a
+      href="https://www.instagram.com/deskreview/"
+      target="_blank"
+      class={linkHover}>Instagram</a
+    >
+
+    <a href="mailto:zaidandzaki@gmail.com" target="_blank" class={linkHover}
+      >Email</a
+    >
+
+    <a href="https://wa.me/+6285159177206" target="_blank" class={linkHover}
+      >WhatsApp</a
+    >
+    <p class="py-8">Copyright &copy; 2024 Deskreview</p>
   </div>
 </footer>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const footerContent = document.getElementById("footer-content");
+    window.onscroll = () => {
+      if (
+        window.innerHeight + Math.round(window.scrollY) >=
+        document.body.offsetHeight
+      ) {
+        const footerStartPoint =
+          document.body.offsetHeight - window.innerHeight;
+        const footerHeight = footerContent.offsetHeight;
+        const scrollProgress = Math.max(
+          0,
+          Math.min(
+            footerHeight,
+            footerHeight - (window.scrollY - footerStartPoint)
+          )
+        );
+        const translateVh = (scrollProgress / footerHeight) * 15;
+        console.log(translateVh)
+        console.log(footerStartPoint)
+        console.log("footerHeight:", footerHeight)
+        
+        footerContent.style.transform = `translateY(${translateVh}vh)`;
+      } else {
+        footerContent.style.transform = "translateY(15vh)";
+      }
+    };
+  });
+</script>

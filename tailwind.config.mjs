@@ -8,7 +8,7 @@ export default {
     backgroundImage: {},
     extend: {
       fontFamily: {
-        sans: ["AreaInktrap", "Inter", ...defaultTheme.fontFamily.sans],
+        sans: ["AreaNormal", "Inter", ...defaultTheme.fontFamily.sans],
         AreaInktrap: ["AreaInktrap", ...defaultTheme.fontFamily.sans],
         AreaNormal: ["AreaNormal", ...defaultTheme.fontFamily.sans],
       },
