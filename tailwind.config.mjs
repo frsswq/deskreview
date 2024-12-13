@@ -38,9 +38,9 @@ export default {
       },
       animation: {
         slidein:
-          "slidein 1.5s cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0) forwards",
+          "slidein 1.5s cubic-bezier(0.16, 1, 0.3, 1) calc(var(--delay, 0ms)) forwards",
         slideinFast:
-          "slidein 0.5s cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0) forwards",
+          "slidein 0.5s cubic-bezier(0.16, 1, 0.3, 1) calc(var(--delay, 0ms)) forwards",
       },
     },
   },

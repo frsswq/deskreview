@@ -1,5 +1,6 @@
 ---
 const { heroTitle, heroDescription, heroDescriptionMobile } = Astro.props;
+import DividerReveal from "../components/DividerReveal.astro";
 ---
 
 <div
@@ -19,20 +20,21 @@ const { heroTitle, heroDescription, heroDescriptionMobile } = Astro.props;
     <Fragment set:html={heroDescription} />
   </p>
 </div>
-<div class="mb-10 mt-[calc(20vh-52px)] md:hidden">
+
+<!-- mobile hero text -->
+<div
+  class="mb-10 mt-[calc(20vh-52px)] font-AreaNormal leading-none tracking-tighter
+    text-desk-black antialiased md:hidden"
+>
   <p
-    class="text-reveal mx-4 mb-2 font-AreaNormal text-4xl font-bold leading-none
-      tracking-tight text-desk-gray-700 antialiased opacity-0 [--delay:300ms]"
+    class="text-reveal mx-4 mb-2 text-4xl font-bold leading-none tracking-tight opacity-0
+      delay-1000"
   >
     {heroTitle}
   </p>
-  <div
-    class="h-px text-reveal border-0 bg-desk-gray-500 opacity-0 [--delay:300ms]"
-  >
-  </div>
+  <DividerReveal />
   <p
-    class="mx-4 mt-4 text-reveal text-3xl leading-[1.1] tracking-tight
-      text-desk-gray-700 opacity-0 [--delay:400ms]"
+    class="text-reveal mx-4 mt-4 text-3xl leading-[1.1] tracking-tight opacity-0"
   >
     <Fragment set:html={heroDescriptionMobile} />
   </p>

@@ -46,15 +46,15 @@ const isWithFooter = withFooter ? "mb-[calc(100vh-52px)]" : "";
 <script>
   document.addEventListener("astro:page-load", () => {
     // force page to scroll to top
-    // window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: "smooth" });
 
 
     // text-reveal on-sight
     const text = document.querySelectorAll(".text-reveal");
-    const viewHeight = window.innerHeight * 0.05;
+    const viewHeight = window.innerHeight * 0.1;
     const observerSettings = {
       root: null,
-      rootMargin: `${viewHeight}px 0px`,
+      rootMargin: `-${viewHeight}px 0px`,
       threshold: 0,
     };
     
