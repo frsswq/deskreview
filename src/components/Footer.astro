@@ -50,11 +50,8 @@ const linkHover = "hover:text-desk-gray-300 hover:underline";
             footerHeight - (window.scrollY - footerStartPoint)
           )
         );
-        const translateVh = (scrollProgress / footerHeight) * 15;
-        console.log(translateVh)
-        console.log(footerStartPoint)
-        console.log("footerHeight:", footerHeight)
-        
+        // set translateY with this
+        const translateVh = (scrollProgress / footerHeight) * 15;        
         footerContent.style.transform = `translateY(${translateVh}vh)`;
       } else {
         footerContent.style.transform = "translateY(15vh)";

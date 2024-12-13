@@ -44,3 +44,4 @@ $ npm run dev
 - https://aku.co/ [complete one-pager]
 - https://www.instrument.com/ [clean bento]
 - https://loveandmoney.agency/ [detailed landing page]
+- https://antinomy.studio/ [cool fixed footer]

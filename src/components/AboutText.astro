@@ -1,0 +1,99 @@
+---
+import { manifesto } from "../data/manifesto.ts";
+import { workedWith } from "../data/workedWith.ts";
+import { services } from "../data/services.ts";
+---
+
+<!-- mobile view --><!-- manifesto -->
+<div
+  class="text-balanced mx-4 space-y-4 pb-10 font-AreaNormal text-2xl leading-[1.2]
+    tracking-tighter text-desk-black antialiased md:hidden"
+>
+  <p class="text-reveal opacity-0 [--delay:500ms]">
+    <strong>{manifesto.paragraphs[0].slice(0, 19)}</strong>{
+      manifesto.paragraphs[0].slice(19)
+    }
+  </p>
+  {
+    manifesto.paragraphs
+      .slice(1)
+      .map((paragraph) => (
+        <p class="text-reveal opacity-0 [--delay:500ms]">{paragraph}</p>
+      ))
+  }
+  <div>
+    <p class="text-reveal text-[22px] opacity-0 [--delay:500ms]">
+      <strong
+        >"{manifesto.quote.split(";")[0]};
+        <br />&nbsp;{manifesto.quote.split(";")[1]}"</strong
+      >
+    </p>
+    <p class="text-reveal pt-1 text-[22px] opacity-0 [--delay:500ms]">
+      - {manifesto.quoteAuthor}
+    </p>
+  </div>
+</div>
+<!-- services -->
+<div class="py-10 antialiased md:hidden">
+  <p
+    class="text-reveal mx-4 mb-2 font-AreaInktrap text-4xl font-bold leading-none
+      tracking-tight text-desk-gray-700 opacity-0 [--delay:300ms]"
+  >
+    Services
+  </p>
+  <div
+    class="text-reveal h-px border-0 bg-desk-gray-500 opacity-0 [--delay:300ms]"
+  >
+  </div>
+  <div
+    class="text-xl font-bold leading-[1.1] tracking-tight text-desk-gray-700"
+  >
+    {
+      services.map((item) => (
+        <>
+          <p
+            class="text-reveal mx-4 mt-8 text-sm uppercase text-desk-gray-700/80 opacity-0
+              [--delay:500ms]"
+          >
+            {item.title}
+          </p>
+          <ul class="capitalize">
+            {item.types.map((type) => (
+              <>
+                <li
+                  class="text-reveal mx-4 pb-[9px] pt-[15px] font-AreaNormal text-xl font-bold
+                    leading-none opacity-0 [--delay:500ms]"
+                >
+                  {type}
+                </li>
+                <div
+                  class={`text-reveal mx-0 block h-[0.5px] w-full bg-desk-gray-500 opacity-0
+                    [--delay:500ms]`}
+                />
+              </>
+            ))}
+          </ul>
+        </>
+      ))
+    }
+  </div>
+</div>
+
+<!-- clients -->
+<div class="py-10 md:hidden">
+  <p
+    class="text-reveal mx-4 mb-2 font-AreaInktrap text-4xl font-bold leading-none
+      tracking-tight text-desk-gray-700 opacity-0 [--delay:300ms]"
+  >
+    Clients
+  </p>
+  <div
+    class="text-reveal h-px border-0 bg-desk-gray-500 opacity-0 [--delay:300ms]"
+  >
+  </div>
+  <div
+    class="mx-4 mt-4 space-y-2 text-2xl leading-[1.1] tracking-tight text-desk-gray-700"
+  >
+    {workedWith.map((item) => <p>{item.name}</p>)}
+  </div>
+</div>

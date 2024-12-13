@@ -42,3 +42,32 @@ const isWithFooter = withFooter ? "mb-[calc(100vh-52px)]" : "";
     <Footer withFooter={withFooter} />
   </body>
 </html>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    // force page to scroll to top
+    // window.scrollTo({ top: 0, behavior: "smooth" });
+
+
+    // text-reveal on-sight
+    const text = document.querySelectorAll(".text-reveal");
+    const viewHeight = window.innerHeight * 0.05;
+    const observerSettings = {
+      root: null,
+      rootMargin: `${viewHeight}px 0px`,
+      threshold: 0,
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("animate-slidein");
+        }
+      });
+    }, observerSettings);
+
+    text.forEach((item) => {
+      observer.observe(item);
+    });
+  });
+</script>

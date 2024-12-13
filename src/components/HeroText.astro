@@ -4,7 +4,7 @@ const { heroTitle, heroDescription, heroDescriptionMobile } = Astro.props;
 
 <div
   class="mx-4 hidden flex-col items-center justify-center py-24 text-center
-    font-AreaNormal tracking-tight md:flex antialiased"
+    font-AreaNormal tracking-tight antialiased md:flex"
 >
   <p
     class="animate-slidein text-xl font-bold leading-none text-desk-gray-700 opacity-0
@@ -19,19 +19,19 @@ const { heroTitle, heroDescription, heroDescriptionMobile } = Astro.props;
     <Fragment set:html={heroDescription} />
   </p>
 </div>
-<div class="mt-[calc(20vh-52px)] mb-10 md:hidden">
+<div class="mb-10 mt-[calc(20vh-52px)] md:hidden">
   <p
-    class="mx-4 mb-2 animate-slidein font-AreaInktrap text-4xl font-bold leading-none
-      tracking-tight text-desk-gray-700 opacity-0 [--delay:300ms]"
+    class="text-reveal mx-4 mb-2 font-AreaNormal text-4xl font-bold leading-none
+      tracking-tight text-desk-gray-700 antialiased opacity-0 [--delay:300ms]"
   >
     {heroTitle}
   </p>
   <div
-    class="h-px animate-slidein border-0 bg-desk-gray-500 opacity-0 [--delay:300ms]"
+    class="h-px text-reveal border-0 bg-desk-gray-500 opacity-0 [--delay:300ms]"
   >
   </div>
   <p
-    class="mx-4 mt-4 animate-slidein text-3xl leading-[1.1] tracking-tight
+    class="mx-4 mt-4 text-reveal text-3xl leading-[1.1] tracking-tight
       text-desk-gray-700 opacity-0 [--delay:400ms]"
   >
     <Fragment set:html={heroDescriptionMobile} />
