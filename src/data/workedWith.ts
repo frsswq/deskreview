@@ -1,11 +1,11 @@
 type Client = {
   name: string;
+  iconName?: string;
 };
 
 export const workedWith: Client[] = [
-  { name: "Salam Ganesha Academy" },
-  { name: "Rococo Group Indonesia" },
-  { name: "Astra Honda" },
-  { name: "Telkomsel" },
-  { name: "Hayati Karya Lestari" },
+  { name: "Salam Ganesha Academy", iconName: "SalamGanesha" },
+  { name: "Rococo Group Indonesia", iconName: "Rococo" },
+  { name: "Astra Honda", iconName: "Astra" },
+  { name: "Telkomsel", iconName: "Telkomsel" },
 ];

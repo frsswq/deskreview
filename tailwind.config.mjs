@@ -35,12 +35,22 @@ export default {
             transform: "translateY(0)",
           },
         },
+        dividerSlide: {
+          from: {
+            width: "0%",
+          },
+          to: {
+            width: "100%",
+          },
+        },
       },
       animation: {
         slidein:
           "slidein 1.5s cubic-bezier(0.16, 1, 0.3, 1) calc(var(--delay, 0ms)) forwards",
         slideinFast:
           "slidein 0.5s cubic-bezier(0.16, 1, 0.3, 1) calc(var(--delay, 0ms)) forwards",
+        dividerSlide:
+          "dividerSlide 1s cubic-bezier(0.16, 1, 0.3, 1) calc(var(--delay, 0ms)) forwards",
       },
     },
   },

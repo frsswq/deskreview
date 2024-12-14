@@ -46,11 +46,12 @@ const isWithFooter = withFooter ? "mb-[calc(100vh-52px)]" : "";
 <script>
   document.addEventListener("astro:page-load", () => {
     // force page to scroll to top
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    // window.scrollTo({ top: 0, behavior: "smooth" });
 
 
     // text-reveal on-sight
     const text = document.querySelectorAll(".text-reveal");
+    const divider = document.querySelectorAll(".divider-slide");
     const viewHeight = window.innerHeight * 0.1;
     const observerSettings = {
       root: null,
@@ -58,7 +59,7 @@ const isWithFooter = withFooter ? "mb-[calc(100vh-52px)]" : "";
       threshold: 0,
     };
     
-    const observer = new IntersectionObserver((entries) => {
+    const textObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("animate-slidein");
@@ -67,7 +68,19 @@ const isWithFooter = withFooter ? "mb-[calc(100vh-52px)]" : "";
     }, observerSettings);
 
     text.forEach((item) => {
-      observer.observe(item);
+      textObserver.observe(item);
+    });
+
+    const dividerObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("animate-dividerSlide");
+        }
+      });
+    }, observerSettings);
+
+    divider.forEach((item) => {
+      dividerObserver.observe(item);
     });
   });
 </script>

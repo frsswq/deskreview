@@ -1,5 +1,6 @@
 ---
 import MobileNav from "../components/MobileNav.astro";
+import { Icon } from "astro-icon/components";
 
 const currentPath = Astro.url.pathname;
 const currentPathClean = currentPath.replace(/\/$/, "");
@@ -30,14 +31,7 @@ const currentPathClean = currentPath.replace(/\/$/, "");
       <!-- Logo -->
       <div class="logo-container py-[6px]" transition:persist>
         <a href="/deskreview" class="focus:opacity-80 focus:outline-none">
-          <img
-            src="/deskreview/svg/logo_full_navbar.svg"
-            alt="Logo"
-            class="h-6 w-auto"
-            width="150"
-            height="50"
-            loading="eager"
-          />
+          <Icon name="logo_full_navbar" class="h-6 w-auto text-desk-white mix-blend-difference" />
         </a>
       </div>
 
@@ -131,11 +125,6 @@ const currentPathClean = currentPath.replace(/\/$/, "");
   #nav-toggle:checked ~ #main-nav {
     box-shadow: none;
     background-color: transparent;
-  }
-
-  /* Logo inversion */
-  #nav-toggle:checked ~ #main-nav .logo-container img {
-    filter: invert(1);
   }
 </style>
 
