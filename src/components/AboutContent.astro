@@ -8,12 +8,12 @@ import { Icon } from "astro-icon/components";
 import DividerReveal from "../components/DividerReveal.astro";
 ---
 
-<div class="md:mx-[20vw] md:pb-20 pb-10">
+<div class="pb-10 md:mx-[20vw] md:pb-20">
   <div>
     <!-- manifesto -->
     <div
-      class="text-balanced mx-4 space-y-4 pb-10 md:pb-20 text-2xl leading-[1.2] tracking-tighter
-        text-desk-black antialiased"
+      class="text-balanced mx-4 space-y-4 md:space-y-6 pb-10 text-2xl md:text-[28px] md:text-pretty leading-[1.2] tracking-tighter
+        text-desk-black antialiased md:pb-20"
     >
       <p class="text-reveal opacity-0">
         <strong>{manifesto.paragraphs[0].slice(0, 19)}</strong>{
@@ -33,12 +33,12 @@ import DividerReveal from "../components/DividerReveal.astro";
           >
         </p>
         <p
-          class="text-reveal hidden text-[22px] opacity-0 md:block md:pt-4 md:text-2xl"
+          class="text-reveal hidden text-[22px] opacity-0 md:block md:pt-4 md:text-[28px]"
         >
           <strong>"{manifesto.quote}"</strong>
         </p>
 
-        <p class="text-reveal pt-1 text-[22px] opacity-0 md:text-2xl">
+        <p class="text-reveal pt-1 text-[22px] opacity-0 md:text-[28px]">
           - {manifesto.quoteAuthor}
         </p>
       </div>
@@ -46,7 +46,7 @@ import DividerReveal from "../components/DividerReveal.astro";
 
     <!-- services -->
     <div
-      class="py-10 md:py-20 leading-none tracking-tighter text-desk-black antialiased"
+      class="py-10 leading-none tracking-tighter text-desk-black antialiased md:py-20"
     >
       <p class="text-reveal mx-4 mb-2 text-4xl font-bold opacity-0 md:text-5xl">
         Services
@@ -56,21 +56,19 @@ import DividerReveal from "../components/DividerReveal.astro";
         services.map((item) => (
           <>
             <div>
-              <p class="text-reveal mx-4 mt-6 text-sm uppercase text-desk-black/75 opacity-0">
+              <p class="text-reveal mx-4 mt-6 md:mt-8 text-sm uppercase text-desk-black/75 opacity-0">
                 {item.title}
               </p>
-              <ul class="capitalize">
+              <ul class="capitalize mx-4">
                 {item.types.map((type) => (
                   <>
                     <li
-                      class="text-reveal mx-4 pb-[9px] pt-[15px] text-xl leading-none tracking-tight
+                      class="text-reveal pb-[9px] pt-[15px] text-xl leading-none tracking-tight
                         opacity-0 md:text-2xl"
                     >
                       {type}
                     </li>
-                    <div class="md:px-4">
                       <DividerReveal />
-                    </div>
                   </>
                 ))}
               </ul>
@@ -82,7 +80,7 @@ import DividerReveal from "../components/DividerReveal.astro";
 
     <!-- clients -->
     <div
-      class="py-10 md:py-20 leading-none tracking-tighter text-desk-black antialiased"
+      class="py-10 leading-none tracking-tighter text-desk-black antialiased md:py-20"
     >
       <p
         class="text-reveal mx-4 mb-2 text-4xl font-bold leading-none tracking-tight opacity-0
@@ -101,7 +99,7 @@ import DividerReveal from "../components/DividerReveal.astro";
       >
         {
           workedWith.map((item) => (
-            <div >
+            <div>
               <div class="text-reveal mx-auto w-full px-10 pb-6 pt-12 opacity-0 md:px-8">
                 <Icon
                   name={item.iconName}

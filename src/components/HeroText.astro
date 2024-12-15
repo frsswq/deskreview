@@ -3,26 +3,6 @@ const { heroTitle, heroDescription, heroDescriptionMobile } = Astro.props;
 
 import DividerReveal from "../components/DividerReveal.astro";
 ---
-
-<div
-  class="mx-4 hidden flex-col items-center justify-center py-24 text-center
-    font-AreaNormal tracking-tight antialiased"
->
-  <p
-    class="animate-slidein text-xl font-bold leading-none text-desk-gray-700 opacity-0
-      [--delay:300ms] md:text-6xl"
-  >
-    {heroTitle}
-  </p>
-  <p
-    class="text-md animate-slidein pt-2 text-desk-gray-700/80 opacity-0 [--delay:400ms]
-      md:text-2xl"
-  >
-    <Fragment set:html={heroDescription} />
-  </p>
-</div>
-
-<!-- mobile hero text -->
 <div
   class="mb-10 mt-[calc(20vh-52px)] font-AreaNormal leading-none tracking-tighter
     text-desk-black antialiased md:mx-[20vw] md:mt-[calc(30vh-52px)]"
@@ -42,7 +22,7 @@ import DividerReveal from "../components/DividerReveal.astro";
   </p>
   <p
     class="hidden md:block text-reveal mx-4 mt-4 text-3xl leading-[1.1] tracking-tight opacity-0
-      md:text-2xl md:text-desk-black/75"
+      md:text-[28px] md:text-desk-black/75"
   >
     <Fragment set:html={heroDescription} />
   </p>

@@ -3,12 +3,12 @@ const { image, title, sector, year } = Astro.props;
 import { Image } from "astro:assets";
 ---
 
-<button class="work-card text-reveal space-y-3 opacity-0 cursor-pointer">
-  <figure class="aspect-square rounded-lg bg-desk-gray-300/80">
+<button class="work-card space-y-3 cursor-pointer">
+  <figure class="text-reveal opacity-0 aspect-square rounded-lg bg-desk-gray-300/80">
     <Image
       src={image}
       alt={title}
-      class="h-full w-full rounded-lg object-cover"
+      class="h-full w-full rounded-lg object-cover text-reveal opacity-0"
       width={800}
       height={800}
       loading="eager"
@@ -16,7 +16,7 @@ import { Image } from "astro:assets";
   </figure>
 
   <div
-    class="flex justify-between text-xl tracking-tight md:text-base lg:text-lg"
+    class="text-reveal opacity-0 flex justify-between text-xl tracking-tight md:text-base lg:text-lg"
   >
     <div>
       <p class="text-left font-bold leading-none text-desk-black/70">{title}</p>

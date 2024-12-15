@@ -1,10 +1,11 @@
 ---
 type Props = {
   reveal?: boolean;
+  margin?: boolean;
 };
 
-const { reveal = true } = Astro.props;
+const { reveal = true, margin = false } = Astro.props;
 ---
 
-<div class={`${reveal ? "divider-slide w-[0%]" : "w-full"} block h-[0.5px] border-0 bg-desk-gray-500`}>
+<div class={`${reveal ? "divider-slide w-[0%]" : "w-full"} ${margin ? "mx-4" : ""} block h-[0.5px] border-0 bg-desk-gray-500`}>
 </div>
