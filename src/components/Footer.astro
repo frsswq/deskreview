@@ -14,27 +14,69 @@ const linkHover = "hover:text-desk-gray-300 hover:underline";
 >
   <div
     id="footer-content"
-    class="flex h-full flex-col items-center justify-center font-AreaNormal text-sm
-      will-change-transform"
+    class="flex h-full flex-col items-center justify-center will-change-transform"
   >
-    <Icon name="logo_icon" class="w-full h-[35vh] pb-10 pr-4" />
-    <div class="flex flex-row space-x-2">
-      <a
-        href="https://www.instagram.com/deskreview/"
-        target="_blank"
-        class={`${linkHover}`}>Instagram</a
-      >
-      <div>/</div>
-      <a href="mailto:zaidandzaki@gmail.com" target="_blank" class={`${linkHover}`}
-        >Email</a
-      >
-      <div>/</div>
-      <a href="https://wa.me/+6285159177206" target="_blank" class={`${linkHover}`}
-        >WhatsApp</a
-      >
+    <div
+      class="hidden h-full w-[60vw] flex-col justify-center text-base md:flex"
+    >
+      <Icon
+        name="logo_text"
+        class="flex h-fit w-full items-center justify-center"
+      />
+      <div class="inline-flex flex-row items-center pt-4">
+        <div class="flex w-fit flex-row space-x-2">
+          <a
+            href="mailto:zaidandzaki@gmail.com"
+            target="_blank"
+            class={`pb-[1px] pt-[3px] px-2 hover:bg-desk-white hover:text-desk-black
+              border-desk-white hover:border-transparent border-[1.5px] rounded-full lowercase`}
+            >zaidandzaki@gmail.com</a
+          >
+          <a
+            href="https://wa.me/+6285159177206"
+            target="_blank"
+            class={`pb-[1px] pt-[3px] px-2 hover:bg-desk-white hover:text-desk-black
+              border-desk-white hover:border-transparent border-[1.5px] rounded-full lowercase`}
+            >+62 851 5917 7206</a
+          >
+          <a
+            href="https://www.instagram.com/deskreview/"
+            target="_blank"
+            class={`pb-[1px] pt-[3px] px-2 hover:bg-desk-white hover:text-desk-black
+              border-desk-white hover:border-transparent border-[1.5px] rounded-full lowercase`}
+            >@deskreview</a
+          >
+        </div>
+        <p class="ml-auto items-center pb-[3px] pt-[5px] text-2xl leading-none text-end">
+          &copy; 2024
+        </p>
+      </div>
     </div>
-
-    <p class="pt-2">Copyright &copy; 2024 Deskreview</p>
+    <div
+      class="flex h-full flex-col items-center justify-center text-sm md:hidden"
+    >
+      <Icon name="logo_icon" class="h-[35vh] w-full pb-10 pr-4" />
+      <div class="flex flex-row space-x-2">
+        <a
+          href="https://www.instagram.com/deskreview/"
+          target="_blank"
+          class={`${linkHover}`}>Instagram</a
+        >
+        <div>/</div>
+        <a
+          href="mailto:zaidandzaki@gmail.com"
+          target="_blank"
+          class={`${linkHover}`}>Email</a
+        >
+        <div>/</div>
+        <a
+          href="https://wa.me/+6285159177206"
+          target="_blank"
+          class={`${linkHover}`}>WhatsApp</a
+        >
+      </div>
+      <p class="pt-2">Copyright &copy; 2024 Deskreview</p>
+    </div>
   </div>
 </footer>
 
