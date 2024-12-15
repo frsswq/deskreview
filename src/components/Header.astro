@@ -1,5 +1,6 @@
 ---
 import MobileNav from "../components/MobileNav.astro";
+import DesktopNav from "../components/DesktopNav.astro";
 import { Icon } from "astro-icon/components";
 
 const currentPath = Astro.url.pathname;
@@ -29,42 +30,23 @@ const currentPathClean = currentPath.replace(/\/$/, "");
       class="mx-auto flex items-center justify-between px-4 py-2"
     >
       <!-- Logo -->
-      <div class="logo-container py-[6px]" transition:persist>
-        <a href="/deskreview" class="focus:opacity-80 focus:outline-none">
-          <Icon name="logo_full_navbar" class="h-6 w-auto text-desk-white mix-blend-difference" />
-        </a>
-      </div>
+      <a
+        href="/deskreview"
+        class="py-[6px] focus:opacity-80 focus:outline-none"
+        transition:persist=""
+      >
+        <Icon
+          name="logo_full_navbar"
+          class="h-6 w-auto text-desk-white mix-blend-difference"
+        />
+      </a>
 
       <!-- Desktop Navigation -->
-      <nav class="hidden font-AreaNormal tracking-tight md:flex">
-        <a
-          href="/deskreview/work"
-          class={`pt-[10px] pb-[6px] px-2 flex items-center text-sm
-            ${currentPathClean.startsWith("/deskreview/work") ? "text-desk-black" : "text-desk-gray-700/80"}
-            hover:text-desk-black focus:outline-none focus:text-desk-black`}
-          >Work</a
-        >
-        <a
-          href="/deskreview"
-          class={`pt-[10px] pb-[6px] px-2 flex items-center text-sm
-            ${currentPathClean === "/deskreview" ? "text-desk-black" : "text-desk-gray-700/80"}
-            hover:text-desk-black focus:outline-none focus:text-desk-black`}
-          >About</a
-        >
-        <a
-          href="/deskreview/studies"
-          class={`pt-[10px] pb-[6px] px-2 flex items-center text-sm
-            ${currentPathClean.startsWith("/deskreview/studies") ? "text-desk-black" : "text-desk-gray-700/80"}
-            hover:text-desk-black focus:outline-none focus:text-desk-black`}
-          >Studies
-        </a>
-        <a
-          href="/deskreview/contact"
-          class={`pt-[10px] pb-[6px] pl-2 pr-0 flex items-center text-sm
-            ${currentPathClean.startsWith("/deskreview/contact") ? "text-desk-black" : "text-desk-gray-700/80"}
-            hover:text-desk-black focus:outline-none focus:text-desk-black`}
-          >Contact</a
-        >
+      <nav class="hidden tracking-tight md:flex">
+        <DesktopNav mnavTitle="Work" mnavHref="/deskreview/work" />
+        <DesktopNav mnavTitle="About" mnavHref="/deskreview" />
+        <DesktopNav mnavTitle="Studies" mnavHref="/deskreview/studies" />
+        <DesktopNav mnavTitle="Contact" mnavHref="/deskreview/contact" />
       </nav>
     </div>
   </div>
@@ -74,9 +56,7 @@ const currentPathClean = currentPath.replace(/\/$/, "");
     class="fixed inset-0 z-[50] hidden h-full w-full bg-desk-black px-6"
     id="mobile-menu"
   >
-    <nav
-      class="my-auto w-full font-AreaNormal text-5xl font-bold tracking-tight antialiased"
-    >
+    <nav class="my-auto w-full text-5xl font-bold tracking-tight antialiased">
       <MobileNav
         mnavTitle="Work"
         mnavHref="/deskreview/work"

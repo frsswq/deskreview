@@ -1,5 +1,5 @@
 ---
-import SlideContent from "../components/SlideContent.astro";
+import WorkSlideContent from "./WorkSlideContent.astro";
 ---
 
 <div
@@ -15,7 +15,7 @@ import SlideContent from "../components/SlideContent.astro";
     w-screen translate-x-full overflow-y-auto overscroll-contain bg-desk-black
     transition-transform duration-300 md:duration-500"
 >
-  <SlideContent />
+  <WorkSlideContent />
 </div>
 
 <button
@@ -35,20 +35,14 @@ import SlideContent from "../components/SlideContent.astro";
 
 <script>
   document.addEventListener("astro:page-load", () => {
-    if (window.location.pathname.replace(/\/$/, "") === "/deskreview") {
+    if (window.location.pathname.replace(/\/$/, "") === "/deskreview/work") {
       const slide = document.getElementById("slide");
       const xBtn = document.getElementById("x-btn");
       const overlay = document.getElementById("overlay");
-      const cardContents = {
-        first: document.getElementById("first-card-content"),
-        second: document.getElementById("second-card-content"),
-        third: document.getElementById("third-card-content"),
-      };
-      const cardButtons = {
-        first: document.querySelector(".about-card > button:nth-child(1)"),
-        second: document.querySelector(".about-card > button:nth-child(3)"),
-        third: document.querySelector(".about-card > button:nth-child(4)"),
-      };
+      const cardContents = Array.from(
+        document.querySelectorAll(".work-card-content")
+      );
+      const cardButtons = Array.from(document.querySelectorAll(".work-card"));
 
       // Helper Functions
       const hideCardContents = () => {
@@ -74,7 +68,7 @@ import SlideContent from "../components/SlideContent.astro";
           setTimeout(() => {
             xBtn.classList.remove("hidden");
             xBtn.classList.add("flex");
-          }, 300);
+          }, 500);
         } else {
           xBtn.classList.remove("flex");
           xBtn.classList.add("hidden");
@@ -89,16 +83,12 @@ import SlideContent from "../components/SlideContent.astro";
       };
 
       const handleSlideToggle = (event) => {
-        if (event.target.matches("[data-slide-toggle]")) {
-          toggleSlide(true);
-
-          // Handle card content display
-          if (event.target === cardButtons.first) {
-            showCardContent(cardContents.first);
-          } else if (event.target === cardButtons.second) {
-            showCardContent(cardContents.second);
-          } else if (event.target === cardButtons.third) {
-            showCardContent(cardContents.third);
+        const clickedButton = event.target.closest(".work-card");
+        if (clickedButton) {
+          const buttonIndex = cardButtons.indexOf(clickedButton);
+          if (buttonIndex !== -1) {
+            toggleSlide(true);
+            showCardContent(cardContents[buttonIndex]);
           }
         }
       };

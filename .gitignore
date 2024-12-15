@@ -25,3 +25,4 @@ pnpm-debug.log*
 
 # unused files
 public/unused/*
+src/components/unused/*

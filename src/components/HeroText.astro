@@ -1,11 +1,12 @@
 ---
 const { heroTitle, heroDescription, heroDescriptionMobile } = Astro.props;
+
 import DividerReveal from "../components/DividerReveal.astro";
 ---
 
 <div
   class="mx-4 hidden flex-col items-center justify-center py-24 text-center
-    font-AreaNormal tracking-tight antialiased md:flex"
+    font-AreaNormal tracking-tight antialiased"
 >
   <p
     class="animate-slidein text-xl font-bold leading-none text-desk-gray-700 opacity-0
@@ -24,18 +25,25 @@ import DividerReveal from "../components/DividerReveal.astro";
 <!-- mobile hero text -->
 <div
   class="mb-10 mt-[calc(20vh-52px)] font-AreaNormal leading-none tracking-tighter
-    text-desk-black antialiased md:hidden"
+    text-desk-black antialiased md:mx-[20vw] md:mt-[calc(30vh-52px)]"
 >
   <p
     class="text-reveal mx-4 mb-2 text-4xl font-bold leading-none tracking-tight opacity-0
-      delay-1000"
+      md:text-5xl"
   >
     {heroTitle}
   </p>
   <DividerReveal />
   <p
-    class="text-reveal mx-4 mt-4 text-3xl leading-[1.1] tracking-tight opacity-0"
+    class="text-reveal mx-4 mt-4 text-3xl leading-[1.1] tracking-tight opacity-0
+      md:text-2xl md:text-desk-black/75 md:hidden"
   >
     <Fragment set:html={heroDescriptionMobile} />
+  </p>
+  <p
+    class="hidden md:block text-reveal mx-4 mt-4 text-3xl leading-[1.1] tracking-tight opacity-0
+      md:text-2xl md:text-desk-black/75"
+  >
+    <Fragment set:html={heroDescription} />
   </p>
 </div>

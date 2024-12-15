@@ -1,39 +1,27 @@
 ---
-const { image, title, description, year, modalDescription, modalServices } =
-  Astro.props;
+const { image, title, sector, year } = Astro.props;
 import { Image } from "astro:assets";
-import Dialog from "./Dialog.astro";
 ---
 
-<div>
-  <label for={title} class="cursor-pointer">
-    <article class="animate-slidein space-y-3 opacity-0 [--delay:500ms]">
-      <figure class="aspect-square rounded-lg bg-desk-gray-300/80">
-        <Image
-          src={image}
-          alt={title}
-          class="h-full w-full rounded-lg object-cover"
-          width={800}
-          height={800}
-          loading="eager"
-        />
-      </figure>
+<button class="work-card text-reveal space-y-3 opacity-0 cursor-pointer">
+  <figure class="aspect-square rounded-lg bg-desk-gray-300/80">
+    <Image
+      src={image}
+      alt={title}
+      class="h-full w-full rounded-lg object-cover"
+      width={800}
+      height={800}
+      loading="eager"
+    />
+  </figure>
 
-      <div
-        class="flex justify-between text-sm tracking-tight md:text-base lg:text-lg"
-      >
-        <div>
-          <p class="font-bold leading-none text-desk-black/70">{title}</p>
-          <p class="capitalize text-desk-gray-700/70">{description}</p>
-        </div>
-        <p class="font-bold leading-none text-desk-black/70">{year}</p>
-      </div>
-    </article>
-  </label>
-
-  <Dialog
-    modalTitle={title}
-    modalDescription={modalDescription}
-    modalServices={modalServices}
-  />
-</div>
+  <div
+    class="flex justify-between text-xl tracking-tight md:text-base lg:text-lg"
+  >
+    <div>
+      <p class="text-left font-bold leading-none text-desk-black/70">{title}</p>
+      <p class="text-left capitalize text-desk-gray-700/70">{sector}</p>
+    </div>
+    <p class="text-right font-bold leading-none text-desk-black/70">{year}</p>
+  </div>
+</button>

@@ -6,61 +6,60 @@ import telkomselImg from "../assets/telkomsel.png";
 
 type WorkCardData = {
   title: string;
-  description: string;
+  sector: string;
   image: ImageMetadata;
   year: string;
-  modalDescription: string;
-  modalServices: string;
+  description?: string;
+  services?: string;
 };
 
 export const workCardData: WorkCardData[] = [
   {
     title: "Astra Honda",
-    description: "Vehicle Manufacture",
+    sector: "Vehicle Manufacture",
     image: astraHondaImg,
     year: "2023",
-    modalDescription:
+    description:
       "As their effort to gain trust with local wisdom and the spirit of #OneHeart, Honda aims to reach more trust and connection withing Indonesia market.",
-    modalServices: "Content research & analytic, digital trend analytic",
+    services: "Content research & analytic, digital trend analytic",
   },
   {
     title: "Telkomsel",
-    description: "Telecommunication",
+    sector: "Telecommunication",
     image: telkomselImg,
     year: "2023",
-    modalDescription:
+    description:
       "After their merger with IndiHome, Telkomsel aimed to create a nationwide corporate messaging campaign under #BersatuLebihMaju, resulting in +1 million impression, 20% increase of Engagement Rate, and more than 3000 followers.",
-    modalServices:
+    services:
       "campaign strategy & development, social media strategy, online activation development",
   },
   {
     title: "Salam Ganesha Academy",
-    description: "Education Tech",
+    sector: "Education Tech",
     image: salamGaneshaImg,
     year: "2024",
-    modalDescription:
+    description:
       "As an education startup, Salam Ganesha Academy transitioned to targeting a more mature senior executive market. Several digital strategies were executed to ensure a smooth transition.",
-    modalServices:
+    services:
       "campaign strategy & development, social media development, kol management",
   },
   {
     title: "Rococo Group",
-    description: "Luxury Fashion Retail",
+    sector: "Luxury Fashion Retail",
     image: rococoImg,
     year: "2023",
-    modalDescription:
+    description:
       "Rococo Group Indonesia is a luxury fashion retailer established in 2000, focusing on high-end fashion brands with partners from Italy, UK, and Hongkong.",
-    modalServices:
+    services:
       "campaign strategy & development, social media development, kol management",
   },
   {
     title: "Hayati Karya",
-    description: "Carbon Trading",
+    sector: "Carbon Trading",
     image: hayatiImg,
     year: "2023",
-    modalDescription:
+    description:
       "Hayati Karya Lestari is a global carbon trading corporation with various business line, launching in Indonesia with the vision to create sustainable future for Indonesia.",
-    modalServices:
-      "Branding strategy, social media & website, brand architecture",
+    services: "Branding strategy, social media & website, brand architecture",
   },
 ];

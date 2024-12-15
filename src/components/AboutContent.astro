@@ -1,0 +1,123 @@
+---
+import { manifesto } from "../data/manifesto.ts";
+import { workedWith } from "../data/workedWith.ts";
+import { services } from "../data/services.ts";
+
+import { Icon } from "astro-icon/components";
+
+import DividerReveal from "../components/DividerReveal.astro";
+---
+
+<div class="md:mx-[20vw] md:pb-20 pb-10">
+  <div>
+    <!-- manifesto -->
+    <div
+      class="text-balanced mx-4 space-y-4 pb-10 md:pb-20 text-2xl leading-[1.2] tracking-tighter
+        text-desk-black antialiased"
+    >
+      <p class="text-reveal opacity-0">
+        <strong>{manifesto.paragraphs[0].slice(0, 19)}</strong>{
+          manifesto.paragraphs[0].slice(19)
+        }
+      </p>
+      {
+        manifesto.paragraphs
+          .slice(1)
+          .map((paragraph) => <p class="text-reveal opacity-0">{paragraph}</p>)
+      }
+      <div>
+        <p class="text-reveal text-[22px] opacity-0 md:hidden">
+          <strong
+            >"{manifesto.quote.split(";")[0]};
+            <br />&nbsp;{manifesto.quote.split(";")[1]}"</strong
+          >
+        </p>
+        <p
+          class="text-reveal hidden text-[22px] opacity-0 md:block md:pt-4 md:text-2xl"
+        >
+          <strong>"{manifesto.quote}"</strong>
+        </p>
+
+        <p class="text-reveal pt-1 text-[22px] opacity-0 md:text-2xl">
+          - {manifesto.quoteAuthor}
+        </p>
+      </div>
+    </div>
+
+    <!-- services -->
+    <div
+      class="py-10 md:py-20 leading-none tracking-tighter text-desk-black antialiased"
+    >
+      <p class="text-reveal mx-4 mb-2 text-4xl font-bold opacity-0 md:text-5xl">
+        Services
+      </p>
+      <DividerReveal />
+      {
+        services.map((item) => (
+          <>
+            <div>
+              <p class="text-reveal mx-4 mt-6 text-sm uppercase text-desk-black/75 opacity-0">
+                {item.title}
+              </p>
+              <ul class="capitalize">
+                {item.types.map((type) => (
+                  <>
+                    <li
+                      class="text-reveal mx-4 pb-[9px] pt-[15px] text-xl leading-none tracking-tight
+                        opacity-0 md:text-2xl"
+                    >
+                      {type}
+                    </li>
+                    <div class="md:px-4">
+                      <DividerReveal />
+                    </div>
+                  </>
+                ))}
+              </ul>
+            </div>
+          </>
+        ))
+      }
+    </div>
+
+    <!-- clients -->
+    <div
+      class="py-10 md:py-20 leading-none tracking-tighter text-desk-black antialiased"
+    >
+      <p
+        class="text-reveal mx-4 mb-2 text-4xl font-bold leading-none tracking-tight opacity-0
+          md:text-5xl"
+      >
+        Clients
+      </p>
+      <DividerReveal />
+      <p
+        class="text-reveal text-md mx-4 mt-4 text-desk-black/75 opacity-0 md:mb-4 md:text-xl"
+      >
+        Selected:
+      </p>
+      <div
+        class="grid grid-cols-1 items-end px-4 md:grid-cols-2 md:gap-x-8 md:gap-y-5"
+      >
+        {
+          workedWith.map((item) => (
+            <div >
+              <div class="text-reveal mx-auto w-full px-10 pb-6 pt-12 opacity-0 md:px-8">
+                <Icon
+                  name={item.iconName}
+                  class="h-auto w-full text-desk-gray-700"
+                />
+              </div>
+              <p class="text-reveal text-md pb-[9px] pt-[15px] leading-none tracking-tight opacity-0">
+                {item.name}
+              </p>
+              <DividerReveal />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- TODO@ get in touch -->
+  </div>
+</div>
