@@ -39,6 +39,17 @@ const isWithFooter = withFooter ? "mb-[calc(100vh-52px)]" : "";
   </body>
 </html>
 
+<style>
+  *::-webkit-scrollbar {
+    display: none;
+  }
+
+  * {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style>
+
 <script>
   document.addEventListener("astro:page-load", () => {
     // force page to scroll to top

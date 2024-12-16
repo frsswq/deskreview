@@ -11,14 +11,12 @@ import AboutDrawerContent from "./AboutDrawerContent.astro";
 
 <div
   id="slide"
-  class="fixed right-0 top-0 z-[60] mt-[52px] h-screen w-screen translate-y-full
-    overflow-y-auto overscroll-contain rounded-t-3xl bg-desk-white
+  class="no-scrollbar fixed inset-x-0 top-0 z-[60] mt-[52px] h-screen w-screen
+    translate-y-full overflow-y-auto overscroll-contain rounded-t-3xl bg-desk-white
     transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
 >
-
   <AboutDrawerContent />
 </div>
-
 
 <button
   id="x-btn"
