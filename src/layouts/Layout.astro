@@ -1,9 +1,7 @@
 ---
 import Header from "../components/Header.astro";
-import ImportFont from "../components/ImportFont.astro";
 import Footer from "../components/Footer.astro";
-import ScrollbarGutter from "../components/ScrollbarGutter.astro";
-import HideScrollbar from "../components/HideSrollbar.astro";
+import BaseHead from "../components/BaseHead.astro";
 import { ClientRouter } from "astro:transitions";
 
 type Props = {
@@ -29,9 +27,7 @@ const isWithFooter = withFooter ? "mb-[calc(100vh-52px)]" : "";
       content="A Branding and Campaign Strategy Studio."
     />
     <ClientRouter />
-    <ImportFont />
-    <ScrollbarGutter />
-    <HideScrollbar />
+    <BaseHead />
     <title>{pageTitle}</title>
   </head>
   <body class={`${bgColor ? bgColor : "bg-desk-white"}`}>
