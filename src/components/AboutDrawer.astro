@@ -1,0 +1,108 @@
+---
+import AboutDrawerContent from "./AboutDrawerContent.astro";
+---
+
+<div
+  class="fixed inset-0 z-[55] hidden bg-desk-black/50 opacity-0 transition-opacity
+    duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
+  id="overlay"
+>
+</div>
+
+<div
+  id="slide"
+  class="fixed right-0 top-0 z-[60] mt-[52px] h-screen w-screen translate-y-full
+    overflow-y-auto overscroll-contain rounded-t-3xl bg-desk-white
+    transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
+>
+
+  <AboutDrawerContent />
+</div>
+
+
+<button
+  id="x-btn"
+  class="fixed right-[16px] top-[68px] z-[60] hidden cursor-pointer items-center
+    justify-center rounded-full p-6 md:p-8"
+>
+  <span
+    class="absolute top-[50%] block h-[2px] w-6 -translate-y-[50%] rotate-45 transform
+      bg-desk-black"
+  ></span>
+  <span
+    class="absolute top-[50%] block h-[2px] w-6 -translate-y-[50%] -rotate-45 transform
+      bg-desk-black"
+  ></span>
+</button>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    window.location.pathname.replace(/\/$/, "");
+    if (window.location.pathname.replace(/\/$/, "") === "/deskreview") {
+      const slide = document.getElementById("slide");
+      const xBtn = document.getElementById("x-btn");
+      const overlay = document.getElementById("overlay");
+      const cardContents = Array.from(
+        document.querySelectorAll(".about-drawer-content")
+      );
+      const cardButtons = Array.from(
+        document.querySelectorAll(".about-drawer")
+      );
+
+      // Helper Functions
+      const hideCardContents = () => {
+        Object.values(cardContents).forEach((content) => {
+          content?.classList.remove("grid");
+          content?.classList.add("hidden");
+        });
+      };
+
+      const showCardContent = (cardContent) => {
+        hideCardContents();
+        cardContent?.classList.remove("hidden");
+        cardContent?.classList.add("grid");
+      };
+
+      const toggleSlide = (isOpening) => {
+        slide.classList.toggle("translate-y-0", isOpening);
+        slide.classList.toggle("translate-y-full", !isOpening);
+
+        if (isOpening) {
+          overlay.classList.remove("hidden");
+          overlay.classList.add("opacity-100");
+          setTimeout(() => {
+            xBtn.classList.remove("hidden");
+            xBtn.classList.add("flex");
+          }, 500);
+        } else {
+          overlay.classList.remove("opacity-100");
+          slide.addEventListener(
+            "transitionend",
+            () => {
+              overlay.classList.add("hidden");
+              hideCardContents();
+            },
+            { once: true }
+          );
+          xBtn.classList.remove("flex");
+          xBtn.classList.add("hidden");
+        }
+      };
+
+      const handleSlideToggle = (event) => {
+        const clickedButton = event.target.closest(".about-drawer");
+        if (clickedButton) {
+          const buttonIndex = cardButtons.indexOf(clickedButton);
+          if (buttonIndex !== -1) {
+            toggleSlide(true);
+            showCardContent(cardContents[buttonIndex]);
+          }
+        }
+      };
+
+      xBtn.addEventListener("click", () => toggleSlide(false));
+      overlay.addEventListener("click", () => toggleSlide(false));
+      document.addEventListener("click", handleSlideToggle);
+    }
+  });
+</script>

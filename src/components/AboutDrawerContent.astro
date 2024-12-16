@@ -1,0 +1,60 @@
+---
+import { manifesto } from "../data/manifesto.ts";
+import DividerReveal from "./DividerReveal.astro";
+---
+
+<div class="sticky inset-x-0 top-0 z-10 h-[20vh]" id="section-mask"></div>
+
+<div
+  class="about-drawer-content text-balanced mx-4 md:mt-[10vh] hidden animate-slidein pb-20
+    text-lg leading-[1.6] tracking-tight text-desk-black antialiased opacity-0
+    [--delay:500ms] md:mx-[25vw] md:text-pretty md:pb-20 md:text-xl"
+>
+  <p class="text-3xl font-bold tracking-tighter md:text-4xl">Manifesto</p>
+  <DividerReveal />
+  <div class="space-y-4 pt-6 md:pt-8 md:space-y-6" id="about-drawer">
+    <p>
+      <strong>{manifesto.paragraphs[0].slice(0, 19)}</strong>{
+        manifesto.paragraphs[0].slice(19)
+      }
+    </p>
+
+    {manifesto.paragraphs.slice(1).map((paragraph) => <p>{paragraph}</p>)}
+    <div>
+      <p class="text-lg md:hidden md:text-xl">
+        <strong
+          >"{manifesto.quote.split(";")[0]};
+          <br />&nbsp;{manifesto.quote.split(";")[1]}"</strong
+        >
+      </p>
+      <p class="hidden text-lg md:block md:text-xl">
+        <strong>"{manifesto.quote}"</strong>
+      </p>
+
+      <p class="pt-1 text-lg md:text-xl">- {manifesto.quoteAuthor}</p>
+    </div>
+  </div>
+</div>
+
+<style>
+  #section-mask {
+    background-image: linear-gradient(
+      hsl(0, 0%, 100%),
+      hsla(0, 0%, 100%, 0.98759) 9.9%,
+      hsla(0, 0%, 100%, 0.96314) 19.5%,
+      hsla(0, 0%, 100%, 0.926) 28.7%,
+      hsla(0, 0%, 100%, 0.87667) 37.3%,
+      hsla(0, 0%, 100%, 0.81624) 45.2%,
+      hsla(0, 0%, 100%, 0.74699) 52.3%,
+      hsla(0, 0%, 100%, 0.66999) 58.7%,
+      hsla(0, 0%, 100%, 0.58775) 64.4%,
+      hsla(0, 0%, 100%, 0.50184) 69.5%,
+      hsla(0, 0%, 100%, 0.41394) 74.1%,
+      hsla(0, 0%, 100%, 0.3238) 78.4%,
+      hsla(0, 0%, 100%, 0.23172) 82.6%,
+      hsla(0, 0%, 100%, 0.1409) 86.9%,
+      hsla(0, 0%, 100%, 0.0541) 92%,
+      hsla(0, 0%, 100%, 0)
+    );
+  }
+</style>
