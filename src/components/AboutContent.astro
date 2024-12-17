@@ -2,12 +2,9 @@
 import { manifesto } from "../data/manifesto.ts";
 import { workedWith } from "../data/workedWith.ts";
 import { services } from "../data/services.ts";
-
 import { Icon } from "astro-icon/components";
 
 import DividerReveal from "../components/DividerReveal.astro";
-
-//TODO: fix maniesto text
 ---
 
 <div class="pb-10 md:mx-[20vw] md:pb-20">
@@ -23,9 +20,9 @@ import DividerReveal from "../components/DividerReveal.astro";
         }
       </p>
       <button
-        class="about-drawer text-reveal rounded-lg border-[1.5px] border-desk-black px-4
-          pb-[3px] pt-[6px] text-xl lowercase opacity-0 hover:border-transparent
-          hover:bg-desk-black hover:text-desk-white"
+        class="about-drawer text-reveal rounded-xl border-[1.5px] border-desk-black px-4
+          pb-[6px] pt-[8px] text-xl text-desk-black opacity-0 transition-colors
+          duration-150 ease hover:bg-desk-black hover:text-desk-white"
         >read our manifesto &nbsp;→</button
       >
     </div>
