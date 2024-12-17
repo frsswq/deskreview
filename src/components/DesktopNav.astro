@@ -17,7 +17,8 @@ const linkHighlight = (() => {
 
 <a
   href={mnavHref}
-  class={`${linkHighlight} ${mnavHref === "/deskreview/contact" ? "pl-1 pr-0" : "px-1"}
+  class={`${linkHighlight}
+    ${mnavHref === "/deskreview/contact" ? "pl-[6px] pr-[2px]" : "px-[6px]"}
     hover:text-desk-black focus:outline-none focus:text-desk-black pt-[10px]
     pb-[6px] flex items-center text-sm`}>{mnavTitle}</a
 >
