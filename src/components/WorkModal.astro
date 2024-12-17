@@ -1,5 +1,6 @@
 ---
-import AboutModalContent from "./AboutModalContent.astro"
+import WorkModalContent from "./WorkModalContent.astro";
+import { workCardData } from "../data/workCardData";
 ---
 
 <div
@@ -12,12 +13,11 @@ import AboutModalContent from "./AboutModalContent.astro"
 <div
   id="slide"
   class="no-scrollbar fixed inset-x-0 top-0 z-[60] h-screen w-screen translate-y-full
-    overflow-y-auto overscroll-contain bg-desk-white transition-transform
-    duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
+    overflow-y-auto overscroll-contain bg-desk-white
+    transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
 >
-  <AboutModalContent />
+  {workCardData.map((card) => <WorkModalContent {...card} />)}
 </div>
-
 
 <button
   id="x-btn"
@@ -36,16 +36,14 @@ import AboutModalContent from "./AboutModalContent.astro"
 
 <script>
   document.addEventListener("astro:page-load", () => {
-    if (window.location.pathname.replace(/\/$/, "") === "/deskreview") {
+    if (window.location.pathname.replace(/\/$/, "") === "/deskreview/work") {
       const slide = document.getElementById("slide");
       const xBtn = document.getElementById("x-btn");
       const overlay = document.getElementById("overlay");
       const cardContents = Array.from(
-        document.querySelectorAll(".about-modal-content")
+        document.querySelectorAll(".work-modal-content")
       );
-      const cardButtons = Array.from(
-        document.querySelectorAll(".about-modal")
-      );
+      const cardButtons = Array.from(document.querySelectorAll(".work-modal"));
 
       // Helper Functions
       const hideCardContents = () => {
@@ -88,7 +86,7 @@ import AboutModalContent from "./AboutModalContent.astro"
       };
 
       const handleSlideToggle = (event) => {
-        const clickedButton = event.target.closest(".about-modal");
+        const clickedButton = event.target.closest(".work-modal");
         if (clickedButton) {
           const buttonIndex = cardButtons.indexOf(clickedButton);
           if (buttonIndex !== -1) {
