@@ -17,6 +17,7 @@ const linkHover = "hover:text-desk-gray-300 hover:underline";
     id="footer-content"
     class="flex h-full flex-col items-center justify-center will-change-transform"
   >
+    <!-- desktop footer -->
     <div
       class="hidden h-full w-[60vw] flex-col justify-center text-base md:flex"
     >
@@ -55,6 +56,8 @@ const linkHover = "hover:text-desk-gray-300 hover:underline";
         </p>
       </div>
     </div>
+
+    <!-- mobile footer -->
     <div
       class="flex h-full flex-col items-center justify-center text-sm md:hidden"
     >
@@ -98,14 +101,17 @@ const linkHover = "hover:text-desk-gray-300 hover:underline";
           0,
           Math.min(
             footerHeight,
-            footerHeight - (window.scrollY - footerStartPoint)
-          )
+            footerHeight - (window.scrollY - footerStartPoint),
+          ),
         );
         // set translateY with this
         const translateVh = (scrollProgress / footerHeight) * 15;
+        const opacity = 1 - (scrollProgress / footerHeight) * 1;
         footerContent.style.transform = `translateY(${translateVh}vh)`;
+        footerContent.style.opacity = `${opacity}`;
       } else {
         footerContent.style.transform = "translateY(15vh)";
+        footerContent.style.opacity = "1";
       }
     };
   });
