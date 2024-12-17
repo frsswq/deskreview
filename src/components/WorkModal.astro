@@ -6,21 +6,21 @@ import { workCardData } from "../data/workCardData";
 <div
   class="fixed inset-0 z-[55] hidden bg-desk-black/50 opacity-0 transition-opacity
     duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
-  id="overlay"
+  id="work-overlay"
 >
 </div>
 
 <div
-  id="slide"
+  id="work-slide"
   class="no-scrollbar fixed inset-x-0 top-0 z-[60] h-screen w-screen translate-y-full
-    overflow-y-auto overscroll-contain bg-desk-white
-    transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
+    overflow-y-auto overscroll-contain bg-desk-white transition-transform
+    duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
 >
   {workCardData.map((card) => <WorkModalContent {...card} />)}
 </div>
 
 <button
-  id="x-btn"
+  id="work-x-btn"
   class="fixed right-[16px] top-[16px] z-[60] hidden cursor-pointer items-center
     justify-center rounded-full p-6 md:p-8"
 >
@@ -35,13 +35,15 @@ import { workCardData } from "../data/workCardData";
 </button>
 
 <script>
-  document.addEventListener("astro:page-load", () => {
+import { init } from "astro/virtual-modules/prefetch.js";
+
+  const initWorkModal = async () => {
     if (window.location.pathname.replace(/\/$/, "") === "/deskreview/work") {
-      const slide = document.getElementById("slide");
-      const xBtn = document.getElementById("x-btn");
-      const overlay = document.getElementById("overlay");
+      const slide = document.getElementById("work-slide");
+      const xBtn = document.getElementById("work-x-btn");
+      const overlay = document.getElementById("work-overlay");
       const cardContents = Array.from(
-        document.querySelectorAll(".work-modal-content")
+        document.querySelectorAll(".work-modal-content"),
       );
       const cardButtons = Array.from(document.querySelectorAll(".work-modal"));
 
@@ -78,7 +80,7 @@ import { workCardData } from "../data/workCardData";
               overlay.classList.add("hidden");
               hideCardContents();
             },
-            { once: true }
+            { once: true },
           );
           xBtn.classList.remove("flex");
           xBtn.classList.add("hidden");
@@ -100,5 +102,8 @@ import { workCardData } from "../data/workCardData";
       overlay.addEventListener("click", () => toggleSlide(false));
       document.addEventListener("click", handleSlideToggle);
     }
-  });
+  };
+
+  initWorkModal();
+  document.addEventListener("astro:page-load", initWorkModal);
 </script>

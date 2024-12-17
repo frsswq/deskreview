@@ -44,7 +44,7 @@ export const workCardData: WorkCardData[] = [
       "campaign strategy & development, social media development, kol management",
   },
   {
-    title: "Rococo Group",
+    title: "Rococo Group Indonesia",
     sector: "Luxury Fashion Retail",
     image: rococoImg,
     year: "2023",
@@ -54,7 +54,7 @@ export const workCardData: WorkCardData[] = [
       "campaign strategy & development, social media development, kol management",
   },
   {
-    title: "Hayati Karya",
+    title: "Hayati Karya Lestari",
     sector: "Carbon Trading",
     image: hayatiImg,
     year: "2023",

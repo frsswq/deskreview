@@ -1,16 +1,16 @@
 ---
-import AboutModalContent from "./AboutModalContent.astro"
+import AboutModalContent from "./AboutModalContent.astro";
 ---
 
 <div
   class="fixed inset-0 z-[55] hidden bg-desk-black/50 opacity-0 transition-opacity
     duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
-  id="overlay"
+  id="about-overlay"
 >
 </div>
 
 <div
-  id="slide"
+  id="about-slide"
   class="no-scrollbar fixed inset-x-0 top-0 z-[60] h-screen w-screen translate-y-full
     overflow-y-auto overscroll-contain bg-desk-white transition-transform
     duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
@@ -18,9 +18,8 @@ import AboutModalContent from "./AboutModalContent.astro"
   <AboutModalContent />
 </div>
 
-
 <button
-  id="x-btn"
+  id="about-x-btn"
   class="fixed right-[16px] top-[16px] z-[60] hidden cursor-pointer items-center
     justify-center rounded-full p-6 md:p-8"
 >
@@ -35,17 +34,15 @@ import AboutModalContent from "./AboutModalContent.astro"
 </button>
 
 <script>
-  document.addEventListener("astro:page-load", () => {
+  const initAboutModal = () => {
     if (window.location.pathname.replace(/\/$/, "") === "/deskreview") {
-      const slide = document.getElementById("slide");
-      const xBtn = document.getElementById("x-btn");
-      const overlay = document.getElementById("overlay");
+      const slide = document.getElementById("about-slide");
+      const xBtn = document.getElementById("about-x-btn");
+      const overlay = document.getElementById("about-overlay");
       const cardContents = Array.from(
-        document.querySelectorAll(".about-modal-content")
+        document.querySelectorAll(".about-modal-content"),
       );
-      const cardButtons = Array.from(
-        document.querySelectorAll(".about-modal")
-      );
+      const cardButtons = Array.from(document.querySelectorAll(".about-modal"));
 
       // Helper Functions
       const hideCardContents = () => {
@@ -80,7 +77,7 @@ import AboutModalContent from "./AboutModalContent.astro"
               overlay.classList.add("hidden");
               hideCardContents();
             },
-            { once: true }
+            { once: true },
           );
           xBtn.classList.remove("flex");
           xBtn.classList.add("hidden");
@@ -102,5 +99,8 @@ import AboutModalContent from "./AboutModalContent.astro"
       overlay.addEventListener("click", () => toggleSlide(false));
       document.addEventListener("click", handleSlideToggle);
     }
-  });
+  };
+
+  initAboutModal();
+  document.addEventListener("astro:page-load", initAboutModal);
 </script>
