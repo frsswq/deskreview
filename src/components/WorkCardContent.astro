@@ -1,0 +1,63 @@
+---
+const { image, title, sector, year } = Astro.props;
+import { Image } from "astro:assets";
+---
+
+<button class="work-modal cursor-pointer space-y-3 opacity-0">
+  <figure class="aspect-square rounded-xl bg-desk-gray-300/80">
+    <Image
+      src={image}
+      alt={title}
+      class="h-full w-full rounded-xl object-cover"
+      width={800}
+      height={800}
+      loading="eager"
+    />
+  </figure>
+
+  <div
+    class="flex justify-between text-xl tracking-tight md:text-base lg:text-lg"
+  >
+    <div>
+      <p class="text-left font-bold leading-none text-desk-black/70">{title}</p>
+      <p class="text-left capitalize text-desk-gray-700/70">{sector}</p>
+    </div>
+    <p class="text-right font-bold leading-none text-desk-black/70">{year}</p>
+  </div>
+</button>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    if (window.location.pathname.replace(/\/$/, "") === "/deskreview/work") {
+      const viewHeight = window.innerHeight * 0.1;
+      const observerSettings = {
+        root: null,
+        rootMargin: `-${viewHeight}px 0px`,
+        threshold: 0,
+      };
+
+      const workModals = document.querySelectorAll("button");
+      
+      const workModalObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const workModal = entry.target as HTMLButtonElement;
+            const imgModal = workModal.querySelector("figure img") as HTMLImageElement;
+
+            if (imgModal && imgModal.complete) {
+              workModal.classList.add("animate-slidein");
+            } else if (imgModal) {
+              imgModal.addEventListener("load", () => {
+                workModal.classList.add("animate-slidein");
+              });
+            }
+          }
+        });
+      }, observerSettings);
+
+      workModals.forEach((modal) => {
+        workModalObserver.observe(modal);
+      });
+    }
+  });
+</script>

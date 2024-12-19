@@ -1,6 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import WorkCardLayout from "../layouts/WorkCardLayout.astro";
+import WorkCard from "../components/WorkCard.astro";
 import HeroText from "../components/HeroText.astro";
 
 const heroTitle = "Our Work";
@@ -19,5 +19,5 @@ const withFooter = true;
     heroDescription={heroDescription}
     heroDescriptionMobile={heroDescriptionMobile}
   />
-  <WorkCardLayout />
+  <WorkCard />
 </Layout>
