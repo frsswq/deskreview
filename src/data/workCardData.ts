@@ -74,7 +74,7 @@ export const workCardData: WorkCardData[] = [
   },
   {
     title: "Hayati Karya Lestari",
-    sector: "Carbon Trading",
+    sector: "NGO",
     image: hayatiImg,
     year: "2023",
     description:
