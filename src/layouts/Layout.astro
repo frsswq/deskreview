@@ -12,6 +12,8 @@ type Props = {
 
 const { pageTitle, withFooter, bgColor } = Astro.props;
 const isWithFooter = withFooter ? "mb-[calc(100vh-52px)]" : "";
+
+// TODO: add scroll by dragging the mouse
 ---
 
 <!-- classic layout -->
@@ -48,6 +50,10 @@ const isWithFooter = withFooter ? "mb-[calc(100vh-52px)]" : "";
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+
+  ::view-transition-group(root) {
+    animation: none;
+  }
 </style>
 
 <script>
@@ -64,7 +70,7 @@ const isWithFooter = withFooter ? "mb-[calc(100vh-52px)]" : "";
       rootMargin: `-${viewHeight}px 0px`,
       threshold: 0,
     };
-    
+
     const textObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
