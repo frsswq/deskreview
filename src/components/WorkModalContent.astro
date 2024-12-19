@@ -1,12 +1,13 @@
 ---
 import DividerReveal from "./DividerReveal.astro";
+import { Image } from "astro:assets";
 
-const { title, sector, year, description, services } = Astro.props;
+const { title, sector, year, description, services, images = [] } = Astro.props;
 ---
 
 <!-- Astra -->
 <div
-  class="work-modal-content text-balanced mx-4 mt-7 hidden animate-slidein pb-20 text-sm
+  class="work-modal-content text-balanced mx-4 mt-7 hidden animate-slideinMedium pb-20 text-sm
     leading-[1.6] tracking-tight text-desk-black antialiased opacity-0
     [--delay:500ms] md:mx-[25vw] md:mt-[15vh] md:text-pretty md:pb-20 md:text-xl"
 >
@@ -35,7 +36,7 @@ const { title, sector, year, description, services } = Astro.props;
             .slice(1)
             .map((item, index, arr) => (
               <>
-                <li class="pt-[16px] pb-[12px] capitalize leading-none tracking-tight">
+                <li class="pb-[12px] pt-[16px] capitalize leading-none tracking-tight">
                   {item.trim()}
                 </li>
                 {index < arr.length - 1 && <DividerReveal reveal={false} />}
@@ -59,5 +60,17 @@ const { title, sector, year, description, services } = Astro.props;
       </p>
     </div>
     <DividerReveal reveal={false} />
+  </div>
+  <div class="grid grid-cols-1 gap-8 pt-8">
+    {
+      images.map((img: ImageMetadata, index: number) => (
+        <Image
+          src={img}
+          alt={`${title} - Image ${index + 1}`}
+          class="h-full w-full object-cover"
+          loading="lazy"
+        />
+      ))
+    }
   </div>
 </div>

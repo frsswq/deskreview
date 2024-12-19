@@ -1,4 +1,4 @@
-y# Deskreview (still in development)
+# Deskreview (still in development)
 
 Site for deskreview creative agency. Built using [Astro](https://astro.build/).
 
