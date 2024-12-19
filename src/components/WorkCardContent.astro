@@ -27,7 +27,7 @@ import { Image } from "astro:assets";
 </button>
 
 <script>
-  document.addEventListener("astro:page-load", () => {
+  const initWorkCard = async () => {
     if (window.location.pathname.replace(/\/$/, "") === "/deskreview/work") {
       const viewHeight = window.innerHeight * 0.1;
       const observerSettings = {
@@ -36,28 +36,33 @@ import { Image } from "astro:assets";
         threshold: 0,
       };
 
-      const workModals = document.querySelectorAll("button");
-      
-      const workModalObserver = new IntersectionObserver((entries) => {
+      const workCards = document.querySelectorAll("button");
+
+      const workCardObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const workModal = entry.target as HTMLButtonElement;
-            const imgModal = workModal.querySelector("figure img") as HTMLImageElement;
+            const workCard = entry.target as HTMLButtonElement;
+            const imgCard = workCard.querySelector(
+              "figure img"
+            ) as HTMLImageElement;
 
-            if (imgModal && imgModal.complete) {
-              workModal.classList.add("animate-slidein");
-            } else if (imgModal) {
-              imgModal.addEventListener("load", () => {
-                workModal.classList.add("animate-slidein");
+            if (imgCard && imgCard.complete) {
+              workCard.classList.add("animate-slidein");
+            } else if (imgCard) {
+              imgCard.addEventListener("load", () => {
+                workCard.classList.add("animate-slidein");
               });
             }
           }
         });
       }, observerSettings);
 
-      workModals.forEach((modal) => {
-        workModalObserver.observe(modal);
+      workCards.forEach((modal) => {
+        workCardObserver.observe(modal);
       });
     }
-  });
+  };
+
+  initWorkCard();
+  document.addEventListener("astro:page-load", initWorkCard);
 </script>
