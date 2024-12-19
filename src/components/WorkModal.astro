@@ -35,15 +35,13 @@ import { workCardData } from "../data/workCardData";
 </button>
 
 <script>
-import { init } from "astro/virtual-modules/prefetch.js";
-
   const initWorkModal = async () => {
     if (window.location.pathname.replace(/\/$/, "") === "/deskreview/work") {
       const slide = document.getElementById("work-slide");
       const xBtn = document.getElementById("work-x-btn");
       const overlay = document.getElementById("work-overlay");
       const cardContents = Array.from(
-        document.querySelectorAll(".work-modal-content"),
+        document.querySelectorAll(".work-modal-content")
       );
       const cardButtons = Array.from(document.querySelectorAll(".work-modal"));
 
@@ -80,7 +78,7 @@ import { init } from "astro/virtual-modules/prefetch.js";
               overlay.classList.add("hidden");
               hideCardContents();
             },
-            { once: true },
+            { once: true }
           );
           xBtn.classList.remove("flex");
           xBtn.classList.add("hidden");
