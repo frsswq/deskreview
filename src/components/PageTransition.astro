@@ -1,0 +1,64 @@
+---
+
+---
+
+<div
+  class="no-scrollbar fixed inset-x-0 top-0 z-[60] h-screen w-screen translate-y-full
+    overflow-y-auto overscroll-contain bg-desk-black opacity-100 transition-all
+    duration-1000 ease-[cubic-bezier(0.32,0.72,0,1)]"
+  id="page-transition-slider"
+  transition:persist
+>
+</div>
+
+<script>
+  const initPageTransition = async () => {
+    const pageSlide = document.getElementById("page-transition-slider");
+    const desktopNav = document.querySelectorAll("#desktop-nav");
+
+    const toggleSlide = (isOpening) => {
+      pageSlide.classList.toggle("translate-y-0", isOpening);
+      pageSlide.classList.toggle("translate-y-full", !isOpening);
+    };
+
+    // desktopNav.forEach((nav) => {
+    //     nav.addEventListener("click", () => {
+    //         toggleSlide(true);
+    //     })
+    // })
+
+    const waitForTransition = (element) => {
+      return new Promise<void>((resolve) => {
+        const handleTransitionEnd = (event) => {
+          if (event.target === element) {
+            element.removeEventListener("transitionend", handleTransitionEnd);
+            resolve();
+          }
+        };
+        element.addEventListener("transitionend", handleTransitionEnd);
+      });
+    };
+
+    desktopNav.forEach((nav) => {
+      nav.addEventListener("click", (event) => {
+        const href = nav.getAttribute("href");
+        toggleSlide(true);
+        waitForTransition(pageSlide).then(() => {
+          if (href) {
+            window.location.href = href;
+          }
+        });
+      });
+    });
+
+    // document.addEventListener("astro:page-load", () => {
+    //   if (pageSlide.classList.contains("translate-y-0")) {
+    //     setTimeout(() => {
+    //       toggleSlide(false);
+    //     }, 1000);   
+    //   }
+    // });
+  };
+
+  document.addEventListener("astro:page-load", initPageTransition);
+</script>

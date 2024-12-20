@@ -2,6 +2,7 @@
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import BaseHead from "../components/BaseHead.astro";
+import PageTransition from "../components/PageTransition.astro";
 import { ClientRouter } from "astro:transitions";
 
 type Props = {
@@ -19,8 +20,8 @@ const isWithFooter = withFooter ? "mb-[calc(100vh-52px)]" : "";
 <!-- classic layout -->
 <html
   lang="en"
+  transition:name="root" transition:animate="none"
   class={`${bgColor ? bgColor : "bg-desk-white"} scroll-smooth`}
-  transition:name="slide"
 >
   <head>
     <meta charset="utf-8" />
@@ -32,6 +33,7 @@ const isWithFooter = withFooter ? "mb-[calc(100vh-52px)]" : "";
       name="description"
       content="A Branding and Campaign Strategy Studio."
     />
+    <PageTransition />
     <ClientRouter />
     <BaseHead />
     <title>{pageTitle}</title>
