@@ -17,7 +17,11 @@ const isWithFooter = withFooter ? "mb-[calc(100vh-52px)]" : "";
 ---
 
 <!-- classic layout -->
-<html lang="en" class={`${bgColor ? bgColor : "bg-desk-white"} scroll-smooth`}>
+<html
+  lang="en"
+  class={`${bgColor ? bgColor : "bg-desk-white"} scroll-smooth`}
+  transition:name="slide"
+>
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/deskreview/ico/favicon.ico" />
@@ -50,10 +54,6 @@ const isWithFooter = withFooter ? "mb-[calc(100vh-52px)]" : "";
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
-
-  ::view-transition-group(root) {
-    animation: none;
-  }
 </style>
 
 <script>
@@ -64,14 +64,13 @@ const isWithFooter = withFooter ? "mb-[calc(100vh-52px)]" : "";
     // text-reveal on-sight
     const text = document.querySelectorAll(".text-reveal");
     const divider = document.querySelectorAll(".divider-slide");
-    const workModals = document.querySelectorAll(".work-modal");
     const viewHeight = window.innerHeight * 0.1;
     const observerSettings = {
       root: null,
       rootMargin: `-${viewHeight}px 0px`,
       threshold: 0,
     };
-    
+
     const textObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
