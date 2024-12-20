@@ -2,6 +2,7 @@
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import BaseHead from "../components/BaseHead.astro";
+import PageTransition from "../components/PageTransition.astro";
 import { ClientRouter } from "astro:transitions";
 
 type Props = {
@@ -37,6 +38,7 @@ const isWithFooter = withFooter ? "mb-[calc(100vh-52px)]" : "";
     <title>{pageTitle}</title>
   </head>
   <body class={`${bgColor ? bgColor : "bg-desk-white"}`}>
+    <PageTransition />
     <Header />
     <main class={`${isWithFooter} min-h-[calc(100vh-52px)]`}>
       <slot />

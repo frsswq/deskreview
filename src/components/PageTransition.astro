@@ -1,64 +1,55 @@
----
-
----
-
 <div
-  class="no-scrollbar fixed inset-x-0 top-0 z-[60] h-screen w-screen translate-y-full
+  class="no-scrollbar fixed inset-x-0 top-0 z-[1000] h-screen w-screen translate-y-full
     overflow-y-auto overscroll-contain bg-desk-black opacity-100 transition-all
-    duration-1000 ease-[cubic-bezier(0.32,0.72,0,1)]"
+    duration-500 ease-[cubic-bezier(0.25,0,0,1)]"
   id="page-transition-slider"
   transition:persist
 >
 </div>
 
 <script>
-  const initPageTransition = async () => {
+  import { navigate } from "astro:transitions/client";
+
+  const initPageTransition = () => {
     const pageSlide = document.getElementById("page-transition-slider");
     const desktopNav = document.querySelectorAll("#desktop-nav");
+    const logoNav = document.getElementById("logo-nav");
+
+    if (!pageSlide || !desktopNav.length || !logoNav) return;
 
     const toggleSlide = (isOpening) => {
       pageSlide.classList.toggle("translate-y-0", isOpening);
       pageSlide.classList.toggle("translate-y-full", !isOpening);
     };
 
-    // desktopNav.forEach((nav) => {
-    //     nav.addEventListener("click", () => {
-    //         toggleSlide(true);
-    //     })
-    // })
+    function handleNavClick(event) {
+      event.preventDefault();
+      const href = (event.target as HTMLElement).getAttribute("href");
+      if (href === window.location.pathname) return;
+      toggleSlide(true);
 
-    const waitForTransition = (element) => {
-      return new Promise<void>((resolve) => {
-        const handleTransitionEnd = (event) => {
-          if (event.target === element) {
-            element.removeEventListener("transitionend", handleTransitionEnd);
-            resolve();
-          }
-        };
-        element.addEventListener("transitionend", handleTransitionEnd);
-      });
-    };
+      const handleTransitionEnd = () => {
+        setTimeout(() => {
+          navigate(href).then(() => {
+            document.addEventListener("astro:page-load", () => {
+              toggleSlide(false);
+            });
+          });
+        }, 500);
+
+        pageSlide.removeEventListener("transitionend", handleTransitionEnd);
+      };
+
+      pageSlide.addEventListener("transitionend", handleTransitionEnd);
+    }
 
     desktopNav.forEach((nav) => {
-      nav.addEventListener("click", (event) => {
-        const href = nav.getAttribute("href");
-        toggleSlide(true);
-        waitForTransition(pageSlide).then(() => {
-          if (href) {
-            window.location.href = href;
-          }
-        });
-      });
+      nav.addEventListener("click", handleNavClick);
     });
 
-    // document.addEventListener("astro:page-load", () => {
-    //   if (pageSlide.classList.contains("translate-y-0")) {
-    //     setTimeout(() => {
-    //       toggleSlide(false);
-    //     }, 1000);   
-    //   }
-    // });
+    logoNav.addEventListener("click", handleNavClick);
   };
 
+  initPageTransition();
   document.addEventListener("astro:page-load", initPageTransition);
 </script>
