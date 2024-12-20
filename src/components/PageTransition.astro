@@ -25,7 +25,7 @@
     function handleNavClick(event) {
       event.preventDefault();
       const href = (event.target as HTMLElement).getAttribute("href");
-      if (href === window.location.pathname) return;
+      if (href.replace(/\/$/, "") === window.location.pathname.replace(/\/$/, "")) return;
       toggleSlide(true);
 
       const handleTransitionEnd = () => {
