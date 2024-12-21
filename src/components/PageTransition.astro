@@ -1,10 +1,22 @@
+---
+
+---
+
 <div
-  class="no-scrollbar fixed inset-x-0 top-0 z-[1000] h-screen w-screen translate-y-full
-    overflow-y-auto overscroll-contain bg-desk-black opacity-100 transition-all
-    duration-500 ease-[cubic-bezier(0.25,0,0,1)]"
+  class="no-scrollbar fixed inset-x-0 top-0 z-[1000] flex h-screen w-screen
+    translate-y-full items-center justify-center overflow-y-auto overscroll-contain
+    bg-desk-black opacity-100 transition-all duration-500
+    ease-[cubic-bezier(0.25,0,0,1)]"
   id="page-transition-slider"
   transition:persist
 >
+  <img
+    src="/deskreview/svg/logo_full.svg"
+    id="page-transition-logo"
+    alt="page-transition-logo"
+    class="hidden h-[400px] w-[200px] opacity-0"
+    transition:persist
+  />
 </div>
 
 <script>
@@ -14,25 +26,48 @@
     const pageSlide = document.getElementById("page-transition-slider");
     const desktopNav = document.querySelectorAll("#desktop-nav");
     const logoNav = document.getElementById("logo-nav");
+    const transitionLogo = document.getElementById("page-transition-logo");
+    const isMobile: boolean = window.innerWidth < 768;
 
     if (!pageSlide || !desktopNav.length || !logoNav) return;
 
-    const toggleSlide = (isOpening) => {
-      pageSlide.classList.toggle("translate-y-0", isOpening);
-      pageSlide.classList.toggle("translate-y-full", !isOpening);
-    };
+    // const toggleSlide = (isOpening) => {
+    //   pageSlide.classList.toggle("translate-y-0", isOpening);
+    //   pageSlide.classList.toggle("translate-y-full", !isOpening);
+    //   transitionLogo.classList.toggle("hidden", isOpening);
+    //   transitionLogo.classList.toggle("hidden", !isOpening);
+    // };
 
     function handleNavClick(event) {
       event.preventDefault();
       const href = (event.target as HTMLElement).getAttribute("href");
-      if (href.replace(/\/$/, "") === window.location.pathname.replace(/\/$/, "")) return;
-      toggleSlide(true);
+      if (
+        href.replace(/\/$/, "") === window.location.pathname.replace(/\/$/, "")
+      )
+        return;
+      pageSlide.classList.remove("translate-y-full");
+      pageSlide.classList.add("translate-y-0");
 
       const handleTransitionEnd = () => {
         setTimeout(() => {
           navigate(href).then(() => {
             document.addEventListener("astro:page-load", () => {
-              toggleSlide(false);
+              pageSlide.classList.remove("translate-y-0");
+              pageSlide.classList.add("-translate-y-full");
+
+              const handleTransitionEnd = () => {
+                pageSlide.classList.remove("transition-all", "duration-500");
+                pageSlide.classList.add("translate-y-full");
+
+                setTimeout(() => {
+                  pageSlide.classList.add("transition-all", "duration-500");
+                }, 0);
+                pageSlide.removeEventListener(
+                  "transitionend",
+                  handleTransitionEnd
+                );
+              };
+              pageSlide.addEventListener("transitionend", handleTransitionEnd);
             });
           });
         }, 500);
@@ -47,7 +82,11 @@
       nav.addEventListener("click", handleNavClick);
     });
 
-    logoNav.addEventListener("click", handleNavClick);
+    logoNav.addEventListener("click", (event) => {
+      if (!isMobile) {
+        handleNavClick(event);
+      }
+    });
   };
 
   initPageTransition();

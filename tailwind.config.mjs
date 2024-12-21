@@ -35,6 +35,20 @@ export default {
             transform: "translateY(0)",
           },
         },
+        slideinout: {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(15px)",
+          },
+          "50%": {
+            opacity: "1",
+            transform: "translateY(0)",
+          },
+          "100%": {
+            opacity: "0",
+            transform: "translateY(15px)",
+          },
+        },
         dividerSlide: {
           from: {
             width: "0%",
@@ -51,6 +65,8 @@ export default {
           "slidein 1s cubic-bezier(0.16, 1, 0.3, 1) calc(var(--delay, 0ms)) forwards",
         slideinFast:
           "slidein 0.5s cubic-bezier(0.16, 1, 0.3, 1) calc(var(--delay, 0ms)) forwards",
+        slideinout:
+          "slideinout 1s cubic-bezier(0.16, 1, 0.3, 1) calc(var(--delay, 0ms)) forwards",
         dividerSlide:
           "dividerSlide 1s cubic-bezier(0.16, 1, 0.3, 1) calc(var(--delay, 0ms)) forwards",
       },

@@ -45,4 +45,7 @@ $ npm run dev
 - https://www.instrument.com/ [clean bento]
 - https://loveandmoney.agency/ [detailed landing page]
 - https://antinomy.studio/ [cool fixed footer]
+- https://heurebleue.studio/ [cool page transition]
+- https://ang-studio.com/ [cool page transition]
+- https://www.studiogruhl.com/ [cool page transition]
 - https://ang-studio.com/ [cool drawer]
