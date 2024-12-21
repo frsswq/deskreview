@@ -6,13 +6,13 @@ import { Icon } from "astro-icon/components";
 <div
   class="no-scrollbar fixed inset-x-0 top-0 z-[1000] flex h-screen w-screen
     translate-y-full items-center justify-center overflow-y-auto overscroll-contain
-    bg-desk-black opacity-100 transition-all duration-500
+    bg-desk-black opacity-100 transition-transform duration-500
     ease-[cubic-bezier(0.25,0,0,1)]"
   id="page-transition-slider"
   transition:persist
 >
   <div
-    class="pointer-events-none translate-y-[20px] opacity-0 transition-all duration-[200ms]
+    class="pointer-events-none translate-y-[20px] opacity-0 transition-all duration-[150ms]
       ease-[cubic-bezier(0.16, 1, 0.3, 1)]"
     id="page-transition-logo"
     transition:persist
@@ -48,14 +48,17 @@ import { Icon } from "astro-icon/components";
       pageSlide.classList.remove("translate-y-full");
       pageSlide.classList.add("translate-y-0");
 
-      const transitionEndBeforeNav = () => {
+      setTimeout(() => {
         transitionLogo.classList.remove("translate-y-[20px]", "opacity-0");
         transitionLogo.classList.add("translate-y-0", "opacity-100");
+      }, 400);
+
+      const transitionEndBeforeNav = () => {
 
         setTimeout(() => {
           transitionLogo.classList.remove("translate-y-0", "opacity-100");
           transitionLogo.classList.add("-translate-y-[20px]" ,"opacity-0");
-        }, 600);
+        }, 400);
 
         setTimeout(() => {
           navigate(href).then(() => {
@@ -66,11 +69,11 @@ import { Icon } from "astro-icon/components";
                 pageSlide.classList.add("-translate-y-full");
 
                 const transitionEndAfterNav = () => {
-                  pageSlide.classList.remove("transition-all", "duration-500");
+                  pageSlide.classList.remove("transition-transform", "duration-500");
                   pageSlide.classList.add("translate-y-full");
                   transitionLogo.classList.remove(
                     "transition-all",
-                    "duration-[200ms]",
+                    "duration-[150ms]",
                     "-translate-y-[20px]",
                   );
                   transitionLogo.classList.add(
@@ -78,10 +81,10 @@ import { Icon } from "astro-icon/components";
                   );
 
                   setTimeout(() => {
-                    pageSlide.classList.add("transition-all", "duration-500");
+                    pageSlide.classList.add("transition-transform", "duration-500");
                     transitionLogo.classList.add(
                       "transition-all",
-                      "duration-[200ms]"
+                      "duration-[150ms]"
                     );
                   }, 0);
 
@@ -98,7 +101,7 @@ import { Icon } from "astro-icon/components";
               }
             );
           });
-        }, 800);
+        }, 500);
 
         pageSlide.removeEventListener("transitionend", transitionEndBeforeNav);
       };
