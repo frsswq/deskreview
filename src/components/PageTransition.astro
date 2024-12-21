@@ -1,5 +1,6 @@
 ---
-
+import { Icon } from "astro-icon/components";
+// TODO: fix last sec nav click bug 
 ---
 
 <div
@@ -10,13 +11,18 @@
   id="page-transition-slider"
   transition:persist
 >
-  <img
-    src="/deskreview/svg/logo_full.svg"
+  <div
+    class="pointer-events-none translate-y-[5vh] opacity-0 transition-all duration-[250ms]
+      ease-[cubic-bezier(0.16, 1, 0.3, 1)]"
     id="page-transition-logo"
-    alt="page-transition-logo"
-    class="hidden h-[400px] w-[200px] opacity-0"
     transition:persist
-  />
+  >
+    <Icon
+      name="logo_text"
+      class="h-auto w-[20vw] text-desk-white"
+      transition:persist
+    />
+  </div>
 </div>
 
 <script>
@@ -27,56 +33,80 @@
     const desktopNav = document.querySelectorAll("#desktop-nav");
     const logoNav = document.getElementById("logo-nav");
     const transitionLogo = document.getElementById("page-transition-logo");
-    const isMobile: boolean = window.innerWidth < 768;
+    const isMobile = window.innerWidth < 768;
 
     if (!pageSlide || !desktopNav.length || !logoNav) return;
 
-    // const toggleSlide = (isOpening) => {
-    //   pageSlide.classList.toggle("translate-y-0", isOpening);
-    //   pageSlide.classList.toggle("translate-y-full", !isOpening);
-    //   transitionLogo.classList.toggle("hidden", isOpening);
-    //   transitionLogo.classList.toggle("hidden", !isOpening);
-    // };
-
-    function handleNavClick(event) {
+    const handleNavClick = (event) => {
       event.preventDefault();
-      const href = (event.target as HTMLElement).getAttribute("href");
+      const href = event.target.getAttribute("href");
       if (
         href.replace(/\/$/, "") === window.location.pathname.replace(/\/$/, "")
       )
         return;
+
       pageSlide.classList.remove("translate-y-full");
       pageSlide.classList.add("translate-y-0");
 
-      const handleTransitionEnd = () => {
+      const transitionEndBeforeNav = () => {
+        transitionLogo.classList.remove("translate-y-[5vh]", "opacity-0");
+        transitionLogo.classList.add("translate-y-0", "opacity-100");
+
+        setTimeout(() => {
+          transitionLogo.classList.remove("translate-y-0", "opacity-100");
+          transitionLogo.classList.add("-translate-y-[5vh]", "opacity-0");
+        }, 400);
+
         setTimeout(() => {
           navigate(href).then(() => {
-            document.addEventListener("astro:page-load", () => {
-              pageSlide.classList.remove("translate-y-0");
-              pageSlide.classList.add("-translate-y-full");
+            document.addEventListener(
+              "astro:page-load",
+              () => {
+                pageSlide.classList.remove("translate-y-0");
+                pageSlide.classList.add("-translate-y-full");
 
-              const handleTransitionEnd = () => {
-                pageSlide.classList.remove("transition-all", "duration-500");
-                pageSlide.classList.add("translate-y-full");
+                const transitionEndAfterNav = () => {
+                  pageSlide.classList.remove("transition-all", "duration-500");
+                  pageSlide.classList.add("translate-y-full");
+                  transitionLogo.classList.remove(
+                    "transition-all",
+                    "duration-[250ms]"
+                  );
+                  transitionLogo.classList.add(
+                    "translate-y-[5vh]",
+                    "opacity-0"
+                  );
 
-                setTimeout(() => {
-                  pageSlide.classList.add("transition-all", "duration-500");
-                }, 0);
-                pageSlide.removeEventListener(
+                  setTimeout(() => {
+                    pageSlide.classList.add("transition-all", "duration-500");
+                    transitionLogo.classList.add(
+                      "transition-all",
+                      "duration-[250ms]"
+                    );
+                  }, 0);
+
+                  pageSlide.removeEventListener(
+                    "transitionend",
+                    transitionEndAfterNav
+                  );
+                };
+
+                pageSlide.addEventListener(
                   "transitionend",
-                  handleTransitionEnd
+                  transitionEndAfterNav
                 );
-              };
-              pageSlide.addEventListener("transitionend", handleTransitionEnd);
-            });
+              }
+            );
           });
         }, 500);
 
-        pageSlide.removeEventListener("transitionend", handleTransitionEnd);
+        pageSlide.removeEventListener("transitionend", transitionEndBeforeNav);
       };
 
-      pageSlide.addEventListener("transitionend", handleTransitionEnd);
-    }
+      pageSlide.addEventListener("transitionend", transitionEndBeforeNav, {
+        once: true,
+      });
+    };
 
     desktopNav.forEach((nav) => {
       nav.addEventListener("click", handleNavClick);

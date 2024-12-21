@@ -73,28 +73,33 @@ const isWithFooter = withFooter ? "mb-[calc(100vh-52px)]" : "";
       threshold: 0,
     };
 
-    const textObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("animate-slidein");
-        }
+    setTimeout(() => {
+      const textObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate-slidein");
+          }
+        });
+      }, observerSettings);
+  
+      text.forEach((item) => {
+        textObserver.observe(item);
       });
-    }, observerSettings);
-
-    text.forEach((item) => {
-      textObserver.observe(item);
-    });
-
-    const dividerObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("animate-dividerSlide");
-        }
+  
+      const dividerObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate-dividerSlide");
+          }
+        });
+      }, observerSettings);
+  
+      divider.forEach((item) => {
+        dividerObserver.observe(item);
       });
-    }, observerSettings);
+    }, 
+    
+    200);
 
-    divider.forEach((item) => {
-      dividerObserver.observe(item);
-    });
   });
 </script>

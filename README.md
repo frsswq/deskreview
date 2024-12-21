@@ -48,4 +48,3 @@ $ npm run dev
 - https://heurebleue.studio/ [cool page transition]
 - https://ang-studio.com/ [cool page transition]
 - https://www.studiogruhl.com/ [cool page transition]
-- https://ang-studio.com/ [cool drawer]
