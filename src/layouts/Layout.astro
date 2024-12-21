@@ -20,7 +20,8 @@ const isWithFooter = withFooter ? "mb-[calc(100vh-52px)]" : "";
 <!-- classic layout -->
 <html
   lang="en"
-  transition:name="root" transition:animate="none"
+  transition:name="root"
+  transition:animate="none"
   class={`${bgColor ? bgColor : "bg-desk-white"} scroll-smooth`}
 >
   <head>
@@ -73,33 +74,34 @@ const isWithFooter = withFooter ? "mb-[calc(100vh-52px)]" : "";
       threshold: 0,
     };
 
-    setTimeout(() => {
-      const textObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("animate-slidein");
-          }
-        });
-      }, observerSettings);
-  
-      text.forEach((item) => {
-        textObserver.observe(item);
-      });
-  
-      const dividerObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("animate-dividerSlide");
-          }
-        });
-      }, observerSettings);
-  
-      divider.forEach((item) => {
-        dividerObserver.observe(item);
-      });
-    }, 
-    
-    200);
+    setTimeout(
+      () => {
+        const textObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("animate-slidein");
+            }
+          });
+        }, observerSettings);
 
+        text.forEach((item) => {
+          textObserver.observe(item);
+        });
+
+        const dividerObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("animate-dividerSlide");
+            }
+          });
+        }, observerSettings);
+
+        divider.forEach((item) => {
+          dividerObserver.observe(item);
+        });
+      },
+
+      200
+    );
   });
 </script>

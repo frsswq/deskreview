@@ -12,7 +12,7 @@ import { Icon } from "astro-icon/components";
   transition:persist
 >
   <div
-    class="pointer-events-none translate-y-[5vh] opacity-0 transition-all duration-[250ms]
+    class="pointer-events-none translate-y-[20px] opacity-0 transition-all duration-[200ms]
       ease-[cubic-bezier(0.16, 1, 0.3, 1)]"
     id="page-transition-logo"
     transition:persist
@@ -49,13 +49,13 @@ import { Icon } from "astro-icon/components";
       pageSlide.classList.add("translate-y-0");
 
       const transitionEndBeforeNav = () => {
-        transitionLogo.classList.remove("translate-y-[5vh]", "opacity-0");
+        transitionLogo.classList.remove("translate-y-[20px]", "opacity-0");
         transitionLogo.classList.add("translate-y-0", "opacity-100");
 
         setTimeout(() => {
           transitionLogo.classList.remove("translate-y-0", "opacity-100");
-          transitionLogo.classList.add("-translate-y-[5vh]", "opacity-0");
-        }, 400);
+          transitionLogo.classList.add("-translate-y-[20px]" ,"opacity-0");
+        }, 600);
 
         setTimeout(() => {
           navigate(href).then(() => {
@@ -70,18 +70,18 @@ import { Icon } from "astro-icon/components";
                   pageSlide.classList.add("translate-y-full");
                   transitionLogo.classList.remove(
                     "transition-all",
-                    "duration-[250ms]"
+                    "duration-[200ms]",
+                    "-translate-y-[20px]",
                   );
                   transitionLogo.classList.add(
-                    "translate-y-[5vh]",
-                    "opacity-0"
+                    "translate-y-[20px]",
                   );
 
                   setTimeout(() => {
                     pageSlide.classList.add("transition-all", "duration-500");
                     transitionLogo.classList.add(
                       "transition-all",
-                      "duration-[250ms]"
+                      "duration-[200ms]"
                     );
                   }, 0);
 
@@ -98,7 +98,7 @@ import { Icon } from "astro-icon/components";
               }
             );
           });
-        }, 500);
+        }, 800);
 
         pageSlide.removeEventListener("transitionend", transitionEndBeforeNav);
       };
