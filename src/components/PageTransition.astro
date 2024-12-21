@@ -1,6 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
-// TODO: fix last sec nav click bug 
+// TODO: fix last sec nav click bug
 ---
 
 <div
@@ -12,8 +12,8 @@ import { Icon } from "astro-icon/components";
   transition:persist
 >
   <div
-    class="pointer-events-none translate-y-[20px] opacity-0 transition-all duration-[150ms]
-      ease-[cubic-bezier(0.16, 1, 0.3, 1)]"
+    class="ease-[cubic-bezier(0.16, 1, 0.3, 1)] pointer-events-none translate-y-[20px]
+      opacity-0 transition-all duration-[150ms]"
     id="page-transition-logo"
     transition:persist
   >
@@ -38,6 +38,10 @@ import { Icon } from "astro-icon/components";
     if (!pageSlide || !desktopNav.length || !logoNav) return;
 
     const handleNavClick = (event) => {
+      if (pageSlide.classList.contains("-translate-y-full")) {
+        event.preventDefault();
+        return;
+      };
       event.preventDefault();
       const href = event.target.getAttribute("href");
       if (
@@ -54,52 +58,53 @@ import { Icon } from "astro-icon/components";
       }, 400);
 
       const transitionEndBeforeNav = () => {
-
         setTimeout(() => {
           transitionLogo.classList.remove("translate-y-0", "opacity-100");
-          transitionLogo.classList.add("-translate-y-[20px]" ,"opacity-0");
+          transitionLogo.classList.add("-translate-y-[20px]", "opacity-0");
         }, 400);
 
         setTimeout(() => {
           navigate(href).then(() => {
-            document.addEventListener(
-              "astro:page-load",
-              () => {
-                pageSlide.classList.remove("translate-y-0");
-                pageSlide.classList.add("-translate-y-full");
+            document.addEventListener("astro:page-load", () => {
+              pageSlide.classList.remove("translate-y-0");
+              pageSlide.classList.add("-translate-y-full");
 
-                const transitionEndAfterNav = () => {
-                  pageSlide.classList.remove("transition-transform", "duration-500");
-                  pageSlide.classList.add("translate-y-full");
-                  transitionLogo.classList.remove(
-                    "transition-all",
-                    "duration-[150ms]",
-                    "-translate-y-[20px]",
+              const transitionEndAfterNav = () => {
+                pageSlide.classList.remove(
+                  "transition-transform",
+                  "duration-500",
+                  "-translate-y-full"
+                );
+                pageSlide.classList.add("translate-y-full");
+                transitionLogo.classList.remove(
+                  "transition-all",
+                  "duration-[150ms]",
+                  "-translate-y-[20px]"
+                );
+                transitionLogo.classList.add("translate-y-[20px]");
+
+                setTimeout(() => {
+                  pageSlide.classList.add(
+                    "transition-transform",
+                    "duration-500"
                   );
                   transitionLogo.classList.add(
-                    "translate-y-[20px]",
+                    "transition-all",
+                    "duration-[150ms]"
                   );
+                }, 0);
 
-                  setTimeout(() => {
-                    pageSlide.classList.add("transition-transform", "duration-500");
-                    transitionLogo.classList.add(
-                      "transition-all",
-                      "duration-[150ms]"
-                    );
-                  }, 0);
-
-                  pageSlide.removeEventListener(
-                    "transitionend",
-                    transitionEndAfterNav
-                  );
-                };
-
-                pageSlide.addEventListener(
+                pageSlide.removeEventListener(
                   "transitionend",
                   transitionEndAfterNav
                 );
-              }
-            );
+              };
+
+              pageSlide.addEventListener(
+                "transitionend",
+                transitionEndAfterNav
+              );
+            });
           });
         }, 500);
 
