@@ -32,24 +32,26 @@ import { Icon } from "astro-icon/components";
     const desktopNav = document.querySelectorAll("#desktop-nav");
     const logoNav = document.getElementById("logo-nav");
     const transitionLogo = document.getElementById("page-transition-logo");
-    const isMobile = window.innerWidth < 768;
-    
+    const isWeb = () => window.matchMedia("(min-width: 768px)").matches;
+
     if (!pageSlide || !desktopNav.length || !logoNav) return;
-    
+
     const handleNavClick = (event) => {
+      if(!isWeb()) return;
+
       event.preventDefault();
-      
+
       if (pageSlide.classList.contains("-translate-y-full")) {
         return;
       }
-      
+
       const href = event.target.getAttribute("href");
-      
+
       if (
         href.replace(/\/$/, "") === window.location.pathname.replace(/\/$/, "")
       )
-      return;
-      
+        return;
+
       sessionStorage.setItem("delayTimeout", "800");
 
       pageSlide.classList.remove("translate-y-full");
@@ -87,7 +89,7 @@ import { Icon } from "astro-icon/components";
                 transitionLogo.classList.add("translate-y-[20px]");
 
                 sessionStorage.removeItem("delayTimeout");
-                
+
                 setTimeout(() => {
                   pageSlide.classList.add(
                     "transition-transform",
@@ -126,9 +128,7 @@ import { Icon } from "astro-icon/components";
     });
 
     logoNav.addEventListener("click", (event) => {
-      if (!isMobile) {
-        handleNavClick(event);
-      }
+      if (isWeb()) handleNavClick(event);
     });
   };
 
