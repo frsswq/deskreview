@@ -34,20 +34,24 @@ import { Icon } from "astro-icon/components";
     const logoNav = document.getElementById("logo-nav");
     const transitionLogo = document.getElementById("page-transition-logo");
     const isMobile = window.innerWidth < 768;
-
+    
     if (!pageSlide || !desktopNav.length || !logoNav) return;
-
+    
     const handleNavClick = (event) => {
-      if (pageSlide.classList.contains("-translate-y-full")) {
-        event.preventDefault();
-        return;
-      };
       event.preventDefault();
+      
+      if (pageSlide.classList.contains("-translate-y-full")) {
+        return;
+      }
+      
       const href = event.target.getAttribute("href");
+      
       if (
         href.replace(/\/$/, "") === window.location.pathname.replace(/\/$/, "")
       )
-        return;
+      return;
+      
+      sessionStorage.setItem("delayTimeout", "800");
 
       pageSlide.classList.remove("translate-y-full");
       pageSlide.classList.add("translate-y-0");
@@ -58,18 +62,18 @@ import { Icon } from "astro-icon/components";
       }, 400);
 
       const transitionEndBeforeNav = () => {
-        setTimeout(() => {
-          transitionLogo.classList.remove("translate-y-0", "opacity-100");
-          transitionLogo.classList.add("-translate-y-[20px]", "opacity-0");
-        }, 400);
+        navigate(href).then(() => {
+          document.addEventListener("astro:page-load", () => {
+            setTimeout(() => {
+              transitionLogo.classList.remove("translate-y-0", "opacity-100");
+              transitionLogo.classList.add("-translate-y-[20px]", "opacity-0");
+            }, 300);
 
-        setTimeout(() => {
-          navigate(href).then(() => {
-            document.addEventListener("astro:page-load", () => {
+            setTimeout(() => {
               pageSlide.classList.remove("translate-y-0");
               pageSlide.classList.add("-translate-y-full");
 
-              const transitionEndAfterNav = () => {
+              const transitionEndAfterHide = () => {
                 pageSlide.classList.remove(
                   "transition-transform",
                   "duration-500",
@@ -83,6 +87,8 @@ import { Icon } from "astro-icon/components";
                 );
                 transitionLogo.classList.add("translate-y-[20px]");
 
+                sessionStorage.removeItem("delayTimeout");
+                
                 setTimeout(() => {
                   pageSlide.classList.add(
                     "transition-transform",
@@ -96,17 +102,17 @@ import { Icon } from "astro-icon/components";
 
                 pageSlide.removeEventListener(
                   "transitionend",
-                  transitionEndAfterNav
+                  transitionEndAfterHide
                 );
               };
 
               pageSlide.addEventListener(
                 "transitionend",
-                transitionEndAfterNav
+                transitionEndAfterHide
               );
-            });
+            }, 500);
           });
-        }, 500);
+        });
 
         pageSlide.removeEventListener("transitionend", transitionEndBeforeNav);
       };
