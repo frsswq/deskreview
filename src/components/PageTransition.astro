@@ -37,7 +37,7 @@ import { Icon } from "astro-icon/components";
     if (!pageSlide || !desktopNav.length || !logoNav) return;
 
     const handleNavClick = (event) => {
-      if(!isWeb()) return;
+      if (!isWeb()) return;
 
       event.preventDefault();
 
@@ -134,4 +134,9 @@ import { Icon } from "astro-icon/components";
 
   initPageTransition();
   document.addEventListener("astro:page-load", initPageTransition);
+  window.addEventListener("resize", () => {
+    if (window.matchMedia("(min-width: 768px)").matches) {
+      initPageTransition();
+    }
+  });
 </script>
