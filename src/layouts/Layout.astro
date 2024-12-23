@@ -13,11 +13,8 @@ type Props = {
 
 const { pageTitle, withFooter, bgColor } = Astro.props;
 const isWithFooter = withFooter ? "mb-[calc(100vh-52px)]" : "";
-
-// TODO: add scroll by dragging the mouse
 ---
 
-<!-- classic layout -->
 <html
   lang="en"
   transition:name="root"
@@ -77,7 +74,7 @@ const isWithFooter = withFooter ? "mb-[calc(100vh-52px)]" : "";
     const delayTimeout = parseInt(
       sessionStorage.getItem("delayTimeout") || "0"
     );
-    
+
     setTimeout(() => {
       const textObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
