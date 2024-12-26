@@ -5,72 +5,75 @@ import { Image } from "astro:assets";
 const { title, sector, year, description, services, images = [] } = Astro.props;
 ---
 
-<!-- Astra -->
 <div
-  class="work-modal-content text-balanced mx-4 mt-7 hidden animate-slideinMedium pb-20 text-sm
-    leading-[1.6] tracking-tight text-desk-black antialiased opacity-0
-    [--delay:500ms] md:mx-[25vw] md:mt-[15vh] md:text-pretty md:pb-20 md:text-xl"
+  class="work-modal-content pointer-events-auto z-[60] mx-2 my-2 hidden rounded-lg
+    bg-desk-white px-4 py-5 pb-20 md:mx-auto md:my-[120px] md:min-w-[700px] md:w-[70vw] md:rounded-lg md:px-[10vw] md:py-[120px]"
 >
-  <p class="pb-2 text-2xl font-bold capitalize tracking-tighter md:text-4xl">
-    {title}
-  </p>
-  <DividerReveal reveal={false} />
-  <div class="pt-4">
-    <p
-      class="text-balance pb-4 text-base leading-[1.6] tracking-tight md:text-pretty
-        md:text-xl"
-    >
-      {description}
+  <div
+    class="text-balanced animate-slideinMedium text-sm leading-[1.6] tracking-tight
+      text-desk-black antialiased opacity-0 [--delay:500ms] md:text-pretty md:text-xl"
+  >
+    <p class="pb-2 text-2xl font-bold capitalize tracking-tighter md:text-4xl">
+      {title}
     </p>
     <DividerReveal reveal={false} />
-    <div class="grid grid-cols-[1.5fr_3.5fr] pt-4">
-      <p class="font-bold leading-none tracking-tight">Services</p>
-      <ul>
-        <li class="pb-3 capitalize leading-none tracking-tight">
-          {services.split(",")[0]}
-        </li>
-        <DividerReveal reveal={false} />
-        {
-          services
-            .split(",")
-            .slice(1)
-            .map((item, index, arr) => (
-              <>
-                <li class="pb-[12px] pt-[16px] capitalize leading-none tracking-tight">
-                  {item.trim()}
-                </li>
-                {index < arr.length - 1 && <DividerReveal reveal={false} />}
-              </>
-            ))
-        }
-      </ul>
-    </div>
-    <DividerReveal reveal={false} />
-    <div class="grid grid-cols-[1.5fr_3.5fr] pb-3 pt-4">
-      <p class="font-bold leading-none tracking-tight">Year</p>
-      <p class="capitalize leading-none tracking-tight">
-        {year}
+    <div class="pt-4">
+      <p
+        class="text-balance pb-4 text-base leading-[1.6] tracking-tight md:text-pretty
+          md:text-xl"
+      >
+        {description}
       </p>
+      <DividerReveal reveal={false} />
+      <div class="grid grid-cols-[1.5fr_3.5fr] pt-4">
+        <p class="font-bold leading-none tracking-tight">Services</p>
+        <ul>
+          <li class="pb-3 capitalize leading-none tracking-tight">
+            {services.split(",")[0]}
+          </li>
+          <DividerReveal reveal={false} />
+          {
+            services
+              .split(",")
+              .slice(1)
+              .map((item, index, arr) => (
+                <>
+                  <li class="pb-[12px] pt-[16px] capitalize leading-none tracking-tight">
+                    {item.trim()}
+                  </li>
+                  {index < arr.length - 1 && <DividerReveal reveal={false} />}
+                </>
+              ))
+          }
+        </ul>
+      </div>
+      <DividerReveal reveal={false} />
+      <div class="grid grid-cols-[1.5fr_3.5fr] pb-3 pt-4">
+        <p class="font-bold leading-none tracking-tight">Year</p>
+        <p class="capitalize leading-none tracking-tight">
+          {year}
+        </p>
+      </div>
+      <DividerReveal reveal={false} />
+      <div class="grid grid-cols-[1.5fr_3.5fr] pb-3 pt-4">
+        <p class="font-bold leading-none tracking-tight">Industry</p>
+        <p class="capitalize leading-none tracking-tight">
+          {sector}
+        </p>
+      </div>
+      <DividerReveal reveal={false} />
     </div>
-    <DividerReveal reveal={false} />
-    <div class="grid grid-cols-[1.5fr_3.5fr] pb-3 pt-4">
-      <p class="font-bold leading-none tracking-tight">Industry</p>
-      <p class="capitalize leading-none tracking-tight">
-        {sector}
-      </p>
+    <div class="grid grid-cols-1 gap-8 pt-8">
+      {
+        images.map((img: ImageMetadata, index: number) => (
+          <Image
+            src={img}
+            alt={`${title} - Image ${index + 1}`}
+            class="h-full w-full object-cover"
+            loading="lazy"
+          />
+        ))
+      }
     </div>
-    <DividerReveal reveal={false} />
-  </div>
-  <div class="grid grid-cols-1 gap-8 pt-8">
-    {
-      images.map((img: ImageMetadata, index: number) => (
-        <Image
-          src={img}
-          alt={`${title} - Image ${index + 1}`}
-          class="h-full w-full object-cover"
-          loading="lazy"
-        />
-      ))
-    }
   </div>
 </div>
